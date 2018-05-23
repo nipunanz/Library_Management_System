@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Library_Management_System_v0._1
 {
-    public partial class Add_New_Category : Form
+    public partial class Manage_Books : Form
     {
-        public Add_New_Category()
+        public Manage_Books()
         {
             InitializeComponent();
         }
 
-        private void buttonSaveCategory_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

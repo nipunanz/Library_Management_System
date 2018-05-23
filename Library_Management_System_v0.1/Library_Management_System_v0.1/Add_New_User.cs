@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Library_Management_System_v0._1
 {
-    public partial class Add_New_Category : Form
+    public partial class Add_New_User : Form
     {
-        public Add_New_Category()
+        public Add_New_User()
         {
             InitializeComponent();
         }
 
-        private void buttonSaveCategory_Click(object sender, EventArgs e)
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

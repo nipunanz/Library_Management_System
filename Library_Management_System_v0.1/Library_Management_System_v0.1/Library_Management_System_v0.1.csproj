@@ -70,7 +70,49 @@
     <Compile Include="Add_New_Publisher.Designer.cs">
       <DependentUpon>Add_New_Publisher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add_New_User.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_New_User.Designer.cs">
+      <DependentUpon>Add_New_User.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataConnection.cs" />
+    <Compile Include="Edit_Author.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Author.Designer.cs">
+      <DependentUpon>Edit_Author.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Book_Type.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Book_Type.Designer.cs">
+      <DependentUpon>Edit_Book_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Category.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Category.Designer.cs">
+      <DependentUpon>Edit_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Publisher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Publisher.Designer.cs">
+      <DependentUpon>Edit_Publisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Issue_Books.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Issue_Books.Designer.cs">
+      <DependentUpon>Issue_Books.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +120,18 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginDetails.cs" />
+    <Compile Include="Manage_Books.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Books.Designer.cs">
+      <DependentUpon>Manage_Books.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage_Users.Designer.cs">
+      <DependentUpon>Manage_Users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register_new_books.cs">
@@ -85,6 +139,12 @@
     </Compile>
     <Compile Include="Register_new_books.Designer.cs">
       <DependentUpon>Register_new_books.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Return_Books.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Return_Books.Designer.cs">
+      <DependentUpon>Return_Books.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Add_New_Author.resx">
       <DependentUpon>Add_New_Author.cs</DependentUpon>
@@ -98,8 +158,35 @@
     <EmbeddedResource Include="Add_New_Publisher.resx">
       <DependentUpon>Add_New_Publisher.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Add_New_User.resx">
+      <DependentUpon>Add_New_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Author.resx">
+      <DependentUpon>Edit_Author.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Book_Type.resx">
+      <DependentUpon>Edit_Book_Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Category.resx">
+      <DependentUpon>Edit_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Publisher.resx">
+      <DependentUpon>Edit_Publisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Issue_Books.resx">
+      <DependentUpon>Issue_Books.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Books.resx">
+      <DependentUpon>Manage_Books.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage_Users.resx">
+      <DependentUpon>Manage_Users.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,6 +199,9 @@
     </Compile>
     <EmbeddedResource Include="Register_new_books.resx">
       <DependentUpon>Register_new_books.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Return_Books.resx">
+      <DependentUpon>Return_Books.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

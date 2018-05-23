@@ -52,6 +52,10 @@
             this.buttonAddPublisher = new System.Windows.Forms.Button();
             this.buttonAddType = new System.Windows.Forms.Button();
             this.buttonSaveBook = new System.Windows.Forms.Button();
+            this.buttonEditCategory = new System.Windows.Forms.Button();
+            this.buttonEditAuthor = new System.Windows.Forms.Button();
+            this.buttonEditPublisher = new System.Windows.Forms.Button();
+            this.buttonEditType = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -163,7 +167,7 @@
             // 
             this.bookCategory.AutoSize = true;
             this.bookCategory.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bookCategory.Location = new System.Drawing.Point(632, 142);
+            this.bookCategory.Location = new System.Drawing.Point(615, 142);
             this.bookCategory.Name = "bookCategory";
             this.bookCategory.Size = new System.Drawing.Size(82, 26);
             this.bookCategory.TabIndex = 11;
@@ -173,16 +177,16 @@
             // 
             this.comboBoxCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(781, 140);
+            this.comboBoxCategory.Location = new System.Drawing.Point(764, 140);
             this.comboBoxCategory.Name = "comboBoxCategory";
-            this.comboBoxCategory.Size = new System.Drawing.Size(305, 30);
+            this.comboBoxCategory.Size = new System.Drawing.Size(269, 30);
             this.comboBoxCategory.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(632, 205);
+            this.label3.Location = new System.Drawing.Point(615, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 26);
             this.label3.TabIndex = 13;
@@ -192,16 +196,16 @@
             // 
             this.comboBoxBookAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxBookAuthor.FormattingEnabled = true;
-            this.comboBoxBookAuthor.Location = new System.Drawing.Point(781, 201);
+            this.comboBoxBookAuthor.Location = new System.Drawing.Point(764, 201);
             this.comboBoxBookAuthor.Name = "comboBoxBookAuthor";
-            this.comboBoxBookAuthor.Size = new System.Drawing.Size(305, 30);
+            this.comboBoxBookAuthor.Size = new System.Drawing.Size(269, 30);
             this.comboBoxBookAuthor.TabIndex = 14;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(632, 272);
+            this.label4.Location = new System.Drawing.Point(615, 272);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 26);
             this.label4.TabIndex = 15;
@@ -211,16 +215,16 @@
             // 
             this.comboBoxBookPublisher.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxBookPublisher.FormattingEnabled = true;
-            this.comboBoxBookPublisher.Location = new System.Drawing.Point(781, 272);
+            this.comboBoxBookPublisher.Location = new System.Drawing.Point(764, 272);
             this.comboBoxBookPublisher.Name = "comboBoxBookPublisher";
-            this.comboBoxBookPublisher.Size = new System.Drawing.Size(305, 30);
+            this.comboBoxBookPublisher.Size = new System.Drawing.Size(269, 30);
             this.comboBoxBookPublisher.TabIndex = 16;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(632, 339);
+            this.label5.Location = new System.Drawing.Point(615, 339);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 26);
             this.label5.TabIndex = 17;
@@ -230,52 +234,52 @@
             // 
             this.comboBoxBookType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxBookType.FormattingEnabled = true;
-            this.comboBoxBookType.Location = new System.Drawing.Point(781, 335);
+            this.comboBoxBookType.Location = new System.Drawing.Point(764, 335);
             this.comboBoxBookType.Name = "comboBoxBookType";
-            this.comboBoxBookType.Size = new System.Drawing.Size(305, 30);
+            this.comboBoxBookType.Size = new System.Drawing.Size(269, 30);
             this.comboBoxBookType.TabIndex = 18;
             // 
             // buttonAddCategory
             // 
             this.buttonAddCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddCategory.Location = new System.Drawing.Point(1112, 138);
+            this.buttonAddCategory.Location = new System.Drawing.Point(1046, 138);
             this.buttonAddCategory.Name = "buttonAddCategory";
-            this.buttonAddCategory.Size = new System.Drawing.Size(105, 33);
+            this.buttonAddCategory.Size = new System.Drawing.Size(91, 33);
             this.buttonAddCategory.TabIndex = 19;
-            this.buttonAddCategory.Text = "Add New";
+            this.buttonAddCategory.Text = "Add";
             this.buttonAddCategory.UseVisualStyleBackColor = true;
             this.buttonAddCategory.Click += new System.EventHandler(this.buttonAddCategory_Click);
             // 
             // buttonAddAuthor
             // 
             this.buttonAddAuthor.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddAuthor.Location = new System.Drawing.Point(1112, 198);
+            this.buttonAddAuthor.Location = new System.Drawing.Point(1046, 198);
             this.buttonAddAuthor.Name = "buttonAddAuthor";
-            this.buttonAddAuthor.Size = new System.Drawing.Size(105, 33);
+            this.buttonAddAuthor.Size = new System.Drawing.Size(91, 33);
             this.buttonAddAuthor.TabIndex = 20;
-            this.buttonAddAuthor.Text = "Add New";
+            this.buttonAddAuthor.Text = "Add";
             this.buttonAddAuthor.UseVisualStyleBackColor = true;
             this.buttonAddAuthor.Click += new System.EventHandler(this.buttonAddAuthor_Click);
             // 
             // buttonAddPublisher
             // 
             this.buttonAddPublisher.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddPublisher.Location = new System.Drawing.Point(1112, 269);
+            this.buttonAddPublisher.Location = new System.Drawing.Point(1046, 269);
             this.buttonAddPublisher.Name = "buttonAddPublisher";
-            this.buttonAddPublisher.Size = new System.Drawing.Size(105, 33);
+            this.buttonAddPublisher.Size = new System.Drawing.Size(91, 33);
             this.buttonAddPublisher.TabIndex = 21;
-            this.buttonAddPublisher.Text = "Add New";
+            this.buttonAddPublisher.Text = "Add";
             this.buttonAddPublisher.UseVisualStyleBackColor = true;
             this.buttonAddPublisher.Click += new System.EventHandler(this.buttonAddPublisher_Click);
             // 
             // buttonAddType
             // 
             this.buttonAddType.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddType.Location = new System.Drawing.Point(1112, 332);
+            this.buttonAddType.Location = new System.Drawing.Point(1046, 332);
             this.buttonAddType.Name = "buttonAddType";
-            this.buttonAddType.Size = new System.Drawing.Size(105, 33);
+            this.buttonAddType.Size = new System.Drawing.Size(91, 33);
             this.buttonAddType.TabIndex = 22;
-            this.buttonAddType.Text = "Add New";
+            this.buttonAddType.Text = "Add";
             this.buttonAddType.UseVisualStyleBackColor = true;
             this.buttonAddType.Click += new System.EventHandler(this.buttonAddType_Click);
             // 
@@ -289,11 +293,55 @@
             this.buttonSaveBook.Text = "Save";
             this.buttonSaveBook.UseVisualStyleBackColor = true;
             // 
+            // buttonEditCategory
+            // 
+            this.buttonEditCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEditCategory.Location = new System.Drawing.Point(1143, 138);
+            this.buttonEditCategory.Name = "buttonEditCategory";
+            this.buttonEditCategory.Size = new System.Drawing.Size(91, 33);
+            this.buttonEditCategory.TabIndex = 24;
+            this.buttonEditCategory.Text = "Edit";
+            this.buttonEditCategory.UseVisualStyleBackColor = true;
+            // 
+            // buttonEditAuthor
+            // 
+            this.buttonEditAuthor.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEditAuthor.Location = new System.Drawing.Point(1143, 198);
+            this.buttonEditAuthor.Name = "buttonEditAuthor";
+            this.buttonEditAuthor.Size = new System.Drawing.Size(91, 33);
+            this.buttonEditAuthor.TabIndex = 25;
+            this.buttonEditAuthor.Text = "Edit";
+            this.buttonEditAuthor.UseVisualStyleBackColor = true;
+            // 
+            // buttonEditPublisher
+            // 
+            this.buttonEditPublisher.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEditPublisher.Location = new System.Drawing.Point(1143, 269);
+            this.buttonEditPublisher.Name = "buttonEditPublisher";
+            this.buttonEditPublisher.Size = new System.Drawing.Size(91, 33);
+            this.buttonEditPublisher.TabIndex = 26;
+            this.buttonEditPublisher.Text = "Edit";
+            this.buttonEditPublisher.UseVisualStyleBackColor = true;
+            // 
+            // buttonEditType
+            // 
+            this.buttonEditType.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEditType.Location = new System.Drawing.Point(1143, 332);
+            this.buttonEditType.Name = "buttonEditType";
+            this.buttonEditType.Size = new System.Drawing.Size(91, 33);
+            this.buttonEditType.TabIndex = 27;
+            this.buttonEditType.Text = "Edit";
+            this.buttonEditType.UseVisualStyleBackColor = true;
+            // 
             // Register_new_books
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1283, 703);
+            this.Controls.Add(this.buttonEditType);
+            this.Controls.Add(this.buttonEditPublisher);
+            this.Controls.Add(this.buttonEditAuthor);
+            this.Controls.Add(this.buttonEditCategory);
             this.Controls.Add(this.buttonSaveBook);
             this.Controls.Add(this.buttonAddType);
             this.Controls.Add(this.buttonAddPublisher);
@@ -353,5 +401,9 @@
         private System.Windows.Forms.Button buttonAddPublisher;
         private System.Windows.Forms.Button buttonAddType;
         private System.Windows.Forms.Button buttonSaveBook;
+        private System.Windows.Forms.Button buttonEditCategory;
+        private System.Windows.Forms.Button buttonEditAuthor;
+        private System.Windows.Forms.Button buttonEditPublisher;
+        private System.Windows.Forms.Button buttonEditType;
     }
 }

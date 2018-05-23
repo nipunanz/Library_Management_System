@@ -72,6 +72,7 @@
             this.buttonSaveCategory.TabIndex = 24;
             this.buttonSaveCategory.Text = "Save";
             this.buttonSaveCategory.UseVisualStyleBackColor = true;
+            this.buttonSaveCategory.Click += new System.EventHandler(this.buttonSaveCategory_Click);
             // 
             // Add_New_Category
             // 

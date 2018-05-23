@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Library_Management_System_v0._1
 {
-    public partial class Add_New_Category : Form
+    public partial class Edit_Publisher : Form
     {
-        public Add_New_Category()
+        public Edit_Publisher()
         {
             InitializeComponent();
-        }
-
-        private void buttonSaveCategory_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
