@@ -19,9 +19,10 @@ namespace Library_Management_System_v0._1
             if (DataConnection.mySqlConnection == null) {
 
                 mySqlConnection = new MySqlConnection(connectionString: conStr);
+                mySqlConnection.Open();
 
             }
-            mySqlConnection.Open();
+            
             return mySqlConnection;
         }
 
