@@ -70,6 +70,7 @@
     <Compile Include="Add_New_Publisher.Designer.cs">
       <DependentUpon>Add_New_Publisher.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataConnection.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
