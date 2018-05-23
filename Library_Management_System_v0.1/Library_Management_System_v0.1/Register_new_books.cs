@@ -7,25 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Library_Management_System_v0._1
 {
-    public partial class Login : Form
+    public partial class Register_new_books : Form
     {
-        public Login()
+        public Register_new_books()
         {
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Register_new_books_Load(object sender, EventArgs e)
         {
-          
+
         }
     }
 }
