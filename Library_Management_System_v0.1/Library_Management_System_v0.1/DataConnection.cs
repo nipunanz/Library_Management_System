@@ -13,15 +13,12 @@ namespace Library_Management_System_v0._1
        
        public static MySqlConnection getDBConnection()
         {
-            MySqlConnectionStringBuilder mySqlConnectionStringBuilder = new MySqlConnectionStringBuilder();
-            mySqlConnectionStringBuilder.Server = "localhost";
-            mySqlConnectionStringBuilder.UserID = "root";
-            mySqlConnectionStringBuilder.Password = "123";
-            mySqlConnectionStringBuilder.Database = "nanofoxy_library_management_system";
+          
+            String conStr = "server=localhost;user id=root;password=123;persistsecurityinfo=True;port=3306;database=nanofoxy_library_management_system;SslMode=none";
 
             if (DataConnection.mySqlConnection == null) {
 
-                MySqlConnection mySqlConnection = new MySqlConnection(mySqlConnectionStringBuilder.ToString());
+                mySqlConnection = new MySqlConnection(connectionString: conStr);
                 mySqlConnection.Open();
 
             }

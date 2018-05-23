@@ -43,6 +43,7 @@
             this.buttonSaveBookType.TabIndex = 36;
             this.buttonSaveBookType.Text = "Save";
             this.buttonSaveBookType.UseVisualStyleBackColor = true;
+            this.buttonSaveBookType.Click += new System.EventHandler(this.buttonSaveBookType_Click);
             // 
             // textBoxAddBookType
             // 
