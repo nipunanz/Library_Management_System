@@ -51,7 +51,7 @@
             this.buttonAddAuthor = new System.Windows.Forms.Button();
             this.buttonAddPublisher = new System.Windows.Forms.Button();
             this.buttonAddType = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSaveBook = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -244,6 +244,7 @@
             this.buttonAddCategory.TabIndex = 19;
             this.buttonAddCategory.Text = "Add New";
             this.buttonAddCategory.UseVisualStyleBackColor = true;
+            this.buttonAddCategory.Click += new System.EventHandler(this.buttonAddCategory_Click);
             // 
             // buttonAddAuthor
             // 
@@ -254,6 +255,7 @@
             this.buttonAddAuthor.TabIndex = 20;
             this.buttonAddAuthor.Text = "Add New";
             this.buttonAddAuthor.UseVisualStyleBackColor = true;
+            this.buttonAddAuthor.Click += new System.EventHandler(this.buttonAddAuthor_Click);
             // 
             // buttonAddPublisher
             // 
@@ -264,6 +266,7 @@
             this.buttonAddPublisher.TabIndex = 21;
             this.buttonAddPublisher.Text = "Add New";
             this.buttonAddPublisher.UseVisualStyleBackColor = true;
+            this.buttonAddPublisher.Click += new System.EventHandler(this.buttonAddPublisher_Click);
             // 
             // buttonAddType
             // 
@@ -274,23 +277,24 @@
             this.buttonAddType.TabIndex = 22;
             this.buttonAddType.Text = "Add New";
             this.buttonAddType.UseVisualStyleBackColor = true;
+            this.buttonAddType.Click += new System.EventHandler(this.buttonAddType_Click);
             // 
-            // button1
+            // buttonSaveBook
             // 
-            this.button1.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1067, 592);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 47);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonSaveBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveBook.Location = new System.Drawing.Point(1067, 592);
+            this.buttonSaveBook.Name = "buttonSaveBook";
+            this.buttonSaveBook.Size = new System.Drawing.Size(149, 47);
+            this.buttonSaveBook.TabIndex = 23;
+            this.buttonSaveBook.Text = "Save";
+            this.buttonSaveBook.UseVisualStyleBackColor = true;
             // 
             // Register_new_books
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1283, 703);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonSaveBook);
             this.Controls.Add(this.buttonAddType);
             this.Controls.Add(this.buttonAddPublisher);
             this.Controls.Add(this.buttonAddAuthor);
@@ -348,6 +352,6 @@
         private System.Windows.Forms.Button buttonAddAuthor;
         private System.Windows.Forms.Button buttonAddPublisher;
         private System.Windows.Forms.Button buttonAddType;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSaveBook;
     }
 }

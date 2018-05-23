@@ -46,6 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_New_Author.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_New_Author.Designer.cs">
+      <DependentUpon>Add_New_Author.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_New_Book_Type.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_New_Book_Type.Designer.cs">
+      <DependentUpon>Add_New_Book_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_New_Category.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_New_Category.Designer.cs">
+      <DependentUpon>Add_New_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_New_Publisher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_New_Publisher.Designer.cs">
+      <DependentUpon>Add_New_Publisher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +84,18 @@
     <Compile Include="Register_new_books.Designer.cs">
       <DependentUpon>Register_new_books.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Add_New_Author.resx">
+      <DependentUpon>Add_New_Author.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_New_Book_Type.resx">
+      <DependentUpon>Add_New_Book_Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_New_Category.resx">
+      <DependentUpon>Add_New_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_New_Publisher.resx">
+      <DependentUpon>Add_New_Publisher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

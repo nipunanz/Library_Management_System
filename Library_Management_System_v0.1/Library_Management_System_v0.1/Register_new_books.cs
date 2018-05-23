@@ -26,5 +26,13 @@ namespace Library_Management_System_v0._1
         {
 
         }
+
+        private void buttonAddCategory_Click(object sender, EventArgs e) => new Add_New_Category().Show();
+
+        private void buttonAddAuthor_Click(object sender, EventArgs e) => new Add_New_Author().Show();
+
+        private void buttonAddPublisher_Click(object sender, EventArgs e) => new Add_New_Publisher().Show();
+
+        private void buttonAddType_Click(object sender, EventArgs e) => new Add_New_Book_Type().Show();
     }
 }
