@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
 
 namespace Library_Management_System_v0._1
 {
@@ -15,7 +17,29 @@ namespace Library_Management_System_v0._1
         public Register_new_books()
         {
             InitializeComponent();
+            fillComboType();
         }
+
+        void fillComboType()
+        {
+            
+            String selectBookType_SQL = "SELECT * FROM book_type";
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            
+            MySqlCommand cmd_bookType = new MySqlCommand(selectBookType_SQL, mySqlConnection);
+            MySqlDataReader DataReaderBookType;
+
+            DataReaderBookType = cmd_bookType.ExecuteReader();
+            while (DataReaderBookType.Read()) {
+                String bookType = DataReaderBookType.GetString("name");
+                comboBoxBookType.Items.Add(bookType);
+
+            }
+
+          
+
+        }
+
 
         private void label2_Click(object sender, EventArgs e)
         {
