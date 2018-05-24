@@ -493,9 +493,9 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.bookId);
             this.Controls.Add(this.label1);
-            this.Name = "Issue_Books";
+            //this.Name = "Issue_Books";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Issue_Books";
+            //this.Text = "Issue_Books";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

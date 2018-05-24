@@ -186,8 +186,8 @@
             this.Controls.Add(this.textBoxBookID);
             this.Controls.Add(this.bookId);
             this.Controls.Add(this.label1);
-            this.Name = "Manage_Users";
-            this.Text = "Manage_Users";
+            //this.Name = "Manage_Users";
+            //this.Text = "Manage_Users";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

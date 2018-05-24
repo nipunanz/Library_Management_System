@@ -207,9 +207,9 @@
             this.Controls.Add(this.textBoxBookID);
             this.Controls.Add(this.bookId);
             this.Controls.Add(this.label1);
-            this.Name = "Manage_Books";
+            //this.Name = "Manage_Books";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Manage_Books";
+            //this.Text = "Manage_Books";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

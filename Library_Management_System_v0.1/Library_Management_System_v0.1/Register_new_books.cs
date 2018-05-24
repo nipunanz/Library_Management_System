@@ -25,7 +25,7 @@ namespace Library_Management_System_v0._1
             
             String selectBookType_SQL = "SELECT * FROM book_type";
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            
+            mySqlConnection.Open();
             MySqlCommand cmd_bookType = new MySqlCommand(selectBookType_SQL, mySqlConnection);
             MySqlDataReader DataReaderBookType;
 
@@ -36,7 +36,7 @@ namespace Library_Management_System_v0._1
 
             }
 
-          
+            mySqlConnection.Close();
 
         }
 
