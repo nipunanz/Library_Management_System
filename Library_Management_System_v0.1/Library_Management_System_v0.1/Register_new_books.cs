@@ -18,9 +18,10 @@ namespace Library_Management_System_v0._1
         {
             InitializeComponent();
             //fillComboType();
+            generateID();
         }
 
-        public void fillComboType()
+        void fillComboType()
         {
 
             String selectBookType_SQL = "SELECT * FROM book_type";
@@ -40,6 +41,34 @@ namespace Library_Management_System_v0._1
             mySqlConnection.Close();
 
         }
+
+        void generateID() {
+
+            
+            DateTime dateObj = DateTime.Now; //Gets the current DATE/TIME
+
+
+            String date = dateObj.Day.ToString();//Gets the current DAY
+            String month = dateObj.Month.ToString();//Gets the current MONTH
+            String year = dateObj.Year.ToString();//Gets the current YEAR
+            String searchDateFormat = year+ "-" +"0"+month+"-" +date;//Format the year as needed
+
+            labelBookID.Text = "BPR" + date + year + month;
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+
+            String searchDailyCount = "SELECT COUNT(id) FROM book_batch_profile WHERE createDateTime LIKE @date ";
+            MySqlCommand command_newBookCatergory = new MySqlCommand(searchDailyCount, mySqlConnection);
+            command_newBookCatergory.CommandText = searchDailyCount;
+            command_newBookCatergory.Parameters.AddWithValue("@date", "%"+searchDateFormat+"%");
+            Object sqlResult =command_newBookCatergory.ExecuteScalar();
+            
+            labelBookID.Text = "BPR" + date + year + month + sqlResult.ToString();
+            mySqlConnection.Close();
+
+        }
+
 
 
         private void label2_Click(object sender, EventArgs e)

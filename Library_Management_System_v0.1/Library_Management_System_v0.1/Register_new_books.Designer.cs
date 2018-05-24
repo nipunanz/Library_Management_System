@@ -35,7 +35,7 @@
             this.printedYear = new System.Windows.Forms.Label();
             this.bookDescription = new System.Windows.Forms.Label();
             this.textBoxBookName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelBookID = new System.Windows.Forms.Label();
             this.textBoxISBN = new System.Windows.Forms.TextBox();
             this.textBoxPrintedYear = new System.Windows.Forms.TextBox();
             this.textBoxBookDescription = new System.Windows.Forms.TextBox();
@@ -134,17 +134,17 @@
             this.textBoxBookName.Size = new System.Drawing.Size(273, 24);
             this.textBoxBookName.TabIndex = 6;
             // 
-            // label2
+            // labelBookID
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(141, 115);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 20);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "BPR222018051";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.labelBookID.AutoSize = true;
+            this.labelBookID.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBookID.Location = new System.Drawing.Point(141, 115);
+            this.labelBookID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelBookID.Name = "labelBookID";
+            this.labelBookID.Size = new System.Drawing.Size(97, 20);
+            this.labelBookID.TabIndex = 7;
+            this.labelBookID.Text = "BPR222018051";
+            this.labelBookID.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBoxISBN
             // 
@@ -396,7 +396,7 @@
             this.Controls.Add(this.textBoxBookDescription);
             this.Controls.Add(this.textBoxPrintedYear);
             this.Controls.Add(this.textBoxISBN);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelBookID);
             this.Controls.Add(this.textBoxBookName);
             this.Controls.Add(this.bookDescription);
             this.Controls.Add(this.printedYear);
@@ -423,7 +423,7 @@
         private System.Windows.Forms.Label printedYear;
         private System.Windows.Forms.Label bookDescription;
         private System.Windows.Forms.TextBox textBoxBookName;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelBookID;
         private System.Windows.Forms.TextBox textBoxISBN;
         private System.Windows.Forms.TextBox textBoxPrintedYear;
         private System.Windows.Forms.TextBox textBoxBookDescription;
