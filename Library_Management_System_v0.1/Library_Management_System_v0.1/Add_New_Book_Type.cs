@@ -34,8 +34,8 @@ namespace Library_Management_System_v0._1
             DialogResult dialogResult = MessageBox.Show("New Book Type Added", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (dialogResult == DialogResult.OK)
             {
-                this.Close();
-                new Register_new_books().Refresh();
+                textBoxAddBookType.Text = String.Empty;
+               
             }
         }
     }

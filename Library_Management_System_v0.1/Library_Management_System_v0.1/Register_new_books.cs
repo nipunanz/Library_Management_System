@@ -17,12 +17,12 @@ namespace Library_Management_System_v0._1
         public Register_new_books()
         {
             InitializeComponent();
-            fillComboType();
+            //fillComboType();
         }
 
         public void fillComboType()
         {
-            
+
             String selectBookType_SQL = "SELECT * FROM book_type";
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
             mySqlConnection.Open();
@@ -30,7 +30,8 @@ namespace Library_Management_System_v0._1
             MySqlDataReader DataReaderBookType;
 
             DataReaderBookType = cmd_bookType.ExecuteReader();
-            while (DataReaderBookType.Read()) {
+            while (DataReaderBookType.Read())
+            {
                 String bookType = DataReaderBookType.GetString("name");
                 comboBoxBookType.Items.Add(bookType);
 
@@ -59,9 +60,24 @@ namespace Library_Management_System_v0._1
 
         private void buttonAddType_Click(object sender, EventArgs e) => new Add_New_Book_Type().Show();
 
+        private void comboBoxBookType_Click(object sender, EventArgs e)
+        {
+            fillComboType();
+        }
+
         private void comboBoxBookType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxBookType_MouseClick(object sender, MouseEventArgs e)
+        {
+            new Register_new_books().Refresh();
         }
     }
 }
