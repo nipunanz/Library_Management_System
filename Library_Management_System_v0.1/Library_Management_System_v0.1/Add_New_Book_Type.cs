@@ -24,12 +24,12 @@ namespace Library_Management_System_v0._1
             String addNewBookTypeQuery = "INSERT INTO book_type (name) VALUES (@name)";
 
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            
+            mySqlConnection.Open();
             MySqlCommand newBookTypeCommand = new MySqlCommand(addNewBookTypeQuery, mySqlConnection);
             newBookTypeCommand.CommandText = addNewBookTypeQuery;
             newBookTypeCommand.Parameters.AddWithValue("@name", newBookType);
             newBookTypeCommand.ExecuteNonQuery();
-            
+            mySqlConnection.Close();
 
             DialogResult dialogResult = MessageBox.Show("New Book Type Added", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (dialogResult == DialogResult.OK)
