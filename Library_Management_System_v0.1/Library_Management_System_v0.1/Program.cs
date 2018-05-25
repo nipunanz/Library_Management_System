@@ -16,7 +16,7 @@ namespace Library_Management_System_v0._1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new Register_new_books());
         }
     }
 }
