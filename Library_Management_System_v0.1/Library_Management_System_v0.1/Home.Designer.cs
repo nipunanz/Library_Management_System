@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonSaveBook = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonRegNewBook = new System.Windows.Forms.Button();
+            this.buttonManageBooks = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -73,33 +73,33 @@
             this.label3.Text = "User Management";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // buttonSaveBook
+            // buttonRegNewBook
             // 
-            this.buttonSaveBook.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveBook.Location = new System.Drawing.Point(53, 268);
-            this.buttonSaveBook.Name = "buttonSaveBook";
-            this.buttonSaveBook.Size = new System.Drawing.Size(498, 58);
-            this.buttonSaveBook.TabIndex = 48;
-            this.buttonSaveBook.Text = "Register New Book";
-            this.buttonSaveBook.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonSaveBook.UseVisualStyleBackColor = true;
-            this.buttonSaveBook.Click += new System.EventHandler(this.buttonSaveBook_Click);
+            this.buttonRegNewBook.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRegNewBook.Location = new System.Drawing.Point(50, 462);
+            this.buttonRegNewBook.Name = "buttonRegNewBook";
+            this.buttonRegNewBook.Size = new System.Drawing.Size(498, 58);
+            this.buttonRegNewBook.TabIndex = 48;
+            this.buttonRegNewBook.Text = "Register New Book";
+            this.buttonRegNewBook.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonRegNewBook.UseVisualStyleBackColor = true;
+            this.buttonRegNewBook.Click += new System.EventHandler(this.buttonSaveBook_Click);
             // 
-            // button1
+            // buttonManageBooks
             // 
-            this.button1.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(53, 363);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(498, 58);
-            this.button1.TabIndex = 49;
-            this.button1.Text = "Manage Books";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonManageBooks.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonManageBooks.Location = new System.Drawing.Point(50, 562);
+            this.buttonManageBooks.Name = "buttonManageBooks";
+            this.buttonManageBooks.Size = new System.Drawing.Size(498, 58);
+            this.buttonManageBooks.TabIndex = 49;
+            this.buttonManageBooks.Text = "Manage Books";
+            this.buttonManageBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonManageBooks.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(53, 457);
+            this.button2.Location = new System.Drawing.Point(50, 268);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(498, 58);
             this.button2.TabIndex = 50;
@@ -110,7 +110,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(53, 551);
+            this.button3.Location = new System.Drawing.Point(50, 363);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(498, 58);
             this.button3.TabIndex = 51;
@@ -149,14 +149,15 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.buttonSaveBook);
+            this.Controls.Add(this.buttonManageBooks);
+            this.Controls.Add(this.buttonRegNewBook);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
+            this.Load += new System.EventHandler(this.Home_Load);
             this.ResumeLayout(false);
 
         }
@@ -166,8 +167,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonSaveBook;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonRegNewBook;
+        private System.Windows.Forms.Button buttonManageBooks;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;

@@ -146,6 +146,7 @@
     <Compile Include="Return_Books.Designer.cs">
       <DependentUpon>Return_Books.cs</DependentUpon>
     </Compile>
+    <Compile Include="StringCipher.cs" />
     <EmbeddedResource Include="Add_New_Author.resx">
       <DependentUpon>Add_New_Author.cs</DependentUpon>
     </EmbeddedResource>

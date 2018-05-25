@@ -17,12 +17,24 @@ namespace Library_Management_System_v0._1
             InitializeComponent();
         }
 
+        public Home(String userType)
+        {
+            InitializeComponent();
+            buttonRegNewBook.Hide();
+            buttonManageBooks.Hide();
+        }
+
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
         private void buttonSaveBook_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Home_Load(object sender, EventArgs e)
         {
 
         }
