@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,11 +18,11 @@ namespace Library_Management_System_v0._1
         public Register_new_books()
         {
             InitializeComponent();
-            //fillComboType();
+            fillComboType();
             generateID();
         }
 
-        void fillComboType()
+        public void fillComboType()
         {
 
             String selectBookType_SQL = "SELECT * FROM book_type";
@@ -89,7 +90,7 @@ namespace Library_Management_System_v0._1
 
         private void comboBoxBookType_Click(object sender, EventArgs e)
         {
-            fillComboType();
+            //fillComboType();
         }
 
         private void comboBoxBookType_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,6 +106,17 @@ namespace Library_Management_System_v0._1
         private void comboBoxBookType_MouseClick(object sender, MouseEventArgs e)
         {
             new Register_new_books().Refresh();
+        }
+
+        private void buttonSaveBook_Click(object sender, EventArgs e)
+        {
+          
+
+        }
+
+        private void comboBoxBookType_Click_1(object sender, EventArgs e)
+        {
+           // fillComboType();
         }
     }
 }

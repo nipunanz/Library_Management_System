@@ -35,6 +35,7 @@ namespace Library_Management_System_v0._1
             if (dialogResult == DialogResult.OK)
             {
                 textBoxAddBookType.Text = String.Empty;
+                //Register_new_books
                
             }
         }
