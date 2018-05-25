@@ -32,13 +32,15 @@
             this.textBoxAddAuthor = new System.Windows.Forms.TextBox();
             this.authorName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxAuthorDescription = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonSaveAuthor
             // 
             this.buttonSaveAuthor.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSaveAuthor.Location = new System.Drawing.Point(233, 296);
-            this.buttonSaveAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSaveAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSaveAuthor.Name = "buttonSaveAuthor";
             this.buttonSaveAuthor.Size = new System.Drawing.Size(112, 38);
             this.buttonSaveAuthor.TabIndex = 28;
@@ -49,8 +51,8 @@
             // textBoxAddAuthor
             // 
             this.textBoxAddAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAddAuthor.Location = new System.Drawing.Point(227, 167);
-            this.textBoxAddAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxAddAuthor.Location = new System.Drawing.Point(227, 121);
+            this.textBoxAddAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxAddAuthor.Name = "textBoxAddAuthor";
             this.textBoxAddAuthor.Size = new System.Drawing.Size(273, 28);
             this.textBoxAddAuthor.TabIndex = 27;
@@ -59,7 +61,7 @@
             // 
             this.authorName.AutoSize = true;
             this.authorName.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.authorName.Location = new System.Drawing.Point(69, 166);
+            this.authorName.Location = new System.Drawing.Point(69, 120);
             this.authorName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.authorName.Name = "authorName";
             this.authorName.Size = new System.Drawing.Size(126, 29);
@@ -78,16 +80,39 @@
             this.label1.Text = "Add New Author";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(69, 169);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 29);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Description";
+            // 
+            // textBoxAuthorDescription
+            // 
+            this.textBoxAuthorDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxAuthorDescription.Location = new System.Drawing.Point(227, 169);
+            this.textBoxAuthorDescription.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxAuthorDescription.Multiline = true;
+            this.textBoxAuthorDescription.Name = "textBoxAuthorDescription";
+            this.textBoxAuthorDescription.Size = new System.Drawing.Size(273, 111);
+            this.textBoxAuthorDescription.TabIndex = 30;
+            // 
             // Add_New_Author
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(580, 366);
+            this.Controls.Add(this.textBoxAuthorDescription);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonSaveAuthor);
             this.Controls.Add(this.textBoxAddAuthor);
             this.Controls.Add(this.authorName);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Add_New_Author";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add_New_Author";
@@ -102,5 +127,7 @@
         private System.Windows.Forms.TextBox textBoxAddAuthor;
         private System.Windows.Forms.Label authorName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxAuthorDescription;
     }
 }

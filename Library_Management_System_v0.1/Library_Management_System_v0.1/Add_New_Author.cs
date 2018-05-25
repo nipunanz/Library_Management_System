@@ -16,10 +16,9 @@ namespace Library_Management_System_v0._1
         {
             InitializeComponent();
         }
-
         private void buttonSaveAuthor_Click(object sender, EventArgs e)
         {
-            if (textBoxAddAuthor.Text == "")
+            if (textBoxAddAuthor.Text == "" || textBoxAuthorDescription.Text == "")
             {
 
                 MessageBox.Show(" Invalid Entry ", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -31,17 +30,23 @@ namespace Library_Management_System_v0._1
                 DateTime dateTime = DateTime.Now;
                 dateTime.ToString("yyyyMMddHHmmss");
 
-                String categoryName = textBoxAddAuthor.Text;
+                String authorName = textBoxAddAuthor.Text;
+                String authorDescp = textBoxAuthorDescription.Text;
                 int bookCount = 0;
                 int isActive = 1;
                 int user_login_id = 1;
-                MySqlConnection connection = DataConnection.getDBConnection();
+                //MySqlConnection connection = DataConnection.getDBConnection();
                 String newAuthor_SQL = "INSERT INTO book_author (name,description,bookCount,createDateTime,updateDateTime,isActive,user_login_history_id) VALUES (@name,@description,@bookCount,@createDateTime,@updateDateTime,@isActive,@user_login_history_id)";
+
+                // try
+                //{
                 MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+
                 MySqlCommand command_newBookCatergory = new MySqlCommand(newAuthor_SQL, mySqlConnection);
                 command_newBookCatergory.CommandText = newAuthor_SQL;
-                command_newBookCatergory.Parameters.AddWithValue("@name", categoryName);
-                command_newBookCatergory.Parameters.AddWithValue("@description", "");
+                command_newBookCatergory.Parameters.AddWithValue("@name", authorName);
+                command_newBookCatergory.Parameters.AddWithValue("@description", authorDescp);
                 command_newBookCatergory.Parameters.AddWithValue("@bookCount", bookCount);
                 command_newBookCatergory.Parameters.AddWithValue("@createDateTime", dateTime);
                 command_newBookCatergory.Parameters.AddWithValue("@updateDateTime", dateTime);
@@ -49,11 +54,20 @@ namespace Library_Management_System_v0._1
                 command_newBookCatergory.Parameters.AddWithValue("@user_login_history_id", user_login_id);
 
                 command_newBookCatergory.ExecuteNonQuery();
+                mySqlConnection.Close();
+                //}
+                //catch (MySqlException e)
+                //{
 
-                DialogResult dialogResult =  MessageBox.Show(" Author Added ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if(dialogResult == DialogResult.OK)
+                //  MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+
+
+                DialogResult dialogResult = MessageBox.Show(" Author Added ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.OK)
                 {
-                    this.Close();
+                    textBoxAddAuthor.Text = String.Empty;
+                    textBoxAuthorDescription.Text = String.Empty;
                 }
 
             }

@@ -17,12 +17,13 @@ namespace Library_Management_System_v0._1
         public Register_new_books()
         {
             InitializeComponent();
-            fillComboType();
+            //fillComboType();
+            generateID();
         }
 
         void fillComboType()
         {
-            
+
             String selectBookType_SQL = "SELECT * FROM book_type";
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
             mySqlConnection.Open();
@@ -30,7 +31,8 @@ namespace Library_Management_System_v0._1
             MySqlDataReader DataReaderBookType;
 
             DataReaderBookType = cmd_bookType.ExecuteReader();
-            while (DataReaderBookType.Read()) {
+            while (DataReaderBookType.Read())
+            {
                 String bookType = DataReaderBookType.GetString("name");
                 comboBoxBookType.Items.Add(bookType);
 
@@ -39,6 +41,34 @@ namespace Library_Management_System_v0._1
             mySqlConnection.Close();
 
         }
+
+        void generateID() {
+
+            
+            DateTime dateObj = DateTime.Now; //Gets the current DATE/TIME
+
+
+            String date = dateObj.Day.ToString();//Gets the current DAY
+            String month = dateObj.Month.ToString();//Gets the current MONTH
+            String year = dateObj.Year.ToString();//Gets the current YEAR
+            String searchDateFormat = year+ "-" +"0"+month+"-" +date;//Format the year as needed
+
+            labelBookID.Text = "BPR" + date + year + month;
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+
+            String searchDailyCount = "SELECT COUNT(id) FROM book_batch_profile WHERE createDateTime LIKE @date ";
+            MySqlCommand command_newBookCatergory = new MySqlCommand(searchDailyCount, mySqlConnection);
+            command_newBookCatergory.CommandText = searchDailyCount;
+            command_newBookCatergory.Parameters.AddWithValue("@date", "%"+searchDateFormat+"%");
+            Object sqlResult =command_newBookCatergory.ExecuteScalar();
+            
+            labelBookID.Text = "BPR" + date + year + month + sqlResult.ToString();
+            mySqlConnection.Close();
+
+        }
+
 
 
         private void label2_Click(object sender, EventArgs e)
@@ -58,5 +88,25 @@ namespace Library_Management_System_v0._1
         private void buttonAddPublisher_Click(object sender, EventArgs e) => new Add_New_Publisher().Show();
 
         private void buttonAddType_Click(object sender, EventArgs e) => new Add_New_Book_Type().Show();
+
+        private void comboBoxBookType_Click(object sender, EventArgs e)
+        {
+            fillComboType();
+        }
+
+        private void comboBoxBookType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxBookType_MouseClick(object sender, MouseEventArgs e)
+        {
+            new Register_new_books().Refresh();
+        }
     }
 }

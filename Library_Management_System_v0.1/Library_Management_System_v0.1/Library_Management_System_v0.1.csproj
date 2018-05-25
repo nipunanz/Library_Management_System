@@ -204,6 +204,16 @@
     <EmbeddedResource Include="Return_Books.resx">
       <DependentUpon>Return_Books.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="nanofoxy_library_management_systemDataSet.xsc">
+      <DependentUpon>nanofoxy_library_management_systemDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="nanofoxy_library_management_systemDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="nanofoxy_library_management_systemDataSet.xss">
+      <DependentUpon>nanofoxy_library_management_systemDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
