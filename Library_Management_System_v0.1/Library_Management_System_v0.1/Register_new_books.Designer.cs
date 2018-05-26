@@ -255,6 +255,7 @@
             this.comboBoxBookType.TabIndex = 18;
             this.comboBoxBookType.Text = "Select";
             this.comboBoxBookType.SelectedIndexChanged += new System.EventHandler(this.comboBoxBookType_SelectedIndexChanged);
+            this.comboBoxBookType.Click += new System.EventHandler(this.comboBoxBookType_Click_1);
             this.comboBoxBookType.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBoxBookType_MouseClick);
             // 
             // buttonAddCategory
@@ -424,7 +425,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxBookPublisher;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBoxBookType;
         private System.Windows.Forms.Button buttonAddCategory;
         private System.Windows.Forms.Button buttonAddAuthor;
         private System.Windows.Forms.Button buttonAddPublisher;
@@ -434,5 +434,6 @@
         private System.Windows.Forms.Button buttonEditAuthor;
         private System.Windows.Forms.Button buttonEditPublisher;
         private System.Windows.Forms.Button buttonEditType;
+        public System.Windows.Forms.ComboBox comboBoxBookType;
     }
 }
