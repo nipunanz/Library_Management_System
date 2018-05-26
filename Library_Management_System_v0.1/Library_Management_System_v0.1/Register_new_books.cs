@@ -325,8 +325,6 @@ namespace Library_Management_System_v0._1
 
 
                     mySqlConnection.Close();
-                    if (dialogResult == DialogResult.OK)
-                    {
                         /**Update Author Book Count**/
                         int bookAuthorID = int.Parse( bookA.ToString());
                         int bookAuthorCount = int.Parse(selectAuthorBookCount(bookAuthorID).ToString());
@@ -345,8 +343,7 @@ namespace Library_Management_System_v0._1
                         bookPrinterCount = (bookPrinterCount + 1);
                         updatePrinterBookCount(bookPrinterID, bookPrinterCount);
 
-                    }
-
+              
 
                    
 
