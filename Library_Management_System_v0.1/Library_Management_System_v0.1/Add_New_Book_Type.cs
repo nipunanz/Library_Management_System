@@ -13,9 +13,11 @@ namespace Library_Management_System_v0._1
 {
     public partial class Add_New_Book_Type : Form
     {
-        public Add_New_Book_Type()
+        Register_new_books rnbinstance;
+        public Add_New_Book_Type(Register_new_books rnb)
         {
             InitializeComponent();
+            this.rnbinstance = rnb;
         }
 
         private void buttonSaveBookType_Click(object sender, EventArgs e)
@@ -36,7 +38,9 @@ namespace Library_Management_System_v0._1
             {
                 textBoxAddBookType.Text = String.Empty;
                 //Register_new_books
-               
+                new Register_new_books().Show();
+                rnbinstance.Hide();
+                this.Dispose();
             }
         }
     }

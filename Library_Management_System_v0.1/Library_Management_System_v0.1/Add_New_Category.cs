@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,13 @@ namespace Library_Management_System_v0._1
 {
     public partial class Add_New_Category : Form
     {
-        public Add_New_Category()
+        Register_new_books rnbinstance;
+        public Add_New_Category(Register_new_books rnb)
         {
+            this.rnbinstance = rnb;
             InitializeComponent();
         }
+
 
         private void buttonSaveCategory_Click(object sender, EventArgs e)
         {
@@ -56,6 +60,11 @@ namespace Library_Management_System_v0._1
                 if (dialogResult == DialogResult.OK)
                 {
                   textBoxAddCategory.Text = String.Empty ;
+                    
+                    new Register_new_books().Show();
+                    rnbinstance.Hide();
+                    this.Dispose();
+                    
                 }
             }
         }

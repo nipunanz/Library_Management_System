@@ -12,9 +12,11 @@ namespace Library_Management_System_v0._1
 {
     public partial class Add_New_Author : Form
     {
-        public Add_New_Author()
+        Register_new_books rnbinstance;
+        public Add_New_Author(Register_new_books rnb)
         {
             InitializeComponent();
+            this.rnbinstance = rnb;
         }
         private void buttonSaveAuthor_Click(object sender, EventArgs e)
         {
@@ -68,6 +70,10 @@ namespace Library_Management_System_v0._1
                 {
                     textBoxAddAuthor.Text = String.Empty;
                     textBoxAuthorDescription.Text = String.Empty;
+
+                    new Register_new_books().Show();
+                    rnbinstance.Hide();
+                    this.Dispose();
                 }
 
             }

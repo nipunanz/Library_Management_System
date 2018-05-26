@@ -19,10 +19,19 @@ namespace Library_Management_System_v0._1
         {
             InitializeComponent();
             fillComboType();
+            fillComboCategory();
+            fillComboAuthor();
+            fillComboPublisher();
+
+            labelBookID.Text = comboControl.bookID;
+            textBoxBookName.Text = comboControl.bookName;
+            textBoxISBN.Text = comboControl.ISBN;
+            textBoxPrintedYear.Text = comboControl.printYear;
+            textBoxBookDescription.Text = comboControl.descrip;
             generateID();
         }
 
-        public void fillComboType()
+        void fillComboType()
         {
 
             String selectBookType_SQL = "SELECT * FROM book_type";
@@ -42,7 +51,69 @@ namespace Library_Management_System_v0._1
             mySqlConnection.Close();
 
         }
+        void fillComboCategory()
+        {
 
+            String selectBookCategory_SQL = "SELECT * FROM book_category";
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+
+            mySqlConnection.Open();
+            MySqlCommand cmd_bookCategory = new MySqlCommand(selectBookCategory_SQL, mySqlConnection);
+            MySqlDataReader DataReaderBookCategory;
+
+            DataReaderBookCategory = cmd_bookCategory.ExecuteReader();
+            while (DataReaderBookCategory.Read())
+            {
+                String bookCategory = DataReaderBookCategory.GetString("name");
+                comboBoxCategory.Items.Add(bookCategory);
+
+            }
+
+            mySqlConnection.Close();
+
+        }
+        void fillComboAuthor()
+        {
+
+            String selectBookAuthor_SQL = "SELECT * FROM book_author";
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+
+            mySqlConnection.Open();
+            MySqlCommand cmd_bookAuthor = new MySqlCommand(selectBookAuthor_SQL, mySqlConnection);
+            MySqlDataReader DataReaderBookAuthor;
+
+            DataReaderBookAuthor = cmd_bookAuthor.ExecuteReader();
+            while (DataReaderBookAuthor.Read())
+            {
+                String bookAuthor = DataReaderBookAuthor.GetString("name");
+                comboBoxBookAuthor.Items.Add(bookAuthor);
+
+            }
+
+            mySqlConnection.Close();
+
+        }
+        void fillComboPublisher()
+        {
+
+            String selectBookPublisher_SQL = "SELECT * FROM book_printers";
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+
+            mySqlConnection.Open();
+            MySqlCommand cmd_bookPublisher = new MySqlCommand(selectBookPublisher_SQL, mySqlConnection);
+            MySqlDataReader DataReaderBookPublisher;
+
+            DataReaderBookPublisher = cmd_bookPublisher.ExecuteReader();
+            while (DataReaderBookPublisher.Read())
+            {
+                String bookPublisher = DataReaderBookPublisher.GetString("name");
+                comboBoxBookPublisher.Items.Add(bookPublisher);
+
+            }
+
+            mySqlConnection.Close();
+
+        }
         void generateID()
         {
 
@@ -70,6 +141,9 @@ namespace Library_Management_System_v0._1
 
 
 
+
+
+
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -80,13 +154,71 @@ namespace Library_Management_System_v0._1
 
         }
 
-        private void buttonAddCategory_Click(object sender, EventArgs e) => new Add_New_Category().Show();
+        private void buttonAddCategory_Click(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
 
-        private void buttonAddAuthor_Click(object sender, EventArgs e) => new Add_New_Author().Show();
+            String bookID = labelBookID.Text;
+            String bookN = textBoxBookName.Text;
+            String isbn = textBoxISBN.Text;
+            String pYear = textBoxPrintedYear.Text;
+            String descrip = textBoxBookDescription.Text;
 
-        private void buttonAddPublisher_Click(object sender, EventArgs e) => new Add_New_Publisher().Show();
+            comboControl.bookID = bookID;
+            comboControl.bookName = bookN;
+            comboControl.ISBN = isbn;
+            comboControl.printYear = pYear;
+            comboControl.descrip = descrip;
 
-        private void buttonAddType_Click(object sender, EventArgs e) => new Add_New_Book_Type().Show();
+            //MessageBox.Show(comboControl.bookName);
+            new Add_New_Category(rnb).Show();
+        }
+
+        private void buttonAddAuthor_Click(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
+
+            String bookID = labelBookID.Text;
+            String bookN = textBoxBookName.Text;
+            String isbn = textBoxISBN.Text;
+            String pYear = textBoxPrintedYear.Text;
+            String descrip = textBoxBookDescription.Text;
+
+            comboControl.bookID = bookID;
+            comboControl.bookName = bookN;
+            comboControl.ISBN = isbn;
+            comboControl.printYear = pYear;
+            comboControl.descrip = descrip;
+
+            //MessageBox.Show(comboControl.bookName);
+            new Add_New_Author(rnb).Show();
+        }
+
+        private void buttonAddPublisher_Click(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
+
+            String bookID = labelBookID.Text;
+            String bookN = textBoxBookName.Text;
+            String isbn = textBoxISBN.Text;
+            String pYear = textBoxPrintedYear.Text;
+            String descrip = textBoxBookDescription.Text;
+
+            comboControl.bookID = bookID;
+            comboControl.bookName = bookN;
+            comboControl.ISBN = isbn;
+            comboControl.printYear = pYear;
+            comboControl.descrip = descrip;
+
+            //MessageBox.Show(comboControl.bookName);
+            new Add_New_Publisher(rnb).Show();
+        }
+
+        private void buttonAddType_Click(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
+            new Add_New_Book_Type(rnb).Show();
+        }
 
         private void comboBoxBookType_Click(object sender, EventArgs e)
         {
@@ -105,18 +237,18 @@ namespace Library_Management_System_v0._1
 
         private void comboBoxBookType_MouseClick(object sender, MouseEventArgs e)
         {
-            new Register_new_books().Refresh();
+
         }
 
         private void buttonSaveBook_Click(object sender, EventArgs e)
         {
-          
+
 
         }
 
         private void comboBoxBookType_Click_1(object sender, EventArgs e)
         {
-           // fillComboType();
+            // fillComboType();
         }
     }
 }

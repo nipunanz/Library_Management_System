@@ -76,6 +76,7 @@
     <Compile Include="Add_New_User.Designer.cs">
       <DependentUpon>Add_New_User.cs</DependentUpon>
     </Compile>
+    <Compile Include="comboControl.cs" />
     <Compile Include="DataConnection.cs" />
     <Compile Include="Edit_Author.cs">
       <SubType>Form</SubType>
