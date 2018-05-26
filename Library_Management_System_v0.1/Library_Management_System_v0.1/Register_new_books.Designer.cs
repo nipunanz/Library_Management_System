@@ -415,6 +415,7 @@
             this.Name = "Register_new_books";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register New Books";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Register_new_books_FormClosed);
             this.Load += new System.EventHandler(this.Register_new_books_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

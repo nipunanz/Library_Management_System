@@ -631,5 +631,14 @@ namespace Library_Management_System_v0._1
 
             new Edit_Book_Type(rnb).Show();
         }
+
+        private void Register_new_books_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            comboControl.bookID = "" ;
+            comboControl.bookName = "";
+            comboControl.ISBN = "";
+            comboControl.printYear = "";
+            comboControl.descrip ="";
+        }
     }
 }
