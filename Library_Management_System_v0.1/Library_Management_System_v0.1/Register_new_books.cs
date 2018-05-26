@@ -128,7 +128,7 @@ namespace Library_Management_System_v0._1
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
             mySqlConnection.Open();
 
-            String searchDailyCount = "SELECT COUNT(id) FROM book_batch_profile WHERE createDateTime LIKE @date ";
+            String searchDailyCount = "SELECT COUNT(id) FROM book_batch_profile WHERE createDateTime LIKE @date";
             MySqlCommand command_newBookCatergory = new MySqlCommand(searchDailyCount, mySqlConnection);
             command_newBookCatergory.CommandText = searchDailyCount;
             command_newBookCatergory.Parameters.AddWithValue("@date", "%" + dateObj.ToString(searchDateFormat) + "%");
@@ -242,13 +242,188 @@ namespace Library_Management_System_v0._1
 
         private void buttonSaveBook_Click(object sender, EventArgs e)
         {
+            String bookID = labelBookID.Text;
+
+            String bookName = textBoxBookName.Text;
+
+            String bookISBN = textBoxISBN.Text;
+            int bookPYear = int.Parse(textBoxPrintedYear.Text);
+            String bookDescrip = textBoxBookDescription.Text;
+
+
+            if (bookName.Equals("") || bookISBN.Equals("") || bookPYear.Equals("") || bookDescrip.Equals(""))
+            {
+
+
+                MessageBox.Show(" Invalid Entry ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            }
+            else
+            {
+
+
+
+                try
+                {
+
+                    Object bookC = selectBCategory(comboBoxCategory.SelectedItem.ToString());
+                    Object bookA = selectBAuthor(comboBoxBookAuthor.SelectedItem.ToString());
+                    //Object bookP = selectBPublisher(comboBoxBookPublisher.SelectedItem.ToString());
+                    //Object bookT = selectBtype(comboBoxBookType.SelectedItem.ToString());
+
+
+
+                    //MessageBox.Show(bookC.ToString() + bookA.ToString() + bookP.ToString() + bookT.ToString());
+
+                    DateTime dateTime = DateTime.Now;
+                    dateTime.ToString("yyyyMMddHHmmss");
+
+                    int bookCount = 0;
+                    int isActive = 1;
+                    //int user_login_id = 1;
+
+                    String newBook_SQL = "INSERT INTO book_batch_profile (name,ISBN,printedYear,description,bookCount,createDateTime,updateDateTime,isActive,book_author_id,book_category_id) VALUES (@name,@ISBN,@printedYear,@description,@bookCount,@createDateTime,@updateDateTime,@isActive,@book_author_id,@book_category_id)";
+
+                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection.Open();
+                    MySqlCommand command_newBookCatergory = new MySqlCommand(newBook_SQL, mySqlConnection);
+                    command_newBookCatergory.CommandText = newBook_SQL;
+                    command_newBookCatergory.Parameters.AddWithValue("@name", bookName);
+                    command_newBookCatergory.Parameters.AddWithValue("@ISBN", bookISBN);
+                    command_newBookCatergory.Parameters.AddWithValue("@printedYear", bookPYear);
+                    command_newBookCatergory.Parameters.AddWithValue("@description", bookDescrip);
+                    command_newBookCatergory.Parameters.AddWithValue("@bookCount", bookCount);
+                    command_newBookCatergory.Parameters.AddWithValue("@createDateTime", dateTime);
+                    command_newBookCatergory.Parameters.AddWithValue("@updateDateTime", dateTime);
+                    command_newBookCatergory.Parameters.AddWithValue("@isActive", isActive);
+                    //command_newBookCatergory.Parameters.AddWithValue("@book_type_id", bookT);
+                    command_newBookCatergory.Parameters.AddWithValue("@book_author_id", bookA);
+                    command_newBookCatergory.Parameters.AddWithValue("@book_category_id", bookC);
+                    //command_newBookCatergory.Parameters.AddWithValue("@book_printers_id", bookP);
+
+
+
+
+
+                    command_newBookCatergory.ExecuteNonQuery();
+
+                    mySqlConnection.Close();
+                    DialogResult dialogResult = MessageBox.Show(" Book Catergory Added ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+
+                }
+                catch (System.NullReferenceException)
+                {
+                    MessageBox.Show(" Please check Category, Author, Publisher, Type selections. ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+            }
+
+
+
+
+
 
 
         }
+        Object selectBtype(String bookType)
+        {
+            String selectBookType_SQL = "SELECT id FROM book_type WHERE name = @name ";
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_newBookType = new MySqlCommand(selectBookType_SQL, mySqlConnection);
+
+            command_newBookType.CommandText = selectBookType_SQL;
+            command_newBookType.Parameters.AddWithValue("@name", bookType);
+            Object sqlResult = command_newBookType.ExecuteScalar();
+
+            // MessageBox.Show(sqlResult.ToString());
+            mySqlConnection.Close();
+
+
+
+            return sqlResult;
+        }
+        Object selectBCategory(String bookCategory)
+        {
+            String selectBookCategory_SQL = "SELECT id FROM book_category WHERE name = @name ";
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_newBookCategory = new MySqlCommand(selectBookCategory_SQL, mySqlConnection);
+
+            command_newBookCategory.CommandText = selectBookCategory_SQL;
+            command_newBookCategory.Parameters.AddWithValue("@name", bookCategory);
+            Object sqlResult = command_newBookCategory.ExecuteScalar();
+
+            // MessageBox.Show(sqlResult.ToString());
+            mySqlConnection.Close();
+
+
+
+            return sqlResult;
+        }
+        Object selectBAuthor(String bookAuthor)
+        {
+            String selectBookAuthor_SQL = "SELECT id FROM book_author WHERE name = @name ";
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_newBookAuthor = new MySqlCommand(selectBookAuthor_SQL, mySqlConnection);
+
+            command_newBookAuthor.CommandText = selectBookAuthor_SQL;
+            command_newBookAuthor.Parameters.AddWithValue("@name", bookAuthor);
+            Object sqlResult = command_newBookAuthor.ExecuteScalar();
+
+            // MessageBox.Show(sqlResult.ToString());
+            mySqlConnection.Close();
+
+
+
+            return sqlResult;
+        }
+        Object selectBPublisher(String bookPublisher)
+        {
+            String selectBookPublisher_SQL = "SELECT id FROM book_printers WHERE name = @name ";
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_newBookPublisher = new MySqlCommand(selectBookPublisher_SQL, mySqlConnection);
+
+            command_newBookPublisher.CommandText = selectBookPublisher_SQL;
+            command_newBookPublisher.Parameters.AddWithValue("@name", bookPublisher);
+            Object sqlResult = command_newBookPublisher.ExecuteScalar();
+
+            // MessageBox.Show(sqlResult.ToString());
+            mySqlConnection.Close();
+
+
+
+            return sqlResult;
+        }
+
 
         private void comboBoxBookType_Click_1(object sender, EventArgs e)
         {
             // fillComboType();
+        }
+
+        private void textBoxPrintedYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char character = e.KeyChar;
+
+            if (!(char.IsDigit(character) && character != 8 && character != 46))
+            {
+                e.Handled = true;
+
+
+            }
+
         }
     }
 }
