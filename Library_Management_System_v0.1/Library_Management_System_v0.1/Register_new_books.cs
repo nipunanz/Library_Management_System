@@ -323,7 +323,32 @@ namespace Library_Management_System_v0._1
 
                     DialogResult dialogResult = MessageBox.Show(" Book Successfully Registered ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+
                     mySqlConnection.Close();
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        /**Update Author Book Count**/
+                        int bookAuthorID = int.Parse( bookA.ToString());
+                        int bookAuthorCount = int.Parse(selectAuthorBookCount(bookAuthorID).ToString());
+                        bookAuthorCount = (bookAuthorCount + 1);//increase book count
+                        updateAuthorBookCount(bookAuthorID,bookAuthorCount );//update the Author Book Count
+
+                        /**Update Category Book Count**/
+                        int bookCategoryID = int.Parse(bookC.ToString());
+                        int bookCategoryCount = int.Parse(selectCategoryBookCount(bookCategoryID).ToString());
+                        bookCategoryCount = (bookCategoryCount + 1);
+                        updateCategoryBookCount(bookCategoryID, bookCategoryCount);
+
+                        /**Update Printer Book Count**/
+                        int bookPrinterID = int.Parse(bookP.ToString());
+                        int bookPrinterCount = int.Parse(selectPrinterBoookCount(bookPrinterID).ToString());
+                        bookPrinterCount = (bookPrinterCount + 1);
+                        updatePrinterBookCount(bookPrinterID, bookPrinterCount);
+
+                    }
+
+
+                   
 
                 }
                 catch (System.NullReferenceException)
@@ -412,7 +437,6 @@ namespace Library_Management_System_v0._1
             return sqlResult;
         }
 
-
         private void comboBoxBookType_Click_1(object sender, EventArgs e)
         {
             // fillComboType();
@@ -430,5 +454,119 @@ namespace Library_Management_System_v0._1
             }
 
         }
+
+
+
+
+        /**Select current author book count and update the current book count**/
+        Object selectAuthorBookCount(int bookAuthorID)
+        {
+            String selectCurrentBookCountAuthor_SQL = "SELECT bookCount FROM book_author WHERE id=@bookid";
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_selectCurrentBookCountAuthor = new MySqlCommand(selectCurrentBookCountAuthor_SQL, mySqlConnection);
+            command_selectCurrentBookCountAuthor.CommandText = selectCurrentBookCountAuthor_SQL;
+            command_selectCurrentBookCountAuthor.Parameters.AddWithValue("@bookid", bookAuthorID);
+            Object sqlResult = command_selectCurrentBookCountAuthor.ExecuteScalar();
+
+            mySqlConnection.Close();
+
+            return sqlResult;
+        }
+        int updateAuthorBookCount(int bookAuthorID, int bookAuthorCount)
+        {
+
+            String updateBookCountAuthor_SQL = "UPDATE book_author SET bookCount= @bookCount WHERE id=@id";
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_updateCurrentBookCountAuthor = new MySqlCommand(updateBookCountAuthor_SQL, mySqlConnection);
+
+            command_updateCurrentBookCountAuthor.CommandText = updateBookCountAuthor_SQL;
+            command_updateCurrentBookCountAuthor.Parameters.AddWithValue("@id", bookAuthorID);
+            command_updateCurrentBookCountAuthor.Parameters.AddWithValue("@bookCount", bookAuthorCount);
+            int row = command_updateCurrentBookCountAuthor.ExecuteNonQuery();
+
+
+            mySqlConnection.Close();
+
+            return row;
+
+        }
+
+
+        /**Select current category book count and update the current book count **/
+        Object selectCategoryBookCount(int bookCategoryID)
+        {
+            String selectCurrentBookCountCategory_SQL = "SELECT bookCount FROM book_category WHERE id=@bookid";
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_selectCurrentBookCountCategory = new MySqlCommand(selectCurrentBookCountCategory_SQL, mySqlConnection);
+            command_selectCurrentBookCountCategory.CommandText = selectCurrentBookCountCategory_SQL;
+            command_selectCurrentBookCountCategory.Parameters.AddWithValue("@bookid", bookCategoryID);
+            Object sqlResult = command_selectCurrentBookCountCategory.ExecuteScalar();
+
+            mySqlConnection.Close();
+
+            return sqlResult;
+        }
+        int updateCategoryBookCount(int bookCategoryID, int bookCategoryCount)
+        {
+
+            String updateBookCountCategory_SQL = "UPDATE book_category SET bookCount= @bookCount WHERE id=@id";
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_updateCurrentBookCountCategory = new MySqlCommand(updateBookCountCategory_SQL, mySqlConnection);
+
+            command_updateCurrentBookCountCategory.CommandText = updateBookCountCategory_SQL;
+            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@id", bookCategoryID);
+            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@bookCount", bookCategoryCount);
+            int row = command_updateCurrentBookCountCategory.ExecuteNonQuery();
+
+
+            mySqlConnection.Close();
+
+            return row;
+
+        }
+
+
+        /**Select current book printers count and update the current book printer**/
+        Object selectPrinterBoookCount(int bookPrinterID)
+        {
+            String selectCurrentPrinterCount_SQL = "SELECT bookCount FROM book_printers WHERE id=@bookid";
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_selectCurrentPrinterCount = new MySqlCommand(selectCurrentPrinterCount_SQL, mySqlConnection);
+            command_selectCurrentPrinterCount.CommandText = selectCurrentPrinterCount_SQL;
+            command_selectCurrentPrinterCount.Parameters.AddWithValue("@bookid", bookPrinterID);
+            Object sqlResult = command_selectCurrentPrinterCount.ExecuteScalar();
+
+            mySqlConnection.Close();
+
+            return sqlResult;
+        }
+        int updatePrinterBookCount(int bookPrinterID, int bookPrinterCount)
+        {
+
+            String updateBookCountPrinter_SQL = "UPDATE book_printers SET bookCount= @bookCount WHERE id=@id";
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_updateCurrentBookCountPrinter = new MySqlCommand(updateBookCountPrinter_SQL, mySqlConnection);
+
+            command_updateCurrentBookCountPrinter.CommandText = updateBookCountPrinter_SQL;
+            command_updateCurrentBookCountPrinter.Parameters.AddWithValue("@id", bookPrinterID);
+            command_updateCurrentBookCountPrinter.Parameters.AddWithValue("@bookCount", bookPrinterCount);
+            int row = command_updateCurrentBookCountPrinter.ExecuteNonQuery();
+
+
+            mySqlConnection.Close();
+
+            return row;
+
+        }
+
     }
 }
