@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_New_User));
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxUser = new System.Windows.Forms.PictureBox();
             this.buttonAddCategory = new System.Windows.Forms.Button();
             this.textBoxBookDescription = new System.Windows.Forms.TextBox();
             this.textBoxPrintedYear = new System.Windows.Forms.TextBox();
@@ -58,7 +58,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonSaveBook = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -72,25 +72,28 @@
             this.label1.Text = "User Registration";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
+            // pictureBoxUser
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(1079, 126);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(153, 154);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxUser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxUser.BackgroundImage")));
+            this.pictureBoxUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxUser.Location = new System.Drawing.Point(1059, 126);
+            this.pictureBoxUser.Name = "pictureBoxUser";
+            this.pictureBoxUser.Size = new System.Drawing.Size(173, 168);
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxUser.TabIndex = 2;
+            this.pictureBoxUser.TabStop = false;
             // 
             // buttonAddCategory
             // 
             this.buttonAddCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddCategory.Location = new System.Drawing.Point(1079, 296);
+            this.buttonAddCategory.Location = new System.Drawing.Point(1059, 309);
             this.buttonAddCategory.Name = "buttonAddCategory";
-            this.buttonAddCategory.Size = new System.Drawing.Size(153, 33);
+            this.buttonAddCategory.Size = new System.Drawing.Size(173, 33);
             this.buttonAddCategory.TabIndex = 20;
             this.buttonAddCategory.Text = "Browse";
             this.buttonAddCategory.UseVisualStyleBackColor = true;
+            this.buttonAddCategory.Click += new System.EventHandler(this.buttonAddCategory_Click);
             // 
             // textBoxBookDescription
             // 
@@ -334,6 +337,7 @@
             this.buttonSaveBook.TabIndex = 47;
             this.buttonSaveBook.Text = "Create User";
             this.buttonSaveBook.UseVisualStyleBackColor = true;
+            this.buttonSaveBook.Click += new System.EventHandler(this.buttonSaveBook_Click);
             // 
             // Add_New_User
             // 
@@ -367,11 +371,12 @@
             this.Controls.Add(this.bookName);
             this.Controls.Add(this.bookId);
             this.Controls.Add(this.buttonAddCategory);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxUser);
             this.Controls.Add(this.label1);
             this.Name = "Add_New_User";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add_New_User";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,7 +385,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxUser;
         private System.Windows.Forms.Button buttonAddCategory;
         private System.Windows.Forms.TextBox textBoxBookDescription;
         private System.Windows.Forms.TextBox textBoxPrintedYear;
