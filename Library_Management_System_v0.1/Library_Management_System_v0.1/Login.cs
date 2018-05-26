@@ -84,6 +84,7 @@ namespace Library_Management_System_v0._1
                             MySqlDataReader loginHistoryReader = commandGetLoginHistoryId.ExecuteReader();
                             loginHistoryReader.Read();
                             LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
+                            loginHistoryReader.Close();
 
                             MySqlDataReader mySqlDataReader2 = commandGetUserRole.ExecuteReader();
                             if (mySqlDataReader2.HasRows)

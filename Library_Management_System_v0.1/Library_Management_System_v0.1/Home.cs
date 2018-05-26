@@ -38,5 +38,17 @@ namespace Library_Management_System_v0._1
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Add_New_User add_New_User = new Add_New_User();
+            add_New_User.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Manage_Users manage_Users = new Manage_Users();
+            manage_Users.Show();
+        }
     }
 }

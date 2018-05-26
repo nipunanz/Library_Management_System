@@ -38,10 +38,10 @@
             this.bookId = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mobile_Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -79,17 +79,21 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.Name,
+            this.LastName,
             this.Mobile_Number,
             this.Address,
             this.Birthday,
-            this.Email,
             this.Status});
             this.dataGridView1.Location = new System.Drawing.Point(56, 201);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1175, 456);
             this.dataGridView1.TabIndex = 26;
@@ -132,46 +136,55 @@
             // 
             // ID
             // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             // 
             // Name
             // 
+            this.Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Name.DataPropertyName = "None";
             this.Name.HeaderText = "Name";
             this.Name.MinimumWidth = 20;
             this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
             this.Name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Name.Width = 400;
+            // 
+            // LastName
+            // 
+            this.LastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LastName.HeaderText = "Last Name";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
             // 
             // Mobile_Number
             // 
+            this.Mobile_Number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Mobile_Number.HeaderText = "Mobile Number";
             this.Mobile_Number.Name = "Mobile_Number";
-            this.Mobile_Number.Width = 120;
+            this.Mobile_Number.ReadOnly = true;
             // 
             // Address
             // 
+            this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Address.HeaderText = "Address";
             this.Address.Name = "Address";
-            this.Address.Width = 150;
+            this.Address.ReadOnly = true;
             // 
             // Birthday
             // 
+            this.Birthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Birthday.HeaderText = "Birthday";
             this.Birthday.Name = "Birthday";
-            this.Birthday.Width = 130;
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.Width = 130;
+            this.Birthday.ReadOnly = true;
             // 
             // Status
             // 
+            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
             // 
             // Manage_Users
             // 
@@ -186,8 +199,8 @@
             this.Controls.Add(this.textBoxBookID);
             this.Controls.Add(this.bookId);
             this.Controls.Add(this.label1);
-            //this.Name = "Manage_Users";
-            //this.Text = "Manage_Users";
+            this.Name = "Manage_Users";
+            this.Load += new System.EventHandler(this.Manage_Users_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -206,10 +219,10 @@
         private System.Windows.Forms.Label bookId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile_Number;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn Birthday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }
