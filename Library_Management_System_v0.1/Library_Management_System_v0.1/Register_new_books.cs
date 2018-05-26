@@ -257,15 +257,11 @@ namespace Library_Management_System_v0._1
             if (bookName.Equals("") || bookISBN.Equals("") || bookPYear.Equals("") || bookDescrip.Equals(""))
             {
 
-
                 MessageBox.Show(" Invalid Entry ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
 
             }
             else
             {
-
-
 
                 try
                 {
@@ -274,8 +270,6 @@ namespace Library_Management_System_v0._1
                     Object bookA = selectBAuthor(comboBoxBookAuthor.SelectedItem.ToString());
                     Object bookP = selectBPublisher(comboBoxBookPublisher.SelectedItem.ToString());
                     Object bookT = selectBtype(comboBoxBookType.SelectedItem.ToString());
-
-
 
                     //MessageBox.Show(bookC.ToString() + bookA.ToString() + bookP.ToString() + bookT.ToString());
 
@@ -305,10 +299,7 @@ namespace Library_Management_System_v0._1
                     command_newBookCatergory.Parameters.AddWithValue("@book_category_id", bookC);
                     //command_newBookCatergory.Parameters.AddWithValue("@book_printers_id", bookP);
 
-
-
-                    command_newBookCatergory.ExecuteNonQuery();
-
+                    command_newBookCatergory.ExecuteNonQuery();//Execute insert query to book_batch_profile
 
                     //String date = dateTime.Day.ToString("dd");//Gets the current DAY
                     //String month = dateTime.Month.ToString("MM");//Gets the current MONTH
@@ -327,22 +318,12 @@ namespace Library_Management_System_v0._1
                     command_InsertBookProfile.Parameters.AddWithValue("@book_batch_profile_id", book_batch_profile_id.ToString());
                     command_InsertBookProfile.Parameters.AddWithValue("@book_printers_id", bookP);
                     command_InsertBookProfile.Parameters.AddWithValue("@book_type_id", bookT);
-                    command_InsertBookProfile.ExecuteNonQuery();
 
-
-
+                    command_InsertBookProfile.ExecuteNonQuery(); //Execute query to insert into book_profile
 
                     DialogResult dialogResult = MessageBox.Show(" Book Successfully Registered ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-
-
-
                     mySqlConnection.Close();
-
-
-
-
 
                 }
                 catch (System.NullReferenceException)
@@ -352,12 +333,6 @@ namespace Library_Management_System_v0._1
                 }
 
             }
-
-
-
-
-
-
 
         }
         Object selectBtype(String bookType)

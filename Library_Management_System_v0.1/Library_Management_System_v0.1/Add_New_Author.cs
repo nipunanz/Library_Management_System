@@ -23,7 +23,7 @@ namespace Library_Management_System_v0._1
             if (textBoxAddAuthor.Text == "" || textBoxAuthorDescription.Text == "")
             {
 
-                MessageBox.Show(" Invalid Entry ", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(" Invalid Entry. ", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 
             }
