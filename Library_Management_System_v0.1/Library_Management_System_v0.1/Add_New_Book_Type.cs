@@ -23,25 +23,67 @@ namespace Library_Management_System_v0._1
         private void buttonSaveBookType_Click(object sender, EventArgs e)
         {
             String newBookType = textBoxAddBookType.Text;
-            String addNewBookTypeQuery = "INSERT INTO book_type (name) VALUES (@name)";
+            if (textBoxAddBookType.Text == "")
+            {
+
+                MessageBox.Show(" Invalid Entry ! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else {
+                if (isValidBookType(newBookType))
+                {
+                    String addNewBookTypeQuery = "INSERT INTO book_type (name) VALUES (@name)";
+
+                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection.Open();
+                    MySqlCommand newBookTypeCommand = new MySqlCommand(addNewBookTypeQuery, mySqlConnection);
+                    newBookTypeCommand.CommandText = addNewBookTypeQuery;
+                    newBookTypeCommand.Parameters.AddWithValue("@name", newBookType);
+                    newBookTypeCommand.ExecuteNonQuery();
+                    mySqlConnection.Close();
+
+                    DialogResult dialogResult = MessageBox.Show("New Book Type Added", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        textBoxAddBookType.Text = String.Empty;
+                        //Register_new_books
+                        new Register_new_books().Show();
+                        rnbinstance.Hide();
+                        this.Dispose();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(" Book Type Exist! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+            }
+                
+        }
+        bool isValidBookType(String bookType)
+        {
+            String loginQuery = "SELECT * FROM book_type WHERE name = @name";
 
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
             mySqlConnection.Open();
-            MySqlCommand newBookTypeCommand = new MySqlCommand(addNewBookTypeQuery, mySqlConnection);
-            newBookTypeCommand.CommandText = addNewBookTypeQuery;
-            newBookTypeCommand.Parameters.AddWithValue("@name", newBookType);
-            newBookTypeCommand.ExecuteNonQuery();
-            mySqlConnection.Close();
+            MySqlCommand command = new MySqlCommand(loginQuery, mySqlConnection);
+            command.CommandText = loginQuery;
+            command.Parameters.AddWithValue("@name", bookType);
+            MySqlDataReader mySqlDataReader = command.ExecuteReader();
 
-            DialogResult dialogResult = MessageBox.Show("New Book Type Added", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (dialogResult == DialogResult.OK)
+
+            if (mySqlDataReader.HasRows)
             {
-                textBoxAddBookType.Text = String.Empty;
-                //Register_new_books
-                new Register_new_books().Show();
-                rnbinstance.Hide();
-                this.Dispose();
+                mySqlConnection.Close();
+                return false;
             }
+            else
+            {
+                mySqlConnection.Close();
+                return true;
+            }
+
         }
     }
 }

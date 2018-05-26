@@ -401,8 +401,6 @@ namespace Library_Management_System_v0._1
             // MessageBox.Show(sqlResult.ToString());
             mySqlConnection.Close();
 
-
-
             return sqlResult;
         }
         Object selectBAuthor(String bookAuthor)
@@ -580,6 +578,11 @@ namespace Library_Management_System_v0._1
             textBoxBookDescription.Text = "";
 
 
+        }
+
+        private void buttonEditCategory_Click(object sender, EventArgs e)
+        {
+            new Edit_Category().Show();
         }
     }
 }
