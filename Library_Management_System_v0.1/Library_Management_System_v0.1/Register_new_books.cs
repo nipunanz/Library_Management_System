@@ -15,7 +15,6 @@ namespace Library_Management_System_v0._1
 {
     public partial class Register_new_books : Form
     {
-
         public Register_new_books()
         {
             InitializeComponent();
@@ -34,27 +33,32 @@ namespace Library_Management_System_v0._1
 
         void fillComboType()
         {
-
-            String selectBookType_SQL = "SELECT * FROM book_type";
-            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            mySqlConnection.Open();
-            MySqlCommand cmd_bookType = new MySqlCommand(selectBookType_SQL, mySqlConnection);
-            MySqlDataReader DataReaderBookType;
-
-            DataReaderBookType = cmd_bookType.ExecuteReader();
-            while (DataReaderBookType.Read())
+            try
             {
-                String bookType = DataReaderBookType.GetString("name");
-                comboBoxBookType.Items.Add(bookType);
+                String selectBookType_SQL = "SELECT * FROM book_type";
+                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+                MySqlCommand cmd_bookType = new MySqlCommand(selectBookType_SQL, mySqlConnection);
+                MySqlDataReader DataReaderBookType;
 
+                DataReaderBookType = cmd_bookType.ExecuteReader();
+                while (DataReaderBookType.Read())
+                {
+                    String bookType = DataReaderBookType.GetString("name");
+                    comboBoxBookType.Items.Add(bookType);
+
+                }
+
+                mySqlConnection.Close();
             }
-
-            mySqlConnection.Close();
-
+            catch (MySqlException e) {
+                Console.WriteLine(e);
+                MessageBox.Show("Please check the connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         void fillComboCategory()
         {
-
+            try { 
             String selectBookCategory_SQL = "SELECT * FROM book_category";
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
 
@@ -71,11 +75,16 @@ namespace Library_Management_System_v0._1
             }
 
             mySqlConnection.Close();
-
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e);
+                MessageBox.Show("Please check the connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         void fillComboAuthor()
         {
-
+            try { 
             String selectBookAuthor_SQL = "SELECT * FROM book_author";
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
 
@@ -92,7 +101,12 @@ namespace Library_Management_System_v0._1
             }
 
             mySqlConnection.Close();
-
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e);
+                MessageBox.Show("Please check the connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         void fillComboPublisher()
         {
@@ -141,11 +155,6 @@ namespace Library_Management_System_v0._1
             mySqlConnection.Close();
 
         }
-
-
-
-
-
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -343,9 +352,10 @@ namespace Library_Management_System_v0._1
                         bookPrinterCount = (bookPrinterCount + 1);
                         updatePrinterBookCount(bookPrinterID, bookPrinterCount);
 
-              
 
-                   
+                    resetCurrent();
+
+
 
                 }
                 catch (System.NullReferenceException)
@@ -441,13 +451,9 @@ namespace Library_Management_System_v0._1
 
         private void textBoxPrintedYear_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char character = e.KeyChar;
-
-            if (!(char.IsDigit(character) && character != 8 && character != 46))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
-
-
             }
 
         }
@@ -565,5 +571,15 @@ namespace Library_Management_System_v0._1
 
         }
 
+        private void resetCurrent() {
+            generateID();
+
+            textBoxBookName.Text = "";
+            textBoxISBN.Text = "";
+            textBoxPrintedYear.Text = "";
+            textBoxBookDescription.Text = "";
+
+
+        }
     }
 }
