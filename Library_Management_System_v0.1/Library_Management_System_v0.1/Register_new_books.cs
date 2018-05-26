@@ -15,6 +15,7 @@ namespace Library_Management_System_v0._1
 {
     public partial class Register_new_books : Form
     {
+
         public Register_new_books()
         {
             InitializeComponent();
@@ -133,8 +134,10 @@ namespace Library_Management_System_v0._1
             command_newBookCatergory.CommandText = searchDailyCount;
             command_newBookCatergory.Parameters.AddWithValue("@date", "%" + dateObj.ToString(searchDateFormat) + "%");
             Object sqlResult = command_newBookCatergory.ExecuteScalar();
+            int todayCount = int.Parse(sqlResult.ToString());
 
-            labelBookID.Text = "BPR" + dateObj.ToString(date) + dateObj.ToString(year) + dateObj.ToString(month) + sqlResult.ToString();
+
+            labelBookID.Text = "BPR" + dateObj.ToString(date) + dateObj.ToString(year) + dateObj.ToString(month) + (todayCount + 1);
             mySqlConnection.Close();
 
         }
@@ -247,7 +250,7 @@ namespace Library_Management_System_v0._1
             String bookName = textBoxBookName.Text;
 
             String bookISBN = textBoxISBN.Text;
-            int bookPYear = int.Parse(textBoxPrintedYear.Text);
+            String bookPYear = textBoxPrintedYear.Text;
             String bookDescrip = textBoxBookDescription.Text;
 
 
@@ -269,8 +272,8 @@ namespace Library_Management_System_v0._1
 
                     Object bookC = selectBCategory(comboBoxCategory.SelectedItem.ToString());
                     Object bookA = selectBAuthor(comboBoxBookAuthor.SelectedItem.ToString());
-                    //Object bookP = selectBPublisher(comboBoxBookPublisher.SelectedItem.ToString());
-                    //Object bookT = selectBtype(comboBoxBookType.SelectedItem.ToString());
+                    Object bookP = selectBPublisher(comboBoxBookPublisher.SelectedItem.ToString());
+                    Object bookT = selectBtype(comboBoxBookType.SelectedItem.ToString());
 
 
 
@@ -304,12 +307,39 @@ namespace Library_Management_System_v0._1
 
 
 
-
-
                     command_newBookCatergory.ExecuteNonQuery();
 
+
+                    //String date = dateTime.Day.ToString("dd");//Gets the current DAY
+                    //String month = dateTime.Month.ToString("MM");//Gets the current MONTH
+                    //String year = dateTime.Year.ToString("yyyy");//Gets the current YEAR
+                    //String searchDateFormat = year + "-" + month + "-" + date;//Format the date as per SQL Format
+
+                    String searchDailyCount_SQL = "SELECT id FROM book_batch_profile WHERE createDateTime = @date";
+                    MySqlCommand command_searchID = new MySqlCommand(searchDailyCount_SQL, mySqlConnection);
+                    command_newBookCatergory.CommandText = searchDailyCount_SQL;
+                    command_newBookCatergory.Parameters.AddWithValue("@date", dateTime.ToString("yyyyMMddHHmmss"));
+                    Object book_batch_profile_id = command_newBookCatergory.ExecuteScalar();
+
+                    String insertBookProfile_SQL = "INSERT INTO book_profile (generatedID,book_batch_profile_id,book_printers_id,book_type_id) VALUES (@generatedID, @book_batch_profile_id,@book_printers_id,@book_type_id)";
+                    MySqlCommand command_InsertBookProfile = new MySqlCommand(insertBookProfile_SQL, mySqlConnection);
+                    command_InsertBookProfile.Parameters.AddWithValue("@generatedID", bookID);
+                    command_InsertBookProfile.Parameters.AddWithValue("@book_batch_profile_id", book_batch_profile_id.ToString());
+                    command_InsertBookProfile.Parameters.AddWithValue("@book_printers_id", bookP);
+                    command_InsertBookProfile.Parameters.AddWithValue("@book_type_id", bookT);
+                    command_InsertBookProfile.ExecuteNonQuery();
+
+
+
+
+                    DialogResult dialogResult = MessageBox.Show(" Book Successfully Registered ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+
+
                     mySqlConnection.Close();
-                    DialogResult dialogResult = MessageBox.Show(" Book Catergory Added ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
 
 
