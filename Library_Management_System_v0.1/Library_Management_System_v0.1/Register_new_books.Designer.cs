@@ -129,7 +129,7 @@
             // 
             this.textBoxBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBookName.Location = new System.Drawing.Point(145, 167);
-            this.textBoxBookName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxBookName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxBookName.Name = "textBoxBookName";
             this.textBoxBookName.Size = new System.Drawing.Size(273, 24);
             this.textBoxBookName.TabIndex = 6;
@@ -150,7 +150,7 @@
             // 
             this.textBoxISBN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxISBN.Location = new System.Drawing.Point(144, 221);
-            this.textBoxISBN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxISBN.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxISBN.Name = "textBoxISBN";
             this.textBoxISBN.Size = new System.Drawing.Size(273, 24);
             this.textBoxISBN.TabIndex = 8;
@@ -159,7 +159,7 @@
             // 
             this.textBoxPrintedYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPrintedYear.Location = new System.Drawing.Point(145, 275);
-            this.textBoxPrintedYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPrintedYear.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPrintedYear.Name = "textBoxPrintedYear";
             this.textBoxPrintedYear.Size = new System.Drawing.Size(273, 24);
             this.textBoxPrintedYear.TabIndex = 9;
@@ -169,7 +169,7 @@
             // 
             this.textBoxBookDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBookDescription.Location = new System.Drawing.Point(144, 326);
-            this.textBoxBookDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxBookDescription.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxBookDescription.Multiline = true;
             this.textBoxBookDescription.Name = "textBoxBookDescription";
             this.textBoxBookDescription.Size = new System.Drawing.Size(273, 194);
@@ -191,7 +191,7 @@
             this.comboBoxCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCategory.FormattingEnabled = true;
             this.comboBoxCategory.Location = new System.Drawing.Point(573, 114);
-            this.comboBoxCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxCategory.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(203, 25);
             this.comboBoxCategory.TabIndex = 12;
@@ -214,7 +214,7 @@
             this.comboBoxBookAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxBookAuthor.FormattingEnabled = true;
             this.comboBoxBookAuthor.Location = new System.Drawing.Point(573, 163);
-            this.comboBoxBookAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxBookAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBookAuthor.Name = "comboBoxBookAuthor";
             this.comboBoxBookAuthor.Size = new System.Drawing.Size(203, 25);
             this.comboBoxBookAuthor.Sorted = true;
@@ -237,7 +237,7 @@
             this.comboBoxBookPublisher.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxBookPublisher.FormattingEnabled = true;
             this.comboBoxBookPublisher.Location = new System.Drawing.Point(573, 221);
-            this.comboBoxBookPublisher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxBookPublisher.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBookPublisher.Name = "comboBoxBookPublisher";
             this.comboBoxBookPublisher.Size = new System.Drawing.Size(203, 25);
             this.comboBoxBookPublisher.Sorted = true;
@@ -260,7 +260,7 @@
             this.comboBoxBookType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxBookType.FormattingEnabled = true;
             this.comboBoxBookType.Location = new System.Drawing.Point(573, 272);
-            this.comboBoxBookType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxBookType.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxBookType.Name = "comboBoxBookType";
             this.comboBoxBookType.Size = new System.Drawing.Size(203, 25);
             this.comboBoxBookType.Sorted = true;
@@ -274,7 +274,7 @@
             // 
             this.buttonAddCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAddCategory.Location = new System.Drawing.Point(784, 112);
-            this.buttonAddCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAddCategory.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddCategory.Name = "buttonAddCategory";
             this.buttonAddCategory.Size = new System.Drawing.Size(68, 27);
             this.buttonAddCategory.TabIndex = 19;
@@ -286,7 +286,7 @@
             // 
             this.buttonAddAuthor.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAddAuthor.Location = new System.Drawing.Point(784, 161);
-            this.buttonAddAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAddAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddAuthor.Name = "buttonAddAuthor";
             this.buttonAddAuthor.Size = new System.Drawing.Size(68, 27);
             this.buttonAddAuthor.TabIndex = 20;
@@ -298,7 +298,7 @@
             // 
             this.buttonAddPublisher.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAddPublisher.Location = new System.Drawing.Point(784, 219);
-            this.buttonAddPublisher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAddPublisher.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddPublisher.Name = "buttonAddPublisher";
             this.buttonAddPublisher.Size = new System.Drawing.Size(68, 27);
             this.buttonAddPublisher.TabIndex = 21;
@@ -310,7 +310,7 @@
             // 
             this.buttonAddType.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAddType.Location = new System.Drawing.Point(784, 270);
-            this.buttonAddType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAddType.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddType.Name = "buttonAddType";
             this.buttonAddType.Size = new System.Drawing.Size(68, 27);
             this.buttonAddType.TabIndex = 22;
@@ -322,7 +322,7 @@
             // 
             this.buttonSaveBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSaveBook.Location = new System.Drawing.Point(800, 481);
-            this.buttonSaveBook.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSaveBook.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSaveBook.Name = "buttonSaveBook";
             this.buttonSaveBook.Size = new System.Drawing.Size(112, 38);
             this.buttonSaveBook.TabIndex = 23;
@@ -334,45 +334,49 @@
             // 
             this.buttonEditCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEditCategory.Location = new System.Drawing.Point(857, 112);
-            this.buttonEditCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEditCategory.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEditCategory.Name = "buttonEditCategory";
             this.buttonEditCategory.Size = new System.Drawing.Size(68, 27);
             this.buttonEditCategory.TabIndex = 24;
             this.buttonEditCategory.Text = "Edit";
             this.buttonEditCategory.UseVisualStyleBackColor = true;
+            this.buttonEditCategory.Click += new System.EventHandler(this.buttonEditCategory_Click);
             // 
             // buttonEditAuthor
             // 
             this.buttonEditAuthor.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEditAuthor.Location = new System.Drawing.Point(857, 161);
-            this.buttonEditAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEditAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEditAuthor.Name = "buttonEditAuthor";
             this.buttonEditAuthor.Size = new System.Drawing.Size(68, 27);
             this.buttonEditAuthor.TabIndex = 25;
             this.buttonEditAuthor.Text = "Edit";
             this.buttonEditAuthor.UseVisualStyleBackColor = true;
+            this.buttonEditAuthor.Click += new System.EventHandler(this.buttonEditAuthor_Click);
             // 
             // buttonEditPublisher
             // 
             this.buttonEditPublisher.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEditPublisher.Location = new System.Drawing.Point(857, 219);
-            this.buttonEditPublisher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEditPublisher.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEditPublisher.Name = "buttonEditPublisher";
             this.buttonEditPublisher.Size = new System.Drawing.Size(68, 27);
             this.buttonEditPublisher.TabIndex = 26;
             this.buttonEditPublisher.Text = "Edit";
             this.buttonEditPublisher.UseVisualStyleBackColor = true;
+            this.buttonEditPublisher.Click += new System.EventHandler(this.buttonEditPublisher_Click);
             // 
             // buttonEditType
             // 
             this.buttonEditType.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEditType.Location = new System.Drawing.Point(857, 270);
-            this.buttonEditType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEditType.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEditType.Name = "buttonEditType";
             this.buttonEditType.Size = new System.Drawing.Size(68, 27);
             this.buttonEditType.TabIndex = 27;
             this.buttonEditType.Text = "Edit";
             this.buttonEditType.UseVisualStyleBackColor = true;
+            this.buttonEditType.Click += new System.EventHandler(this.buttonEditType_Click);
             // 
             // Register_new_books
             // 
@@ -407,10 +411,11 @@
             this.Controls.Add(this.bookName);
             this.Controls.Add(this.bookId);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Register_new_books";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register New Books";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Register_new_books_FormClosed);
             this.Load += new System.EventHandler(this.Register_new_books_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -50,7 +50,7 @@
             // 
             this.textBoxAddCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxAddCategory.Location = new System.Drawing.Point(228, 167);
-            this.textBoxAddCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxAddCategory.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxAddCategory.Name = "textBoxAddCategory";
             this.textBoxAddCategory.Size = new System.Drawing.Size(273, 28);
             this.textBoxAddCategory.TabIndex = 8;
@@ -70,7 +70,7 @@
             // 
             this.buttonSaveCategory.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSaveCategory.Location = new System.Drawing.Point(234, 295);
-            this.buttonSaveCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSaveCategory.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSaveCategory.Name = "buttonSaveCategory";
             this.buttonSaveCategory.Size = new System.Drawing.Size(112, 38);
             this.buttonSaveCategory.TabIndex = 24;
@@ -87,10 +87,11 @@
             this.Controls.Add(this.textBoxAddCategory);
             this.Controls.Add(this.categoryName);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Add_New_Category";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Category";
+            this.Load += new System.EventHandler(this.Add_New_Category_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
