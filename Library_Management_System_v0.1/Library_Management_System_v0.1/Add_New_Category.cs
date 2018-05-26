@@ -102,5 +102,10 @@ namespace Library_Management_System_v0._1
             }
 
         }
+
+        private void Add_New_Category_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

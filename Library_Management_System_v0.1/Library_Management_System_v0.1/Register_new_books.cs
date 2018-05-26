@@ -582,7 +582,54 @@ namespace Library_Management_System_v0._1
 
         private void buttonEditCategory_Click(object sender, EventArgs e)
         {
-            new Edit_Category().Show();
+            Register_new_books rnb = this;
+            
+            comboControl.bookID = labelBookID.Text; ;
+            comboControl.bookName = textBoxBookName.Text;
+            comboControl.ISBN = textBoxISBN.Text;
+            comboControl.printYear = textBoxPrintedYear.Text;
+            comboControl.descrip = textBoxBookDescription.Text;
+
+            new Edit_Category(rnb).Show();
+        }
+
+        private void buttonEditAuthor_Click(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
+
+            comboControl.bookID = labelBookID.Text; ;
+            comboControl.bookName = textBoxBookName.Text;
+            comboControl.ISBN = textBoxISBN.Text;
+            comboControl.printYear = textBoxPrintedYear.Text;
+            comboControl.descrip = textBoxBookDescription.Text;
+
+            new Edit_Author(rnb).Show();
+        }
+
+        private void buttonEditPublisher_Click(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
+
+            comboControl.bookID = labelBookID.Text; ;
+            comboControl.bookName = textBoxBookName.Text;
+            comboControl.ISBN = textBoxISBN.Text;
+            comboControl.printYear = textBoxPrintedYear.Text;
+            comboControl.descrip = textBoxBookDescription.Text;
+
+            new Edit_Publisher(rnb).Show();
+        }
+
+        private void buttonEditType_Click(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
+
+            comboControl.bookID = labelBookID.Text; ;
+            comboControl.bookName = textBoxBookName.Text;
+            comboControl.ISBN = textBoxISBN.Text;
+            comboControl.printYear = textBoxPrintedYear.Text;
+            comboControl.descrip = textBoxBookDescription.Text;
+
+            new Edit_Book_Type(rnb).Show();
         }
     }
 }

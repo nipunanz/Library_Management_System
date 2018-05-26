@@ -352,6 +352,7 @@
             this.buttonEditAuthor.TabIndex = 25;
             this.buttonEditAuthor.Text = "Edit";
             this.buttonEditAuthor.UseVisualStyleBackColor = true;
+            this.buttonEditAuthor.Click += new System.EventHandler(this.buttonEditAuthor_Click);
             // 
             // buttonEditPublisher
             // 
@@ -363,6 +364,7 @@
             this.buttonEditPublisher.TabIndex = 26;
             this.buttonEditPublisher.Text = "Edit";
             this.buttonEditPublisher.UseVisualStyleBackColor = true;
+            this.buttonEditPublisher.Click += new System.EventHandler(this.buttonEditPublisher_Click);
             // 
             // buttonEditType
             // 
@@ -374,6 +376,7 @@
             this.buttonEditType.TabIndex = 27;
             this.buttonEditType.Text = "Edit";
             this.buttonEditType.UseVisualStyleBackColor = true;
+            this.buttonEditType.Click += new System.EventHandler(this.buttonEditType_Click);
             // 
             // Register_new_books
             // 

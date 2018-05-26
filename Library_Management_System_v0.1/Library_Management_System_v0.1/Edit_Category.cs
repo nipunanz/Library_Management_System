@@ -13,10 +13,12 @@ namespace Library_Management_System_v0._1
 {
     public partial class Edit_Category : Form
     {
-        public Edit_Category()
+        Register_new_books rnbinstance;
+        public Edit_Category(Register_new_books rnb)
         {
             InitializeComponent();
             fillCategory();
+            this.rnbinstance = rnb;
             //editCategory();
         }
 
@@ -37,13 +39,9 @@ namespace Library_Management_System_v0._1
                 {
                     String bookCategory = DataReaderBookCategory.GetString("name");
                     comboBoxCategory.Items.Add(bookCategory);
-                 
-
                 }
                 
-
-
-                mySqlConnection.Close();
+               mySqlConnection.Close();
             }
             catch (MySqlException e)
             {
@@ -52,8 +50,18 @@ namespace Library_Management_System_v0._1
             }
         }
 
-        void editCategory() {
-           
+        void editCategory(String name, String updateName) {
+
+            String updateCategory_SQL = "UPDATE book_category SET name=@ubookname WHERE name=@bookname";
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand command_updateCurrentBookCountCategory = new MySqlCommand(updateCategory_SQL, mySqlConnection);
+            command_updateCurrentBookCountCategory.CommandText = updateCategory_SQL;
+            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@bookname", name);
+            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@ubookname", updateName);
+            int row = command_updateCurrentBookCountCategory.ExecuteNonQuery();
+
+            mySqlConnection.Close();
 
         }
 
@@ -72,6 +80,37 @@ namespace Library_Management_System_v0._1
         private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxAddCategory.Text = comboBoxCategory.SelectedItem.ToString();
+        }
+
+        private void buttonSaveCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String name = comboBoxCategory.SelectedItem.ToString();
+                String updatedname = textBoxAddCategory.Text;
+
+                editCategory(name, updatedname);
+                DialogResult dialogResult = MessageBox.Show(" Update Successful! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.OK)
+                {
+                    textBoxAddCategory.Text = String.Empty;
+
+                    new Register_new_books().Show();
+                    rnbinstance.Hide();
+                    this.Dispose();
+
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show(" Invalid Selection ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (MySqlException) {
+                MessageBox.Show(" Please check connection ", "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+
+            }
+
         }
     }
 }

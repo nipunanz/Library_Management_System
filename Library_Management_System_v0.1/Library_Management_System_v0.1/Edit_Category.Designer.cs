@@ -46,6 +46,7 @@
             this.buttonSaveCategory.TabIndex = 28;
             this.buttonSaveCategory.Text = "Update";
             this.buttonSaveCategory.UseVisualStyleBackColor = true;
+            this.buttonSaveCategory.Click += new System.EventHandler(this.buttonSaveCategory_Click);
             // 
             // textBoxAddCategory
             // 
