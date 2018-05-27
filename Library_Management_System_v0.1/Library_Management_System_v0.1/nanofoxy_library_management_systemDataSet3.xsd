@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="nanofoxy_library_management_systemDataSet" targetNamespace="http://tempuri.org/nanofoxy_library_management_systemDataSet3.xsd" xmlns:mstns="http://tempuri.org/nanofoxy_library_management_systemDataSet3.xsd" xmlns="http://tempuri.org/nanofoxy_library_management_systemDataSet3.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="nanofoxy_library_management_systemConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="nanofoxy_library_management_systemConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Library_Management_System_v0._1.Properties.Settings.GlobalReference.Default.nanofoxy_library_management_systemConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="book_authorTableAdapter" GeneratorDataComponentClassName="book_authorTableAdapter" Name="book_author" UserDataComponentName="book_authorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.book_author" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, name, description, bookCount, createDateTime, updateDateTime, isActive, user_login_history_id FROM book_author</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="book_batch_profileTableAdapter" GeneratorDataComponentClassName="book_batch_profileTableAdapter" Name="book_batch_profile" UserDataComponentName="book_batch_profileTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.book_batch_profile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, name, ISBN, printedYear, description, bookCount, createDateTime, updateDateTime, isActive, book_type_id, book_author_id, book_category_id, book_printers_id FROM book_batch_profile</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="book_categoryTableAdapter" GeneratorDataComponentClassName="book_categoryTableAdapter" Name="book_category" UserDataComponentName="book_categoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.book_category" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, name, bookCount, createDateTime, updateDateTime, isActive, user_login_history_id FROM book_category</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="book_printersTableAdapter" GeneratorDataComponentClassName="book_printersTableAdapter" Name="book_printers" UserDataComponentName="book_printersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.book_printers" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, name, description, bookCount, createDateTime, updateDateTime, isActive, user_login_history_id FROM book_printers</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="book_profileTableAdapter" GeneratorDataComponentClassName="book_profileTableAdapter" Name="book_profile" UserDataComponentName="book_profileTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.book_profile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, generatedID, book_batch_profile_id FROM book_profile</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="book_typeTableAdapter" GeneratorDataComponentClassName="book_typeTableAdapter" Name="book_type" UserDataComponentName="book_typeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.book_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, name FROM book_type</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="forgot_passwordTableAdapter" GeneratorDataComponentClassName="forgot_passwordTableAdapter" Name="forgot_password" UserDataComponentName="forgot_passwordTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.forgot_password" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, verificationCode, sendDateTime, verifyDateTime, isActive, user_login_id FROM forgot_password</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="issue_and_return_bookTableAdapter" GeneratorDataComponentClassName="issue_and_return_bookTableAdapter" Name="issue_and_return_book" UserDataComponentName="issue_and_return_bookTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.issue_and_return_book" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, returnDateTime, isReturn, remarks, book_profile_id, issue_and_return_book_batch_id FROM issue_and_return_book</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="issue_and_return_book_batchTableAdapter" GeneratorDataComponentClassName="issue_and_return_book_batchTableAdapter" Name="issue_and_return_book_batch" UserDataComponentName="issue_and_return_book_batchTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.issue_and_return_book_batch" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, issueDateTime, markedReturnDate, isReturn, remarks, user_profile_id, user_login_history_id FROM issue_and_return_book_batch</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="user_loginTableAdapter" GeneratorDataComponentClassName="user_loginTableAdapter" Name="user_login" UserDataComponentName="user_loginTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.user_login" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, emailAddress, password, createDateTime, updateDateTime, isActive, isOnline, user_role_id, user_profile_id FROM user_login</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="user_login_historyTableAdapter" GeneratorDataComponentClassName="user_login_historyTableAdapter" Name="user_login_history" UserDataComponentName="user_login_historyTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.user_login_history" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, loginDateTime, logoutDateTime, user_login_id FROM user_login_history</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="user_profileTableAdapter" GeneratorDataComponentClassName="user_profileTableAdapter" Name="user_profile" UserDataComponentName="user_profileTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.user_profile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, generatedID, firstName, lastName, mobileNumber, landLineNumber, permenentAddress, residentAddress, isResidentSame, birthday, profileImageUrl, createDateTime, updateDateTime, isActive, user_login_history_id, user_profile_type_id FROM user_profile</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="user_profile_typeTableAdapter" GeneratorDataComponentClassName="user_profile_typeTableAdapter" Name="user_profile_type" UserDataComponentName="user_profile_typeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.user_profile_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, name FROM user_profile_type</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="user_roleTableAdapter" GeneratorDataComponentClassName="user_roleTableAdapter" Name="user_role" UserDataComponentName="user_roleTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="nanofoxy_library_management_systemConnectionString (Settings)" DbObjectName="nanofoxy_library_management_system.user_role" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, name FROM user_role</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="nanofoxy_library_management_systemDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="nanofoxy_library_management_systemDataSet" msprop:Generator_UserDSName="nanofoxy_library_management_systemDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="book_author" msprop:Generator_TableClassName="book_authorDataTable" msprop:Generator_TableVarName="tablebook_author" msprop:Generator_TablePropName="book_author" msprop:Generator_RowDeletingName="book_authorRowDeleting" msprop:Generator_RowChangingName="book_authorRowChanging" msprop:Generator_RowEvHandlerName="book_authorRowChangeEventHandler" msprop:Generator_RowDeletedName="book_authorRowDeleted" msprop:Generator_UserTableName="book_author" msprop:Generator_RowChangedName="book_authorRowChanged" msprop:Generator_RowEvArgName="book_authorRowChangeEvent" msprop:Generator_RowClassName="book_authorRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="book_batch_profile" msprop:Generator_TableClassName="book_batch_profileDataTable" msprop:Generator_TableVarName="tablebook_batch_profile" msprop:Generator_TablePropName="book_batch_profile" msprop:Generator_RowDeletingName="book_batch_profileRowDeleting" msprop:Generator_RowChangingName="book_batch_profileRowChanging" msprop:Generator_RowEvHandlerName="book_batch_profileRowChangeEventHandler" msprop:Generator_RowDeletedName="book_batch_profileRowDeleted" msprop:Generator_UserTableName="book_batch_profile" msprop:Generator_RowChangedName="book_batch_profileRowChanged" msprop:Generator_RowEvArgName="book_batch_profileRowChangeEvent" msprop:Generator_RowClassName="book_batch_profileRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="book_category" msprop:Generator_TableClassName="book_categoryDataTable" msprop:Generator_TableVarName="tablebook_category" msprop:Generator_TablePropName="book_category" msprop:Generator_RowDeletingName="book_categoryRowDeleting" msprop:Generator_RowChangingName="book_categoryRowChanging" msprop:Generator_RowEvHandlerName="book_categoryRowChangeEventHandler" msprop:Generator_RowDeletedName="book_categoryRowDeleted" msprop:Generator_UserTableName="book_category" msprop:Generator_RowChangedName="book_categoryRowChanged" msprop:Generator_RowEvArgName="book_categoryRowChangeEvent" msprop:Generator_RowClassName="book_categoryRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="book_printers" msprop:Generator_TableClassName="book_printersDataTable" msprop:Generator_TableVarName="tablebook_printers" msprop:Generator_TablePropName="book_printers" msprop:Generator_RowDeletingName="book_printersRowDeleting" msprop:Generator_RowChangingName="book_printersRowChanging" msprop:Generator_RowEvHandlerName="book_printersRowChangeEventHandler" msprop:Generator_RowDeletedName="book_printersRowDeleted" msprop:Generator_UserTableName="book_printers" msprop:Generator_RowChangedName="book_printersRowChanged" msprop:Generator_RowEvArgName="book_printersRowChangeEvent" msprop:Generator_RowClassName="book_printersRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="book_profile" msprop:Generator_TableClassName="book_profileDataTable" msprop:Generator_TableVarName="tablebook_profile" msprop:Generator_TablePropName="book_profile" msprop:Generator_RowDeletingName="book_profileRowDeleting" msprop:Generator_RowChangingName="book_profileRowChanging" msprop:Generator_RowEvHandlerName="book_profileRowChangeEventHandler" msprop:Generator_RowDeletedName="book_profileRowDeleted" msprop:Generator_UserTableName="book_profile" msprop:Generator_RowChangedName="book_profileRowChanged" msprop:Generator_RowEvArgName="book_profileRowChangeEvent" msprop:Generator_RowClassName="book_profileRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="book_type" msprop:Generator_TableClassName="book_typeDataTable" msprop:Generator_TableVarName="tablebook_type" msprop:Generator_TablePropName="book_type" msprop:Generator_RowDeletingName="book_typeRowDeleting" msprop:Generator_RowChangingName="book_typeRowChanging" msprop:Generator_RowEvHandlerName="book_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="book_typeRowDeleted" msprop:Generator_UserTableName="book_type" msprop:Generator_RowChangedName="book_typeRowChanged" msprop:Generator_RowEvArgName="book_typeRowChangeEvent" msprop:Generator_RowClassName="book_typeRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="forgot_password" msprop:Generator_TableClassName="forgot_passwordDataTable" msprop:Generator_TableVarName="tableforgot_password" msprop:Generator_TablePropName="forgot_password" msprop:Generator_RowDeletingName="forgot_passwordRowDeleting" msprop:Generator_RowChangingName="forgot_passwordRowChanging" msprop:Generator_RowEvHandlerName="forgot_passwordRowChangeEventHandler" msprop:Generator_RowDeletedName="forgot_passwordRowDeleted" msprop:Generator_UserTableName="forgot_password" msprop:Generator_RowChangedName="forgot_passwordRowChanged" msprop:Generator_RowEvArgName="forgot_passwordRowChangeEvent" msprop:Generator_RowClassName="forgot_passwordRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="issue_and_return_book" msprop:Generator_TableClassName="issue_and_return_bookDataTable" msprop:Generator_TableVarName="tableissue_and_return_book" msprop:Generator_TablePropName="issue_and_return_book" msprop:Generator_RowDeletingName="issue_and_return_bookRowDeleting" msprop:Generator_RowChangingName="issue_and_return_bookRowChanging" msprop:Generator_RowEvHandlerName="issue_and_return_bookRowChangeEventHandler" msprop:Generator_RowDeletedName="issue_and_return_bookRowDeleted" msprop:Generator_UserTableName="issue_and_return_book" msprop:Generator_RowChangedName="issue_and_return_bookRowChanged" msprop:Generator_RowEvArgName="issue_and_return_bookRowChangeEvent" msprop:Generator_RowClassName="issue_and_return_bookRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="issue_and_return_book_batch" msprop:Generator_TableClassName="issue_and_return_book_batchDataTable" msprop:Generator_TableVarName="tableissue_and_return_book_batch" msprop:Generator_TablePropName="issue_and_return_book_batch" msprop:Generator_RowDeletingName="issue_and_return_book_batchRowDeleting" msprop:Generator_RowChangingName="issue_and_return_book_batchRowChanging" msprop:Generator_RowEvHandlerName="issue_and_return_book_batchRowChangeEventHandler" msprop:Generator_RowDeletedName="issue_and_return_book_batchRowDeleted" msprop:Generator_UserTableName="issue_and_return_book_batch" msprop:Generator_RowChangedName="issue_and_return_book_batchRowChanged" msprop:Generator_RowEvArgName="issue_and_return_book_batchRowChangeEvent" msprop:Generator_RowClassName="issue_and_return_book_batchRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="user_login" msprop:Generator_TableClassName="user_loginDataTable" msprop:Generator_TableVarName="tableuser_login" msprop:Generator_TablePropName="user_login" msprop:Generator_RowDeletingName="user_loginRowDeleting" msprop:Generator_RowChangingName="user_loginRowChanging" msprop:Generator_RowEvHandlerName="user_loginRowChangeEventHandler" msprop:Generator_RowDeletedName="user_loginRowDeleted" msprop:Generator_UserTableName="user_login" msprop:Generator_RowChangedName="user_loginRowChanged" msprop:Generator_RowEvArgName="user_loginRowChangeEvent" msprop:Generator_RowClassName="user_loginRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="user_login_history" msprop:Generator_TableClassName="user_login_historyDataTable" msprop:Generator_TableVarName="tableuser_login_history" msprop:Generator_TablePropName="user_login_history" msprop:Generator_RowDeletingName="user_login_historyRowDeleting" msprop:Generator_RowChangingName="user_login_historyRowChanging" msprop:Generator_RowEvHandlerName="user_login_historyRowChangeEventHandler" msprop:Generator_RowDeletedName="user_login_historyRowDeleted" msprop:Generator_UserTableName="user_login_history" msprop:Generator_RowChangedName="user_login_historyRowChanged" msprop:Generator_RowEvArgName="user_login_historyRowChangeEvent" msprop:Generator_RowClassName="user_login_historyRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="user_profile" msprop:Generator_TableClassName="user_profileDataTable" msprop:Generator_TableVarName="tableuser_profile" msprop:Generator_TablePropName="user_profile" msprop:Generator_RowDeletingName="user_profileRowDeleting" msprop:Generator_RowChangingName="user_profileRowChanging" msprop:Generator_RowEvHandlerName="user_profileRowChangeEventHandler" msprop:Generator_RowDeletedName="user_profileRowDeleted" msprop:Generator_UserTableName="user_profile" msprop:Generator_RowChangedName="user_profileRowChanged" msprop:Generator_RowEvArgName="user_profileRowChangeEvent" msprop:Generator_RowClassName="user_profileRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="user_profile_type" msprop:Generator_TableClassName="user_profile_typeDataTable" msprop:Generator_TableVarName="tableuser_profile_type" msprop:Generator_TablePropName="user_profile_type" msprop:Generator_RowDeletingName="user_profile_typeRowDeleting" msprop:Generator_RowChangingName="user_profile_typeRowChanging" msprop:Generator_RowEvHandlerName="user_profile_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="user_profile_typeRowDeleted" msprop:Generator_UserTableName="user_profile_type" msprop:Generator_RowChangedName="user_profile_typeRowChanged" msprop:Generator_RowEvArgName="user_profile_typeRowChangeEvent" msprop:Generator_RowClassName="user_profile_typeRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="user_role" msprop:Generator_TableClassName="user_roleDataTable" msprop:Generator_TableVarName="tableuser_role" msprop:Generator_TablePropName="user_role" msprop:Generator_RowDeletingName="user_roleRowDeleting" msprop:Generator_RowChangingName="user_roleRowChanging" msprop:Generator_RowEvHandlerName="user_roleRowChangeEventHandler" msprop:Generator_RowDeletedName="user_roleRowDeleted" msprop:Generator_UserTableName="user_role" msprop:Generator_RowChangedName="user_roleRowChanged" msprop:Generator_RowEvArgName="user_roleRowChangeEvent" msprop:Generator_RowClassName="user_roleRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

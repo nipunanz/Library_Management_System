@@ -30,35 +30,40 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_New_User));
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buttonAddCategory = new System.Windows.Forms.Button();
-            this.textBoxBookDescription = new System.Windows.Forms.TextBox();
-            this.textBoxPrintedYear = new System.Windows.Forms.TextBox();
-            this.textBoxISBN = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxBookName = new System.Windows.Forms.TextBox();
+            this.pictureBoxUser = new System.Windows.Forms.PictureBox();
+            this.buttonBrowse = new System.Windows.Forms.Button();
+            this.textBoxPAddress = new System.Windows.Forms.TextBox();
+            this.textBoxMobile = new System.Windows.Forms.TextBox();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
+            this.labelUserId = new System.Windows.Forms.Label();
+            this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.bookDescription = new System.Windows.Forms.Label();
             this.printedYear = new System.Windows.Forms.Label();
             this.isbn = new System.Windows.Forms.Label();
             this.bookName = new System.Windows.Forms.Label();
             this.bookId = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxLand = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxRAddress = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxConfirmAddress = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBoxCategory = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.comboBoxProfileType = new System.Windows.Forms.ComboBox();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxRePassword = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.buttonSaveBook = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.checkBoxAdmin = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSaveUser = new System.Windows.Forms.Button();
+            this.buttonUpdateUser = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -72,68 +77,72 @@
             this.label1.Text = "User Registration";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
+            // pictureBoxUser
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(1079, 126);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(153, 154);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxUser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxUser.BackgroundImage")));
+            this.pictureBoxUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxUser.Location = new System.Drawing.Point(1059, 126);
+            this.pictureBoxUser.Name = "pictureBoxUser";
+            this.pictureBoxUser.Size = new System.Drawing.Size(173, 168);
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxUser.TabIndex = 2;
+            this.pictureBoxUser.TabStop = false;
             // 
-            // buttonAddCategory
+            // buttonBrowse
             // 
-            this.buttonAddCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddCategory.Location = new System.Drawing.Point(1079, 296);
-            this.buttonAddCategory.Name = "buttonAddCategory";
-            this.buttonAddCategory.Size = new System.Drawing.Size(153, 33);
-            this.buttonAddCategory.TabIndex = 20;
-            this.buttonAddCategory.Text = "Browse";
-            this.buttonAddCategory.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBrowse.Location = new System.Drawing.Point(1059, 309);
+            this.buttonBrowse.Name = "buttonBrowse";
+            this.buttonBrowse.Size = new System.Drawing.Size(173, 33);
+            this.buttonBrowse.TabIndex = 20;
+            this.buttonBrowse.Text = "Browse";
+            this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Click += new System.EventHandler(this.buttonAddCategory_Click);
             // 
-            // textBoxBookDescription
+            // textBoxPAddress
             // 
-            this.textBoxBookDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBookDescription.Location = new System.Drawing.Point(219, 429);
-            this.textBoxBookDescription.Multiline = true;
-            this.textBoxBookDescription.Name = "textBoxBookDescription";
-            this.textBoxBookDescription.Size = new System.Drawing.Size(363, 88);
-            this.textBoxBookDescription.TabIndex = 30;
+            this.textBoxPAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPAddress.Location = new System.Drawing.Point(219, 429);
+            this.textBoxPAddress.Multiline = true;
+            this.textBoxPAddress.Name = "textBoxPAddress";
+            this.textBoxPAddress.Size = new System.Drawing.Size(363, 88);
+            this.textBoxPAddress.TabIndex = 31;
             // 
-            // textBoxPrintedYear
+            // textBoxMobile
             // 
-            this.textBoxPrintedYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPrintedYear.Location = new System.Drawing.Point(220, 309);
-            this.textBoxPrintedYear.Name = "textBoxPrintedYear";
-            this.textBoxPrintedYear.Size = new System.Drawing.Size(363, 28);
-            this.textBoxPrintedYear.TabIndex = 29;
+            this.textBoxMobile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxMobile.Location = new System.Drawing.Point(220, 309);
+            this.textBoxMobile.Name = "textBoxMobile";
+            this.textBoxMobile.Size = new System.Drawing.Size(363, 28);
+            this.textBoxMobile.TabIndex = 29;
+            this.textBoxMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMobile_KeyPress);
             // 
-            // textBoxISBN
+            // textBoxLastName
             // 
-            this.textBoxISBN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxISBN.Location = new System.Drawing.Point(219, 249);
-            this.textBoxISBN.Name = "textBoxISBN";
-            this.textBoxISBN.Size = new System.Drawing.Size(363, 28);
-            this.textBoxISBN.TabIndex = 28;
+            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxLastName.Location = new System.Drawing.Point(219, 249);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(363, 28);
+            this.textBoxLastName.TabIndex = 28;
             // 
-            // label2
+            // labelUserId
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(215, 128);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 25);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "UPR222018051";
+            this.labelUserId.AutoSize = true;
+            this.labelUserId.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUserId.Location = new System.Drawing.Point(215, 128);
+            this.labelUserId.Name = "labelUserId";
+            this.labelUserId.Size = new System.Drawing.Size(126, 25);
+            this.labelUserId.TabIndex = 27;
+            this.labelUserId.Text = "UPR222018051";
             // 
-            // textBoxBookName
+            // textBoxFirstName
             // 
-            this.textBoxBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBookName.Location = new System.Drawing.Point(220, 189);
-            this.textBoxBookName.Name = "textBoxBookName";
-            this.textBoxBookName.Size = new System.Drawing.Size(363, 28);
-            this.textBoxBookName.TabIndex = 26;
+            this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFirstName.Location = new System.Drawing.Point(220, 189);
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.Size = new System.Drawing.Size(363, 28);
+            this.textBoxFirstName.TabIndex = 26;
             // 
             // bookDescription
             // 
@@ -185,13 +194,14 @@
             this.bookId.TabIndex = 21;
             this.bookId.Text = "User ID";
             // 
-            // textBox1
+            // textBoxLand
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(220, 370);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(363, 28);
-            this.textBox1.TabIndex = 32;
+            this.textBoxLand.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxLand.Location = new System.Drawing.Point(220, 370);
+            this.textBoxLand.Name = "textBoxLand";
+            this.textBoxLand.Size = new System.Drawing.Size(363, 28);
+            this.textBoxLand.TabIndex = 30;
+            this.textBoxLand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxLand_KeyPress);
             // 
             // label3
             // 
@@ -203,14 +213,14 @@
             this.label3.TabIndex = 31;
             this.label3.Text = "Land Number";
             // 
-            // textBox2
+            // textBoxRAddress
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(219, 548);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(363, 88);
-            this.textBox2.TabIndex = 34;
+            this.textBoxRAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRAddress.Location = new System.Drawing.Point(219, 548);
+            this.textBoxRAddress.Multiline = true;
+            this.textBoxRAddress.Name = "textBoxRAddress";
+            this.textBoxRAddress.Size = new System.Drawing.Size(363, 88);
+            this.textBoxRAddress.TabIndex = 34;
             // 
             // label4
             // 
@@ -222,16 +232,17 @@
             this.label4.TabIndex = 33;
             this.label4.Text = "Recidance Address";
             // 
-            // checkBox1
+            // checkBoxConfirmAddress
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(220, 642);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(184, 23);
-            this.checkBox1.TabIndex = 36;
-            this.checkBox1.Text = "Same as permanent address";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxConfirmAddress.AutoSize = true;
+            this.checkBoxConfirmAddress.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxConfirmAddress.Location = new System.Drawing.Point(220, 642);
+            this.checkBoxConfirmAddress.Name = "checkBoxConfirmAddress";
+            this.checkBoxConfirmAddress.Size = new System.Drawing.Size(184, 23);
+            this.checkBoxConfirmAddress.TabIndex = 36;
+            this.checkBoxConfirmAddress.Text = "Same as permanent address";
+            this.checkBoxConfirmAddress.UseVisualStyleBackColor = true;
+            this.checkBoxConfirmAddress.CheckedChanged += new System.EventHandler(this.checkBoxConfirmAddress_CheckedChanged);
             // 
             // label5
             // 
@@ -243,13 +254,14 @@
             this.label5.TabIndex = 37;
             this.label5.Text = "Birthday";
             // 
-            // dateTimePicker1
+            // dateTimePickerBirthday
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(776, 128);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(247, 22);
-            this.dateTimePicker1.TabIndex = 38;
+            this.dateTimePickerBirthday.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerBirthday.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(776, 128);
+            this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(247, 22);
+            this.dateTimePickerBirthday.TabIndex = 38;
             // 
             // label6
             // 
@@ -261,117 +273,172 @@
             this.label6.TabIndex = 39;
             this.label6.Text = "User Profile Type";
             // 
-            // comboBoxCategory
+            // comboBoxProfileType
             // 
-            this.comboBoxCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(776, 185);
-            this.comboBoxCategory.Name = "comboBoxCategory";
-            this.comboBoxCategory.Size = new System.Drawing.Size(247, 30);
-            this.comboBoxCategory.TabIndex = 40;
+            this.comboBoxProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxProfileType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProfileType.FormattingEnabled = true;
+            this.comboBoxProfileType.Location = new System.Drawing.Point(776, 185);
+            this.comboBoxProfileType.Name = "comboBoxProfileType";
+            this.comboBoxProfileType.Size = new System.Drawing.Size(247, 30);
+            this.comboBoxProfileType.TabIndex = 40;
+            this.comboBoxProfileType.SelectedValueChanged += new System.EventHandler(this.comboBoxProfileType_SelectedValueChanged);
             // 
-            // textBox3
+            // textBoxEmail
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(869, 380);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(363, 28);
-            this.textBox3.TabIndex = 42;
+            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxEmail.Location = new System.Drawing.Point(252, 67);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(308, 28);
+            this.textBoxEmail.TabIndex = 42;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(615, 382);
+            this.label7.Location = new System.Drawing.Point(35, 69);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 26);
             this.label7.TabIndex = 41;
             this.label7.Text = "Email";
             // 
-            // textBox4
+            // textBoxPassword
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(869, 427);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(363, 28);
-            this.textBox4.TabIndex = 44;
+            this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPassword.Location = new System.Drawing.Point(252, 114);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(308, 28);
+            this.textBoxPassword.TabIndex = 44;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(615, 429);
+            this.label8.Location = new System.Drawing.Point(35, 116);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 26);
             this.label8.TabIndex = 43;
             this.label8.Text = "Password";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
-            // textBox5
+            // textBoxRePassword
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(869, 475);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(363, 28);
-            this.textBox5.TabIndex = 46;
+            this.textBoxRePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRePassword.Location = new System.Drawing.Point(252, 162);
+            this.textBoxRePassword.Name = "textBoxRePassword";
+            this.textBoxRePassword.PasswordChar = '*';
+            this.textBoxRePassword.Size = new System.Drawing.Size(308, 28);
+            this.textBoxRePassword.TabIndex = 46;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(615, 477);
+            this.label9.Location = new System.Drawing.Point(35, 164);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(157, 26);
             this.label9.TabIndex = 45;
             this.label9.Text = "Re-Type Password";
             // 
-            // buttonSaveBook
+            // checkBoxAdmin
             // 
-            this.buttonSaveBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveBook.Location = new System.Drawing.Point(1083, 589);
-            this.buttonSaveBook.Name = "buttonSaveBook";
-            this.buttonSaveBook.Size = new System.Drawing.Size(149, 47);
-            this.buttonSaveBook.TabIndex = 47;
-            this.buttonSaveBook.Text = "Create User";
-            this.buttonSaveBook.UseVisualStyleBackColor = true;
+            this.checkBoxAdmin.AutoSize = true;
+            this.checkBoxAdmin.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxAdmin.Location = new System.Drawing.Point(778, 232);
+            this.checkBoxAdmin.Name = "checkBoxAdmin";
+            this.checkBoxAdmin.Size = new System.Drawing.Size(226, 23);
+            this.checkBoxAdmin.TabIndex = 48;
+            this.checkBoxAdmin.Text = "Make as an Administrative Librarian";
+            this.checkBoxAdmin.UseVisualStyleBackColor = true;
+            this.checkBoxAdmin.CheckedChanged += new System.EventHandler(this.checkBoxAdmin_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(15, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(186, 26);
+            this.label2.TabIndex = 49;
+            this.label2.Text = "Authentication Details";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.textBoxEmail);
+            this.panel1.Controls.Add(this.textBoxRePassword);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.textBoxPassword);
+            this.panel1.Location = new System.Drawing.Point(620, 370);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(612, 231);
+            this.panel1.TabIndex = 50;
+            // 
+            // buttonSaveUser
+            // 
+            this.buttonSaveUser.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveUser.Location = new System.Drawing.Point(620, 625);
+            this.buttonSaveUser.Name = "buttonSaveUser";
+            this.buttonSaveUser.Size = new System.Drawing.Size(149, 47);
+            this.buttonSaveUser.TabIndex = 47;
+            this.buttonSaveUser.Text = "Create User";
+            this.buttonSaveUser.UseVisualStyleBackColor = true;
+            this.buttonSaveUser.Click += new System.EventHandler(this.buttonSaveUser_Click);
+            // 
+            // buttonUpdateUser
+            // 
+            this.buttonUpdateUser.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdateUser.Location = new System.Drawing.Point(1083, 625);
+            this.buttonUpdateUser.Name = "buttonUpdateUser";
+            this.buttonUpdateUser.Size = new System.Drawing.Size(149, 47);
+            this.buttonUpdateUser.TabIndex = 51;
+            this.buttonUpdateUser.Text = "Update User";
+            this.buttonUpdateUser.UseVisualStyleBackColor = true;
+            this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
             // 
             // Add_New_User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1283, 703);
-            this.Controls.Add(this.buttonSaveBook);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBoxCategory);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.checkBoxAdmin);
+            this.Controls.Add(this.buttonSaveUser);
+            this.Controls.Add(this.comboBoxProfileType);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerBirthday);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.checkBoxConfirmAddress);
+            this.Controls.Add(this.textBoxRAddress);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxLand);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxBookDescription);
-            this.Controls.Add(this.textBoxPrintedYear);
-            this.Controls.Add(this.textBoxISBN);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxBookName);
+            this.Controls.Add(this.textBoxPAddress);
+            this.Controls.Add(this.textBoxMobile);
+            this.Controls.Add(this.textBoxLastName);
+            this.Controls.Add(this.labelUserId);
+            this.Controls.Add(this.textBoxFirstName);
             this.Controls.Add(this.bookDescription);
             this.Controls.Add(this.printedYear);
             this.Controls.Add(this.isbn);
             this.Controls.Add(this.bookName);
             this.Controls.Add(this.bookId);
-            this.Controls.Add(this.buttonAddCategory);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.buttonBrowse);
+            this.Controls.Add(this.pictureBoxUser);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonUpdateUser);
             this.Name = "Add_New_User";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add_New_User";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Add_New_User_FormClosing);
+            this.Load += new System.EventHandler(this.Add_New_User_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,33 +447,37 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button buttonAddCategory;
-        private System.Windows.Forms.TextBox textBoxBookDescription;
-        private System.Windows.Forms.TextBox textBoxPrintedYear;
-        private System.Windows.Forms.TextBox textBoxISBN;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxBookName;
+        private System.Windows.Forms.PictureBox pictureBoxUser;
+        private System.Windows.Forms.Button buttonBrowse;
+        private System.Windows.Forms.TextBox textBoxPAddress;
+        private System.Windows.Forms.TextBox textBoxMobile;
+        private System.Windows.Forms.TextBox textBoxLastName;
+        private System.Windows.Forms.Label labelUserId;
+        private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.Label bookDescription;
         private System.Windows.Forms.Label printedYear;
         private System.Windows.Forms.Label isbn;
         private System.Windows.Forms.Label bookName;
         private System.Windows.Forms.Label bookId;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxLand;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxRAddress;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxConfirmAddress;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBoxCategory;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox comboBoxProfileType;
+        private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBoxRePassword;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button buttonSaveBook;
+        private System.Windows.Forms.CheckBox checkBoxAdmin;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonSaveUser;
+        private System.Windows.Forms.Button buttonUpdateUser;
     }
 }

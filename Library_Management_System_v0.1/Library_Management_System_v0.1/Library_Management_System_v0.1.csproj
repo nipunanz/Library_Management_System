@@ -76,6 +76,7 @@
     <Compile Include="Add_New_User.Designer.cs">
       <DependentUpon>Add_New_User.cs</DependentUpon>
     </Compile>
+    <Compile Include="comboControl.cs" />
     <Compile Include="DataConnection.cs" />
     <Compile Include="Edit_Author.cs">
       <SubType>Form</SubType>
@@ -146,6 +147,7 @@
     <Compile Include="Return_Books.Designer.cs">
       <DependentUpon>Return_Books.cs</DependentUpon>
     </Compile>
+    <Compile Include="StringCipher.cs" />
     <EmbeddedResource Include="Add_New_Author.resx">
       <DependentUpon>Add_New_Author.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +205,16 @@
     <EmbeddedResource Include="Return_Books.resx">
       <DependentUpon>Return_Books.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="nanofoxy_library_management_systemDataSet.xsc">
+      <DependentUpon>nanofoxy_library_management_systemDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="nanofoxy_library_management_systemDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="nanofoxy_library_management_systemDataSet.xss">
+      <DependentUpon>nanofoxy_library_management_systemDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

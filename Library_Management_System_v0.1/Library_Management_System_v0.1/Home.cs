@@ -17,6 +17,13 @@ namespace Library_Management_System_v0._1
             InitializeComponent();
         }
 
+        public Home(String userType)
+        {
+            InitializeComponent();
+            buttonRegNewBook.Hide();
+            buttonManageBooks.Hide();
+        }
+
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -25,6 +32,23 @@ namespace Library_Management_System_v0._1
         private void buttonSaveBook_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Add_New_User add_New_User = new Add_New_User();
+            add_New_User.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Manage_Users manage_Users = new Manage_Users();
+            manage_Users.Show();
         }
     }
 }
