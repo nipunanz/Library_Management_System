@@ -95,6 +95,7 @@
             this.buttonManageBooks.Text = "Manage Books";
             this.buttonManageBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonManageBooks.UseVisualStyleBackColor = true;
+            this.buttonManageBooks.Click += new System.EventHandler(this.buttonManageBooks_Click);
             // 
             // button2
             // 

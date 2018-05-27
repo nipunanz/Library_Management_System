@@ -31,7 +31,8 @@ namespace Library_Management_System_v0._1
 
         private void buttonSaveBook_Click(object sender, EventArgs e)
         {
-
+            Register_new_books register_New_Books = new Register_new_books();
+            register_New_Books.Show();
         }
 
         private void Home_Load(object sender, EventArgs e)
@@ -49,6 +50,12 @@ namespace Library_Management_System_v0._1
         {
             Manage_Users manage_Users = new Manage_Users();
             manage_Users.Show();
+        }
+
+        private void buttonManageBooks_Click(object sender, EventArgs e)
+        {
+            Manage_Books manage_Books = new Manage_Books();
+            manage_Books.Show();
         }
     }
 }

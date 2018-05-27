@@ -38,7 +38,7 @@ namespace Library_Management_System_v0._1
                 String categoryName = textBoxAddCategory.Text;
                 int bookCount = 0;
                 int isActive = 1;
-                int user_login_id = 4;
+                String user_login_id = LoginDetails.userLoginHistoryID;
 
                 if (isValidCategory(categoryName))
                 {

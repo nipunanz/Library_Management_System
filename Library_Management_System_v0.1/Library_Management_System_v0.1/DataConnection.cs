@@ -14,7 +14,7 @@ namespace Library_Management_System_v0._1
        public static MySqlConnection getDBConnection()
         {
           
-            String conStr = "server=localhost;user id=root;password=123;persistsecurityinfo=True;port=3306;database=nanofoxy_library_management_system;SslMode=none";
+            String conStr = "server=localhost;user id=root;password=123;persistsecurityinfo=True;port=3306;database=nanofoxy_library_management_system_new;SslMode=none";
 
             if (DataConnection.mySqlConnection == null) {
 

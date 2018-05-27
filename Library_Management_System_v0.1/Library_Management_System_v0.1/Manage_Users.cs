@@ -123,7 +123,7 @@ namespace Library_Management_System_v0._1
         private void buttonActivateDeactivate_Click(object sender, EventArgs e)
         {
             String currectId = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            String currentStatus = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+            String currentStatus = dataGridView1.CurrentRow.Cells[7].Value.ToString();
             //Console.WriteLine("Selected Row :"+currectId+" Status :"+currentStatus);
             if (currentStatus.Equals("Active"))
             {
@@ -379,6 +379,12 @@ namespace Library_Management_System_v0._1
             Add_New_User add_New_User = new Add_New_User(currectId, userType);
             add_New_User.Show();
             this.Hide();
+        }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            dataGridView1.RowCount = 0;
+            loadTable();
         }
     }
 }

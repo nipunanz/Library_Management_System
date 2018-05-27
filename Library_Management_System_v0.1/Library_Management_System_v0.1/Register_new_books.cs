@@ -22,6 +22,7 @@ namespace Library_Management_System_v0._1
             fillComboCategory();
             fillComboAuthor();
             fillComboPublisher();
+            buttonUpdateBook.Hide();
 
             labelBookID.Text = comboControl.bookID;
             textBoxBookName.Text = comboControl.bookName;
@@ -29,6 +30,27 @@ namespace Library_Management_System_v0._1
             textBoxPrintedYear.Text = comboControl.printYear;
             textBoxBookDescription.Text = comboControl.descrip;
             generateID();
+        }
+
+        public Register_new_books(String category, String author, String publisher, String bookType)
+        {
+            InitializeComponent();
+            fillComboType();
+            fillComboCategory();
+            fillComboAuthor();
+            fillComboPublisher();
+            buttonSaveBook.Hide();
+            label1.Text = "Edit Book";
+            comboBoxBookPublisher.SelectedItem = publisher;
+            panel1.Hide();
+            comboBoxBookAuthor.SelectedItem = author;
+            comboBoxCategory.SelectedItem = category;
+
+            labelBookID.Text = comboControl.bookID;
+            textBoxBookName.Text = comboControl.bookName;
+            textBoxISBN.Text = comboControl.ISBN;
+            textBoxPrintedYear.Text = comboControl.printYear;
+            textBoxBookDescription.Text = comboControl.descrip;
         }
 
         void fillComboType()
@@ -285,7 +307,7 @@ namespace Library_Management_System_v0._1
                     DateTime dateTime = DateTime.Now;
                     dateTime.ToString("yyyyMMddHHmmss");
 
-                    int bookCount = 0;
+                    int bookCount = 1;
                     int isActive = 1;
                     //int user_login_id = 1;
 
@@ -639,6 +661,117 @@ namespace Library_Management_System_v0._1
             comboControl.ISBN = "";
             comboControl.printYear = "";
             comboControl.descrip ="";
+        }
+        //Update Button
+        private void buttonUpdateBook_Click(object sender, EventArgs e)
+        {
+            String bookID = labelBookID.Text;
+            String bookName = textBoxBookName.Text;
+            String bookISBN = textBoxISBN.Text;
+            String bookPYear = textBoxPrintedYear.Text;
+            String bookDescrip = textBoxBookDescription.Text;
+
+
+            if (bookName.Equals("") || bookISBN.Equals("") || bookPYear.Equals("") || bookDescrip.Equals(""))
+            {
+
+                MessageBox.Show(" Invalid Entry ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            {
+
+                try
+                {
+
+                    Object bookC = selectBCategory(comboBoxCategory.SelectedItem.ToString());
+                    Object bookA = selectBAuthor(comboBoxBookAuthor.SelectedItem.ToString());
+                    //Object bookP = selectBPublisher(comboBoxBookPublisher.SelectedItem.ToString());
+                    //Object bookT = selectBtype(comboBoxBookType.SelectedItem.ToString());
+
+                    //MessageBox.Show(bookC.ToString() + bookA.ToString() + bookP.ToString() + bookT.ToString());
+
+                    DateTime dateTime = DateTime.Now;
+                    dateTime.ToString("yyyyMMddHHmmss");
+
+                    int bookCount = 1;
+                    int isActive = 1;
+                    //int user_login_id = 1;
+
+                    String newBook_SQL = "UPDATE book_batch_profile SET name=@name, ISBN=@ISBN, printedYear=@printedYear, description=@description, updateDateTime=@updateDateTime, book_author_id=@book_author_id, book_category_id=@book_category_id WHERE id = @batchId";
+
+                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection.Open();
+                    MySqlCommand command_newBookCatergory = new MySqlCommand(newBook_SQL, mySqlConnection);
+                    command_newBookCatergory.CommandText = newBook_SQL;
+                    command_newBookCatergory.Parameters.AddWithValue("@name", bookName);
+                    command_newBookCatergory.Parameters.AddWithValue("@ISBN", bookISBN);
+                    command_newBookCatergory.Parameters.AddWithValue("@printedYear", bookPYear);
+                    command_newBookCatergory.Parameters.AddWithValue("@description", bookDescrip);
+                    command_newBookCatergory.Parameters.AddWithValue("@updateDateTime", dateTime);
+                    //command_newBookCatergory.Parameters.AddWithValue("@book_type_id", bookT);
+                    command_newBookCatergory.Parameters.AddWithValue("@book_author_id", bookA);
+                    command_newBookCatergory.Parameters.AddWithValue("@book_category_id", bookC);
+                    command_newBookCatergory.Parameters.AddWithValue("@batchId", comboControl.bookID);
+                    //command_newBookCatergory.Parameters.AddWithValue("@book_printers_id", bookP);
+
+                    command_newBookCatergory.ExecuteNonQuery();//Execute insert query to book_batch_profile
+
+                    //String date = dateTime.Day.ToString("dd");//Gets the current DAY
+                    //String month = dateTime.Month.ToString("MM");//Gets the current MONTH
+                    //String year = dateTime.Year.ToString("yyyy");//Gets the current YEAR
+                    //String searchDateFormat = year + "-" + month + "-" + date;//Format the date as per SQL Format
+
+                   // String searchDailyCount_SQL = "SELECT id FROM book_batch_profile WHERE createDateTime = @date";
+                   // MySqlCommand command_searchID = new MySqlCommand(searchDailyCount_SQL, mySqlConnection);
+                   // command_newBookCatergory.CommandText = searchDailyCount_SQL;
+                   // command_newBookCatergory.Parameters.AddWithValue("@date", dateTime.ToString("yyyyMMddHHmmss"));
+                   // Object book_batch_profile_id = command_newBookCatergory.ExecuteScalar();
+
+                   // String insertBookProfile_SQL = "INSERT INTO book_profile (generatedID,book_batch_profile_id,book_printers_id,book_type_id) VALUES (@generatedID, @book_batch_profile_id,@book_printers_id,@book_type_id)";
+                   // MySqlCommand command_InsertBookProfile = new MySqlCommand(insertBookProfile_SQL, mySqlConnection);
+                   // command_InsertBookProfile.Parameters.AddWithValue("@generatedID", bookID);
+                   // command_InsertBookProfile.Parameters.AddWithValue("@book_batch_profile_id", book_batch_profile_id.ToString());
+                   // command_InsertBookProfile.Parameters.AddWithValue("@book_printers_id", bookP);
+                   // command_InsertBookProfile.Parameters.AddWithValue("@book_type_id", bookT);
+
+                   // command_InsertBookProfile.ExecuteNonQuery(); //Execute query to insert into book_profile
+
+                    DialogResult dialogResult = MessageBox.Show(" Book Successfully Updated ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    mySqlConnection.Close();
+                    /**Update Author Book Count**/
+                    //int bookAuthorID = int.Parse(bookA.ToString());
+                    //int bookAuthorCount = int.Parse(selectAuthorBookCount(bookAuthorID).ToString());
+                    //bookAuthorCount = (bookAuthorCount + 1);//increase book count
+                    //updateAuthorBookCount(bookAuthorID, bookAuthorCount);//update the Author Book Count
+
+                    /**Update Category Book Count**/
+                    // int bookCategoryID = int.Parse(bookC.ToString());
+                    //int bookCategoryCount = int.Parse(selectCategoryBookCount(bookCategoryID).ToString());
+                    // bookCategoryCount = (bookCategoryCount + 1);
+                    // updateCategoryBookCount(bookCategoryID, bookCategoryCount);
+
+                    /**Update Printer Book Count**/
+                    // int bookPrinterID = int.Parse(bookP.ToString());
+                    // int bookPrinterCount = int.Parse(selectPrinterBoookCount(bookPrinterID).ToString());
+                    // bookPrinterCount = (bookPrinterCount + 1);
+                    // updatePrinterBookCount(bookPrinterID, bookPrinterCount);
+
+
+                    new Manage_Books().Show();
+                    this.Hide();
+
+
+                }
+                catch (System.NullReferenceException)
+                {
+                    MessageBox.Show(" Please check Category, Author selections. ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+            }
         }
     }
 }
