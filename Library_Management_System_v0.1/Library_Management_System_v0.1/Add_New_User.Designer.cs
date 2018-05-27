@@ -57,10 +57,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxRePassword = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.buttonSaveUser = new System.Windows.Forms.Button();
             this.checkBoxAdmin = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSaveUser = new System.Windows.Forms.Button();
+            this.buttonUpdateUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -340,17 +341,6 @@
             this.label9.TabIndex = 45;
             this.label9.Text = "Re-Type Password";
             // 
-            // buttonSaveUser
-            // 
-            this.buttonSaveUser.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveUser.Location = new System.Drawing.Point(1083, 618);
-            this.buttonSaveUser.Name = "buttonSaveUser";
-            this.buttonSaveUser.Size = new System.Drawing.Size(149, 47);
-            this.buttonSaveUser.TabIndex = 47;
-            this.buttonSaveUser.Text = "Create User";
-            this.buttonSaveUser.UseVisualStyleBackColor = true;
-            this.buttonSaveUser.Click += new System.EventHandler(this.buttonSaveUser_Click);
-            // 
             // checkBoxAdmin
             // 
             this.checkBoxAdmin.AutoSize = true;
@@ -388,6 +378,28 @@
             this.panel1.Size = new System.Drawing.Size(612, 231);
             this.panel1.TabIndex = 50;
             // 
+            // buttonSaveUser
+            // 
+            this.buttonSaveUser.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveUser.Location = new System.Drawing.Point(620, 625);
+            this.buttonSaveUser.Name = "buttonSaveUser";
+            this.buttonSaveUser.Size = new System.Drawing.Size(149, 47);
+            this.buttonSaveUser.TabIndex = 47;
+            this.buttonSaveUser.Text = "Create User";
+            this.buttonSaveUser.UseVisualStyleBackColor = true;
+            this.buttonSaveUser.Click += new System.EventHandler(this.buttonSaveUser_Click);
+            // 
+            // buttonUpdateUser
+            // 
+            this.buttonUpdateUser.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdateUser.Location = new System.Drawing.Point(1083, 625);
+            this.buttonUpdateUser.Name = "buttonUpdateUser";
+            this.buttonUpdateUser.Size = new System.Drawing.Size(149, 47);
+            this.buttonUpdateUser.TabIndex = 51;
+            this.buttonUpdateUser.Text = "Update User";
+            this.buttonUpdateUser.UseVisualStyleBackColor = true;
+            this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
+            // 
             // Add_New_User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -418,6 +430,7 @@
             this.Controls.Add(this.buttonBrowse);
             this.Controls.Add(this.pictureBoxUser);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonUpdateUser);
             this.Name = "Add_New_User";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add_New_User";
@@ -461,9 +474,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxRePassword;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button buttonSaveUser;
         private System.Windows.Forms.CheckBox checkBoxAdmin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonSaveUser;
+        private System.Windows.Forms.Button buttonUpdateUser;
     }
 }

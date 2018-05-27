@@ -18,7 +18,108 @@ namespace Library_Management_System_v0._1
         {
             InitializeComponent();
             fillComboProfileType();
+            checkBoxAdmin.Hide();
+            panel1.Hide();
+            buttonUpdateUser.Hide();
+            generateID();
 
+        }
+        String editID = null;
+        public Add_New_User(String editId, String userType)
+        {
+            InitializeComponent();
+            fillComboProfileType();
+            label1.Text = "Edit User";
+            buttonSaveUser.Hide();
+            labelUserId.Text = editId;
+            this.editID = editId;
+            //id, generatedID, firstName, lastName, mobileNumber, landLineNumber, permenentAddress, residentAddress, isResidentSame, birthday, profileImageUrl, createDateTime, updateDateTime, isActive, user_login_history_id, user_profile_type_id
+            String getUserDetailsSql = "SELECT firstName, lastName, mobileNumber, landLineNumber, permenentAddress, residentAddress, isResidentSame, birthday, profileImageUrl, user_login.emailAddress as emailAddress, user_login.password as password from user_profile left join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id left join user_login on user_profile.id = user_login.user_profile_id left join user_role on user_login.user_role_id = user_role.id WHERE user_profile.generatedID = @currentId";
+
+            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+            mySqlConnection.Open();
+            MySqlCommand cmd_Profile = new MySqlCommand(getUserDetailsSql, mySqlConnection);
+            cmd_Profile.CommandText = getUserDetailsSql;
+            cmd_Profile.Parameters.AddWithValue("currentId", editId);
+            MySqlDataReader DataReader = cmd_Profile.ExecuteReader();
+
+            if (userType.Equals("Librarian"))
+            {
+                comboBoxProfileType.SelectedItem = "Librarian";
+                while (DataReader.Read())
+                {
+                    textBoxFirstName.Text = DataReader.GetString("firstName");
+                    textBoxLastName.Text = DataReader.GetString("lastName");
+                    textBoxMobile.Text = DataReader.GetString("mobileNumber");
+                    textBoxLand.Text = DataReader.GetString("landLineNumber");
+                    textBoxPAddress.Text = DataReader.GetString("permenentAddress");
+                    textBoxRAddress.Text = DataReader.GetString("residentAddress");
+                    if (DataReader.GetString("isResidentSame").Equals("True"))
+                    {
+                        checkBoxConfirmAddress.Checked = true;
+                    }
+                    else
+                    {
+                        checkBoxConfirmAddress.Checked = false;
+                    }
+                    textBoxEmail.Text = DataReader.GetString("emailAddress");
+                    textBoxPassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
+                    textBoxRePassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
+                    dateTimePickerBirthday.Text = DataReader.GetString("birthday");
+                                        
+                   /* if (DataReader.GetString("profileImageUrl").Equals("null"))
+                    {
+                        pictureBoxUser.Image = null;
+                    }
+                    else
+                    {
+                        byte[] imageVal = (byte[])DataReader[8];
+                        MemoryStream ms = new MemoryStream(imageVal);
+                        pictureBoxUser.Image = Image.FromStream(ms);
+                    }*/
+                }
+            }
+            else
+            {
+                checkBoxAdmin.Hide();
+                panel1.Hide();
+                comboBoxProfileType.SelectedItem = "Reader";
+
+                while (DataReader.Read())
+                {
+                    textBoxFirstName.Text = DataReader.GetString("firstName");
+                    textBoxLastName.Text = DataReader.GetString("lastName");
+                    textBoxMobile.Text = DataReader.GetString("mobileNumber");
+                    textBoxLand.Text = DataReader.GetString("landLineNumber");
+                    textBoxPAddress.Text = DataReader.GetString("permenentAddress");
+                    textBoxRAddress.Text = DataReader.GetString("residentAddress");
+                    if (DataReader.GetString("isResidentSame").Equals("True"))
+                    {
+                        checkBoxConfirmAddress.Checked = true;
+                    }
+                    else
+                    {
+                        checkBoxConfirmAddress.Checked = false;
+                    }
+                    //textBoxEmail.Text = DataReader.GetString("emailAddress");
+                   // textBoxPassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
+                    //textBoxRePassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
+                    dateTimePickerBirthday.Text = DataReader.GetString("birthday");
+                    String imageVal =  DataReader.GetString("profileImageUrl");
+                    /*Console.WriteLine(DataReader[8]);
+                     if (imageVal == null)
+                     {
+                         pictureBoxUser.Image = null;
+                     }
+                     else
+                     {
+                         byte[] imageValBytes = Encoding.ASCII.GetBytes(imageVal);
+                         MemoryStream ms = new MemoryStream(imageValBytes);
+                         pictureBoxUser.Image = Image.FromStream(ms);
+                     }*/
+                }
+            }
+            mySqlConnection.Close();
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -329,14 +430,16 @@ namespace Library_Management_System_v0._1
             textBoxPassword.Text = "";
             textBoxRePassword.Text = "";
             dateTimePickerBirthday.ResetText();
+            checkBoxAdmin.Hide();
+            panel1.Hide();
+            buttonUpdateUser.Hide();
+            generateID();
             Add_New_User_Load(this, null);
         }
 
         private void Add_New_User_Load(object sender, EventArgs e)
         {
-            checkBoxAdmin.Hide();
-            panel1.Hide();
-            generateID();
+            
             dateTimePickerBirthday.Format = DateTimePickerFormat.Custom;
             dateTimePickerBirthday.CustomFormat = "yyyy-MM-dd";
 
@@ -434,6 +537,193 @@ namespace Library_Management_System_v0._1
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void buttonUpdateUser_Click(object sender, EventArgs e)
+        {
+            byte[] images = null;
+            if (imageLoacation != null && !imageLoacation.Equals(""))
+            {
+                FileStream fileStream = new FileStream(imageLoacation, FileMode.Open, FileAccess.Read);
+                BinaryReader reader = new BinaryReader(fileStream);
+                images = reader.ReadBytes((int)fileStream.Length);
+            }
+
+            String userId = labelUserId.Text;
+            String fName = textBoxFirstName.Text;
+            String lName = textBoxLastName.Text;
+            String mobile = textBoxMobile.Text;
+            String landNumber = textBoxLand.Text;
+            String pAddress = textBoxPAddress.Text;
+            String rAddress = textBoxRAddress.Text;
+            String birthday = dateTimePickerBirthday.Text;
+            bool isProfileTypeSelected = true;
+            String email = textBoxEmail.Text;
+            String password = textBoxPassword.Text;
+            String rePassword = textBoxRePassword.Text;
+            String profileType = "";
+            String userRole = "Librarian";
+            bool savePermission = false;
+
+            String getProfileTypeIdSql = "SELECT id FROM user_profile_type WHERE name = @profileType";
+            String saveUserProfileSql = "UPDATE  user_profile SET firstName=@firstName, lastName=@lastName, mobileNumber=@mobileNumber, landLineNumber=@landLineNumber, permenentAddress=@permenentAddress, residentAddress=@residentAddress, isResidentSame=@isResidentSame, birthday=@birthday, profileImageUrl=@profileImageUrl, updateDateTime=@updateDateTime WHERE generatedID = @generatedID";
+            String getUserRoleIdSql = "SELECT id FROM user_role WHERE name = @roleName";
+            String getUserProfileIdSql = "SELECT id FROM user_profile WHERE generatedID = @userId";
+            String saveUserLoginSql = "UPDATE user_login SET emailAddress=@emailAddress, password=@password, updateDateTime=@updateDateTime WHERE user_profile_id = @user_profile_id";
+
+            DateTime dateTime = DateTime.Now;
+            dateTime.ToString("yyyyMMddHHmmss");
+
+            try
+            {
+                profileType = comboBoxProfileType.SelectedItem.ToString();
+            }
+            catch
+            {
+                isProfileTypeSelected = false;
+            }
+
+            if (fName.Equals("") || lName.Equals("") || mobile.Equals("") || pAddress.Equals("") || rAddress.Equals("") || birthday.Equals(""))
+            {
+                MessageBox.Show("Some fields can't be Empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (!isProfileTypeSelected)
+            {
+                MessageBox.Show("Please select the user profile type", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (profileType.Equals("Librarian"))
+                {
+                    if (email.Equals("") || password.Equals("") || rePassword.Equals(""))
+                    {
+                        MessageBox.Show("Authentication details can't be empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        bool adminCheck = checkBoxAdmin.Checked;
+
+                        if (IsValidEmail(email))
+                        {
+                                if (password.Equals(rePassword))
+                                {
+                                    savePermission = true;
+                                    if (adminCheck)
+                                    {
+                                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to make this user as an Administrator. Changes can't be roll back", "Register new user", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                                        if (dialogResult == DialogResult.OK)
+                                        {
+                                            userRole = "Administrative Librarian";
+                                            savePermission = true;
+                                        }
+                                        else
+                                        {
+                                            savePermission = false;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        userRole = "Librarian";
+                                    }
+
+                                    if (savePermission)
+                                    {
+
+                                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                                        mySqlConnection.Open();
+                                        MySqlCommand commandSaveLibrarian = new MySqlCommand(saveUserProfileSql, mySqlConnection);
+                                        commandSaveLibrarian.CommandText = saveUserProfileSql;
+                                        commandSaveLibrarian.Parameters.AddWithValue("@generatedID", editID);
+                                        commandSaveLibrarian.Parameters.AddWithValue("@firstName", fName);
+                                        commandSaveLibrarian.Parameters.AddWithValue("@lastName", lName);
+                                        commandSaveLibrarian.Parameters.AddWithValue("@mobileNumber", mobile);
+                                        commandSaveLibrarian.Parameters.AddWithValue("@landLineNumber", landNumber);
+                                        commandSaveLibrarian.Parameters.AddWithValue("@permenentAddress", pAddress);
+                                        commandSaveLibrarian.Parameters.AddWithValue("@residentAddress", rAddress);
+                                        commandSaveLibrarian.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
+                                        commandSaveLibrarian.Parameters.AddWithValue("@birthday", birthday);
+                                        if (imageLoacation != null)
+                                        {
+                                            commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                                        }
+                                        else
+                                        {
+                                            commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", null);
+                                        }
+                                        commandSaveLibrarian.Parameters.AddWithValue("@updateDateTime", dateTime);
+                                       
+                                        commandSaveLibrarian.ExecuteNonQuery();
+
+                                        MySqlCommand getUserProfileId = new MySqlCommand(getUserProfileIdSql, mySqlConnection);
+                                        getUserProfileId.CommandText = getUserProfileIdSql;
+                                        getUserProfileId.Parameters.AddWithValue("@userId", editID);
+                                        MySqlDataReader readProfileID = getUserProfileId.ExecuteReader();
+                                        readProfileID.Read();
+                                        String userProfileId = readProfileID.GetString("id");
+                                        readProfileID.Close();
+
+                                       
+                                        MySqlCommand saveUserLoginDetails = new MySqlCommand(saveUserLoginSql, mySqlConnection);
+                                        saveUserLoginDetails.CommandText = saveUserLoginSql;
+                                        saveUserLoginDetails.Parameters.AddWithValue("@emailAddress", email);
+                                        saveUserLoginDetails.Parameters.AddWithValue("@password", StringCipher.Encrypt(password, LoginDetails.passwordKey));
+                                        saveUserLoginDetails.Parameters.AddWithValue("@updateDateTime", null);                                        
+                                        saveUserLoginDetails.Parameters.AddWithValue("@user_profile_id", userProfileId);
+                                        saveUserLoginDetails.ExecuteNonQuery();
+                                        mySqlConnection.Close();
+                                        MessageBox.Show("Librarian Successfully Updated!", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    new Manage_Users().Show();
+                                    this.Hide();
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Passwords do not match", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                        
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a valid email address", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+
+                    }
+                }
+                else
+                {
+                    //Reader Selected
+                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection.Open();
+                    MySqlCommand commandSaveReader = new MySqlCommand(saveUserProfileSql, mySqlConnection);
+                    commandSaveReader.CommandText = saveUserProfileSql;
+                    commandSaveReader.Parameters.AddWithValue("@generatedID", editID);
+                    commandSaveReader.Parameters.AddWithValue("@firstName", fName);
+                    commandSaveReader.Parameters.AddWithValue("@lastName", lName);
+                    commandSaveReader.Parameters.AddWithValue("@mobileNumber", mobile);
+                    commandSaveReader.Parameters.AddWithValue("@landLineNumber", landNumber);
+                    commandSaveReader.Parameters.AddWithValue("@permenentAddress", pAddress);
+                    commandSaveReader.Parameters.AddWithValue("@residentAddress", rAddress);
+                    commandSaveReader.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
+                    commandSaveReader.Parameters.AddWithValue("@birthday", birthday);
+                    if (imageLoacation != null)
+                    {
+                        commandSaveReader.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                    }
+                    else
+                    {
+                        commandSaveReader.Parameters.AddWithValue("@profileImageUrl", null);
+                    }                  
+                    commandSaveReader.Parameters.AddWithValue("@updateDateTime", dateTime);                    
+                   
+                    commandSaveReader.ExecuteNonQuery();
+                    mySqlConnection.Close();
+
+                    MessageBox.Show("Reader Successfully Updated!", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new Manage_Users().Show();
+                    this.Hide();
+                }
             }
         }
     }
