@@ -59,6 +59,7 @@
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonHome = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -177,7 +178,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(58, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 26);
@@ -186,8 +189,9 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.label1.Font = new System.Drawing.Font("Roboto Condensed", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label1.Font = new System.Drawing.Font("Roboto Condensed", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(-2, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1287, 73);
@@ -198,8 +202,10 @@
             // bookId
             // 
             this.bookId.AutoSize = true;
-            this.bookId.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bookId.Location = new System.Drawing.Point(1073, 121);
+            this.bookId.BackColor = System.Drawing.Color.Transparent;
+            this.bookId.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bookId.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bookId.Location = new System.Drawing.Point(538, 156);
             this.bookId.Name = "bookId";
             this.bookId.Size = new System.Drawing.Size(52, 26);
             this.bookId.TabIndex = 17;
@@ -208,33 +214,39 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1126, 117);
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label12.Location = new System.Drawing.Point(591, 152);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(125, 32);
+            this.label12.Size = new System.Drawing.Size(129, 32);
             this.label12.TabIndex = 18;
             this.label12.Text = "24-05-2018";
             // 
             // buttonSaveBook
             // 
-            this.buttonSaveBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveBook.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.buttonSaveBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveBook.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonSaveBook.Location = new System.Drawing.Point(1102, 633);
             this.buttonSaveBook.Name = "buttonSaveBook";
             this.buttonSaveBook.Size = new System.Drawing.Size(149, 47);
             this.buttonSaveBook.TabIndex = 25;
             this.buttonSaveBook.Text = "Done";
-            this.buttonSaveBook.UseVisualStyleBackColor = true;
+            this.buttonSaveBook.UseVisualStyleBackColor = false;
             this.buttonSaveBook.Click += new System.EventHandler(this.buttonSaveBook_Click);
             // 
             // buttonUserSearch
             // 
+            this.buttonUserSearch.BackColor = System.Drawing.Color.DarkSlateGray;
             this.buttonUserSearch.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUserSearch.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonUserSearch.Location = new System.Drawing.Point(407, 118);
             this.buttonUserSearch.Name = "buttonUserSearch";
             this.buttonUserSearch.Size = new System.Drawing.Size(100, 33);
             this.buttonUserSearch.TabIndex = 27;
             this.buttonUserSearch.Text = "Search";
-            this.buttonUserSearch.UseVisualStyleBackColor = true;
+            this.buttonUserSearch.UseVisualStyleBackColor = false;
             this.buttonUserSearch.Click += new System.EventHandler(this.buttonUserSearch_Click);
             // 
             // dataGridView1
@@ -339,20 +351,44 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1078, 168);
+            this.button1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.button1.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(1078, 152);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 33);
+            this.button1.Size = new System.Drawing.Size(173, 49);
             this.button1.TabIndex = 29;
             this.button1.Text = "Mark Returned";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonHome
+            // 
+            this.buttonHome.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.buttonHome.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonHome.BackgroundImage")));
+            this.buttonHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonHome.FlatAppearance.BorderSize = 0;
+            this.buttonHome.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
+            this.buttonHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.buttonHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHome.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHome.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonHome.Location = new System.Drawing.Point(1187, 31);
+            this.buttonHome.Name = "buttonHome";
+            this.buttonHome.Size = new System.Drawing.Size(64, 58);
+            this.buttonHome.TabIndex = 55;
+            this.buttonHome.UseVisualStyleBackColor = false;
+            this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
             // 
             // Return_Books
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1283, 703);
+            this.Controls.Add(this.buttonHome);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonUserSearch);
@@ -363,6 +399,7 @@
             this.Controls.Add(this.textBoxBookID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Return_Books";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Return_Books";
@@ -408,5 +445,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonHome;
     }
 }

@@ -386,5 +386,10 @@ namespace Library_Management_System_v0._1
             dataGridView1.RowCount = 0;
             loadTable();
         }
+
+        private void buttonHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

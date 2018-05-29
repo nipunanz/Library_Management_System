@@ -44,11 +44,11 @@
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Roboto Condensed", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Image = global::Library_Management_System_v0._1.Properties.Resources.book_m_2_02;
+            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.Location = new System.Drawing.Point(-1, 139);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(526, 108);
+            this.label2.Size = new System.Drawing.Size(655, 108);
             this.label2.TabIndex = 4;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -57,84 +57,102 @@
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Roboto Condensed", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Image = global::Library_Management_System_v0._1.Properties.Resources.user_m_02_01;
+            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Location = new System.Drawing.Point(745, 139);
+            this.label3.Location = new System.Drawing.Point(649, 139);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(541, 108);
+            this.label3.Size = new System.Drawing.Size(637, 108);
             this.label3.TabIndex = 5;
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonRegNewBook
             // 
-            this.buttonRegNewBook.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRegNewBook.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.buttonRegNewBook.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRegNewBook.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRegNewBook.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonRegNewBook.Location = new System.Drawing.Point(50, 462);
             this.buttonRegNewBook.Name = "buttonRegNewBook";
             this.buttonRegNewBook.Size = new System.Drawing.Size(498, 58);
             this.buttonRegNewBook.TabIndex = 48;
             this.buttonRegNewBook.Text = "Register New Book";
             this.buttonRegNewBook.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonRegNewBook.UseVisualStyleBackColor = true;
+            this.buttonRegNewBook.UseVisualStyleBackColor = false;
             this.buttonRegNewBook.Click += new System.EventHandler(this.buttonSaveBook_Click);
             // 
             // buttonManageBooks
             // 
-            this.buttonManageBooks.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonManageBooks.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.buttonManageBooks.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonManageBooks.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonManageBooks.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonManageBooks.Location = new System.Drawing.Point(50, 562);
             this.buttonManageBooks.Name = "buttonManageBooks";
             this.buttonManageBooks.Size = new System.Drawing.Size(498, 58);
             this.buttonManageBooks.TabIndex = 49;
             this.buttonManageBooks.Text = "Manage Books";
             this.buttonManageBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonManageBooks.UseVisualStyleBackColor = true;
+            this.buttonManageBooks.UseVisualStyleBackColor = false;
             this.buttonManageBooks.Click += new System.EventHandler(this.buttonManageBooks_Click);
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.button2.Location = new System.Drawing.Point(50, 268);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(498, 58);
             this.button2.TabIndex = 50;
             this.button2.Text = "Book - IN Registry";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.button3.Location = new System.Drawing.Point(50, 363);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(498, 58);
             this.button3.TabIndex = 51;
             this.button3.Text = "Book - OUT Registry";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(729, 363);
+            this.button4.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button4.Location = new System.Drawing.Point(736, 363);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(498, 58);
             this.button4.TabIndex = 53;
             this.button4.Text = "Manage Users";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
-            this.button5.Font = new System.Drawing.Font("Roboto Condensed Light", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(729, 268);
+            this.button5.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button5.Location = new System.Drawing.Point(736, 268);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(498, 58);
             this.button5.TabIndex = 52;
             this.button5.Text = "Register New User";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // buttonLogout
@@ -144,6 +162,8 @@
             this.buttonLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonLogout.FlatAppearance.BorderSize = 0;
+            this.buttonLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.buttonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogout.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogout.ForeColor = System.Drawing.Color.Transparent;

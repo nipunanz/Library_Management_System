@@ -136,11 +136,15 @@ namespace Library_Management_System_v0._1
 
         private void Login_Load(object sender, EventArgs e)
         {
-            label1.BackColor = Color.Transparent;
             label2.BackColor = Color.Transparent;
             label3.BackColor = Color.Transparent;
             linkLabel1.BackColor = Color.Transparent;
 
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

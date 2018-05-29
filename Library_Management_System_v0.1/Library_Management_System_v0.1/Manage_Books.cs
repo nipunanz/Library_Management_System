@@ -245,5 +245,10 @@ namespace Library_Management_System_v0._1
             edit_book.Show();
             this.Hide();
         }
+
+        private void buttonHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

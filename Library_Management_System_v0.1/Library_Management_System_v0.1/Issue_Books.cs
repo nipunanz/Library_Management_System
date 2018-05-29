@@ -336,5 +336,15 @@ namespace Library_Management_System_v0._1
            
             
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void buttonHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

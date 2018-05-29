@@ -36,13 +36,15 @@
             // 
             // buttonSaveBookType
             // 
-            this.buttonSaveBookType.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveBookType.Location = new System.Drawing.Point(313, 364);
+            this.buttonSaveBookType.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.buttonSaveBookType.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveBookType.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonSaveBookType.Location = new System.Drawing.Point(313, 354);
             this.buttonSaveBookType.Name = "buttonSaveBookType";
-            this.buttonSaveBookType.Size = new System.Drawing.Size(149, 47);
+            this.buttonSaveBookType.Size = new System.Drawing.Size(149, 57);
             this.buttonSaveBookType.TabIndex = 36;
             this.buttonSaveBookType.Text = "Save";
-            this.buttonSaveBookType.UseVisualStyleBackColor = true;
+            this.buttonSaveBookType.UseVisualStyleBackColor = false;
             this.buttonSaveBookType.Click += new System.EventHandler(this.buttonSaveBookType_Click);
             // 
             // textBoxAddBookType
@@ -65,8 +67,9 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.label1.Font = new System.Drawing.Font("Roboto Condensed", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label1.Font = new System.Drawing.Font("Roboto Condensed", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(-5, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(784, 73);
@@ -83,9 +86,10 @@
             this.Controls.Add(this.textBoxAddBookType);
             this.Controls.Add(this.bookTypeName);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Add_New_Book_Type";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add_New_Book_Type";
+            this.Text = "Add New Book Type";
             this.ResumeLayout(false);
             this.PerformLayout();
 

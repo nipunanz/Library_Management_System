@@ -773,5 +773,10 @@ namespace Library_Management_System_v0._1
 
             }
         }
+
+        private void buttonHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
