@@ -98,6 +98,7 @@
             this.buttonBrowse.TabIndex = 20;
             this.buttonBrowse.Text = "Browse";
             this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Visible = false;
             this.buttonBrowse.Click += new System.EventHandler(this.buttonAddCategory_Click);
             // 
             // textBoxPAddress

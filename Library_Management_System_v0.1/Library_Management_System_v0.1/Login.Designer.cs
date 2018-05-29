@@ -44,7 +44,7 @@
             this.label1.Font = new System.Drawing.Font("Roboto Condensed", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(179, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(404, 45);
+            this.label1.Size = new System.Drawing.Size(387, 44);
             this.label1.TabIndex = 0;
             this.label1.Text = "Library Management System";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -110,6 +110,7 @@
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Forgot Password";
+            this.linkLabel1.Visible = false;
             // 
             // Login
             // 

@@ -72,7 +72,7 @@ namespace Library_Management_System_v0._1
 
         private void textBoxBookID_KeyUp(object sender, KeyEventArgs e)
         {
-            String searchVal = textBoxBookID.Text;
+            String searchVal = "";
             dataGridView1.RowCount = 0;
             String loadtable_SQL = "SELECT book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
                  "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
