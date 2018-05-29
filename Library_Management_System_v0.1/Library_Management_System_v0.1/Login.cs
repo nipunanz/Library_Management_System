@@ -76,16 +76,7 @@ namespace Library_Management_System_v0._1
                             mySqlDataReader.Close();
 
                             commandInsertLoginHistory.ExecuteNonQuery();
-
-                            MySqlCommand commandGetLoginHistoryId = new MySqlCommand(getLoginHistoryID, mySqlConnection);
-                            commandGetLoginHistoryId.CommandText = getLoginHistoryID;
-                            commandGetLoginHistoryId.Parameters.AddWithValue("@currentDate", dateTime);
-
-                            MySqlDataReader loginHistoryReader = commandGetLoginHistoryId.ExecuteReader();
-                            loginHistoryReader.Read();
-                            LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
-                            loginHistoryReader.Close();
-
+                                                        
                             MySqlDataReader mySqlDataReader2 = commandGetUserRole.ExecuteReader();
                             if (mySqlDataReader2.HasRows)
                             {
@@ -101,8 +92,19 @@ namespace Library_Management_System_v0._1
                                     Home home = new Home("librarian");
                                     home.Show();
                                 }
-                                this.Hide();
+                                mySqlDataReader2.Close();
+                                MySqlCommand commandGetLoginHistoryId = new MySqlCommand(getLoginHistoryID, mySqlConnection);
+                                commandGetLoginHistoryId.CommandText = getLoginHistoryID;
+                                commandGetLoginHistoryId.Parameters.AddWithValue("@currentDate", dateTime);
 
+                                MySqlDataReader loginHistoryReader = commandGetLoginHistoryId.ExecuteReader();
+                                loginHistoryReader.Read();
+                                LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
+                                //MessageBox.Show("Login History ID : "+LoginDetails.userLoginHistoryID);
+                                loginHistoryReader.Close();
+
+
+                                this.Hide();
                                 break;
                             }
                             else

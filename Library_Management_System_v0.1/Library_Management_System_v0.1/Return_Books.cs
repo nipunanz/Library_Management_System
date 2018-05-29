@@ -146,6 +146,15 @@ namespace Library_Management_System_v0._1
 
             mySqlConnection2.Close();
         }
+
+        private void buttonSaveBook_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            this.Hide();
+
+            home.Show();
+
+        }
     }
 
 }

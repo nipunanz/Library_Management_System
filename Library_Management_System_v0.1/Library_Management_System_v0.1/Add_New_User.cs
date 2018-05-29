@@ -105,8 +105,8 @@ namespace Library_Management_System_v0._1
                    // textBoxPassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
                     //textBoxRePassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
                     dateTimePickerBirthday.Text = DataReader.GetString("birthday");
-                    String imageVal =  DataReader.GetString("profileImageUrl");
-                    /*Console.WriteLine(DataReader[8]);
+                    /*String imageVal =  DataReader.GetString("profileImageUrl");
+                    Console.WriteLine(DataReader[8]);
                      if (imageVal == null)
                      {
                          pictureBoxUser.Image = null;
@@ -114,9 +114,13 @@ namespace Library_Management_System_v0._1
                      else
                      {
                          byte[] imageValBytes = Encoding.ASCII.GetBytes(imageVal);
+                        
+                        Console.WriteLine("Image :"+imageValBytes);
                          MemoryStream ms = new MemoryStream(imageValBytes);
-                         pictureBoxUser.Image = Image.FromStream(ms);
-                     }*/
+                        Console.WriteLine("MS :" + ms.ToString());
+                        // Bitmap bitmap = (Bitmap)Bitmap.FromStream(ms);
+                        // pictureBoxUser.Image = bitmap;
+                    }*/
                 }
             }
             mySqlConnection.Close();
@@ -191,7 +195,7 @@ namespace Library_Management_System_v0._1
 
         private void buttonSaveUser_Click(object sender, EventArgs e)
         {
-            byte[] images = null;
+            byte[] images = null;           
             if (imageLoacation != null && !imageLoacation.Equals("")) {
                 FileStream fileStream = new FileStream(imageLoacation, FileMode.Open, FileAccess.Read);
                 BinaryReader reader = new BinaryReader(fileStream);

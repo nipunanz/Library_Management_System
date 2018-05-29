@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Library_Management_System_v0._1
 {
@@ -15,6 +16,7 @@ namespace Library_Management_System_v0._1
         public Home()
         {
             InitializeComponent();
+                       
         }
 
         public Home(String userType)
@@ -37,7 +39,7 @@ namespace Library_Management_System_v0._1
 
         private void Home_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -56,6 +58,53 @@ namespace Library_Management_System_v0._1
         {
             Manage_Books manage_Books = new Manage_Books();
             manage_Books.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Return_Books return_Books = new Return_Books();
+            return_Books.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Issue_Books issue_Books = new Issue_Books();
+            issue_Books.Show();
+        }
+
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            DateTime dateTime = DateTime.Now;
+            dateTime.ToString("yyyyMMddHHmmss");
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want Logout from the system?", "Signing Off", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.OK)
+            {
+                try
+                {
+                    String logoutUser = "UPDATE user_login_history SET logoutDateTime = @dateTime WHERE id = '" + LoginDetails.userLoginHistoryID+"'";
+                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection.Open();
+                    MySqlCommand command = new MySqlCommand(logoutUser, mySqlConnection);
+                    command.CommandText = logoutUser;
+                    command.Parameters.AddWithValue("@dateTime", dateTime);
+                    command.ExecuteNonQuery();
+                    mySqlConnection.Close();
+
+                    Application.Exit();
+                    //this.Close();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Something Went Wrong! \n"+ex, "Signing Off", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                }
+            }
+            
+        }
+
+        private void buttonLogout_MouseEnter(object sender, EventArgs e)
+        {
+            buttonLogout.BackColor = Color.Transparent;
         }
     }
 }

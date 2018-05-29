@@ -85,17 +85,16 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(22, 432);
+            this.label11.Location = new System.Drawing.Point(22, 396);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(125, 32);
+            this.label11.Size = new System.Drawing.Size(0, 32);
             this.label11.TabIndex = 20;
-            this.label11.Text = "1994-08-09";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(23, 406);
+            this.label10.Location = new System.Drawing.Point(23, 370);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(78, 26);
             this.label10.TabIndex = 19;
@@ -105,17 +104,16 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(19, 352);
+            this.label9.Location = new System.Drawing.Point(19, 316);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(135, 32);
+            this.label9.Size = new System.Drawing.Size(0, 32);
             this.label9.TabIndex = 18;
-            this.label9.Text = "0713487951";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(20, 326);
+            this.label8.Location = new System.Drawing.Point(20, 290);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(131, 26);
             this.label8.TabIndex = 17;
@@ -124,12 +122,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(19, 237);
+            this.label6.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(19, 230);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(291, 32);
+            this.label6.Size = new System.Drawing.Size(0, 26);
             this.label6.TabIndex = 15;
-            this.label6.Text = "148/6A, Justin Dias Mawatha,";
             // 
             // label5
             // 
@@ -147,9 +144,8 @@
             this.label4.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(196, 58);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 26);
+            this.label4.Size = new System.Drawing.Size(0, 26);
             this.label4.TabIndex = 13;
-            this.label4.Text = "Last Name";
             // 
             // label3
             // 
@@ -157,9 +153,8 @@
             this.label3.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(195, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 32);
+            this.label3.Size = new System.Drawing.Size(0, 32);
             this.label3.TabIndex = 13;
-            this.label3.Text = "First Name";
             // 
             // pictureBox1
             // 
@@ -229,6 +224,7 @@
             this.buttonSaveBook.TabIndex = 25;
             this.buttonSaveBook.Text = "Done";
             this.buttonSaveBook.UseVisualStyleBackColor = true;
+            this.buttonSaveBook.Click += new System.EventHandler(this.buttonSaveBook_Click);
             // 
             // buttonUserSearch
             // 

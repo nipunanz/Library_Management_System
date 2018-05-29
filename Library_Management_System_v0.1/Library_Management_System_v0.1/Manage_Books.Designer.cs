@@ -189,6 +189,7 @@
             this.Column7.HeaderText = "Type";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
             // 
             // Column11
             // 

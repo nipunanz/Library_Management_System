@@ -89,13 +89,15 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(316, 348);
+            this.button1.BackColor = System.Drawing.Color.Sienna;
+            this.button1.Font = new System.Drawing.Font("Roboto Condensed", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(308, 341);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 58);
+            this.button1.Size = new System.Drawing.Size(152, 65);
             this.button1.TabIndex = 5;
             this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // linkLabel1
