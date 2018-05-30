@@ -22,44 +22,52 @@ namespace Library_Management_System_v0._1
 
         private void buttonSaveBookType_Click(object sender, EventArgs e)
         {
-            String newBookType = textBoxAddBookType.Text;
-            if (textBoxAddBookType.Text == "")
+            try
             {
-
-                MessageBox.Show(" Invalid Entry ! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            else {
-                if (isValidBookType(newBookType))
+                String newBookType = textBoxAddBookType.Text;
+                if (textBoxAddBookType.Text == "")
                 {
-                    String addNewBookTypeQuery = "INSERT INTO book_type (name) VALUES (@name)";
 
-                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-                    mySqlConnection.Open();
-                    MySqlCommand newBookTypeCommand = new MySqlCommand(addNewBookTypeQuery, mySqlConnection);
-                    newBookTypeCommand.CommandText = addNewBookTypeQuery;
-                    newBookTypeCommand.Parameters.AddWithValue("@name", newBookType);
-                    newBookTypeCommand.ExecuteNonQuery();
-                    mySqlConnection.Close();
+                    MessageBox.Show(" Invalid Entry ! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    DialogResult dialogResult = MessageBox.Show("New Book Type Added", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
-                    {
-                        textBoxAddBookType.Text = String.Empty;
-                        //Register_new_books
-                        new Register_new_books().Show();
-                        rnbinstance.Hide();
-                        this.Dispose();
-                    }
                 }
                 else
                 {
-                    MessageBox.Show(" Book Type Exist! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (isValidBookType(newBookType))
+                    {
+                        String addNewBookTypeQuery = "INSERT INTO book_type (name) VALUES (@name)";
+
+                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection.Open();
+                        MySqlCommand newBookTypeCommand = new MySqlCommand(addNewBookTypeQuery, mySqlConnection);
+                        newBookTypeCommand.CommandText = addNewBookTypeQuery;
+                        newBookTypeCommand.Parameters.AddWithValue("@name", newBookType);
+                        newBookTypeCommand.ExecuteNonQuery();
+                        mySqlConnection.Close();
+
+                        DialogResult dialogResult = MessageBox.Show("New Book Type Added", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            textBoxAddBookType.Text = String.Empty;
+                            //Register_new_books
+                            new Register_new_books().Show();
+                            rnbinstance.Hide();
+                            this.Dispose();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(" Book Type Exist! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
 
                 }
-
             }
-                
+            catch(Exception ex)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+                            
         }
         bool isValidBookType(String bookType)
         {

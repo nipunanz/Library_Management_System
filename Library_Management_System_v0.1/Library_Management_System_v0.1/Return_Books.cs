@@ -20,72 +20,80 @@ namespace Library_Management_System_v0._1
 
         private void buttonUserSearch_Click(object sender, EventArgs e)
         {
-            String userID = textBoxBookID.Text;
-            if (!userID.Equals(""))
+            try
             {
-                String loadUserSql = "SELECT * FROM user_profile WHERE generatedID = @generatedID";
-                MySqlConnection connection = DataConnection.getDBConnection();
-                connection.Open();
-                MySqlCommand command = new MySqlCommand(loadUserSql, connection);
-                command.CommandText = loadUserSql;
-                command.Parameters.AddWithValue("@generatedID", userID);
-
-                MySqlDataReader DataReader = command.ExecuteReader();
-
-                while (DataReader.Read())
+                String userID = textBoxBookID.Text;
+                if (!userID.Equals(""))
                 {
-                    label3.Text = DataReader.GetString("firstName");
-                    label4.Text = DataReader.GetString("lastName");
-                    label6.Text = DataReader.GetString("permenentAddress");
-                    label9.Text = DataReader.GetString("mobileNumber");
-                    label11.Text = DataReader.GetString("birthday");
+                    String loadUserSql = "SELECT * FROM user_profile WHERE generatedID = @generatedID";
+                    MySqlConnection connection = DataConnection.getDBConnection();
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand(loadUserSql, connection);
+                    command.CommandText = loadUserSql;
+                    command.Parameters.AddWithValue("@generatedID", userID);
 
+                    MySqlDataReader DataReader = command.ExecuteReader();
+
+                    while (DataReader.Read())
+                    {
+                        label3.Text = DataReader.GetString("firstName");
+                        label4.Text = DataReader.GetString("lastName");
+                        label6.Text = DataReader.GetString("permenentAddress");
+                        label9.Text = DataReader.GetString("mobileNumber");
+                        label11.Text = DataReader.GetString("birthday");
+
+                    }
+                    DataReader.Close();
+
+                    String loadtable_SQL = "SELECT generatedID, book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
+                        "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
+                        "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id";
+
+                    string searchBook = loadtable_SQL + " WHERE book_profile.id in ( SELECT book_profile_id FROM issue_and_return_book WHERE isReturn= false AND issue_and_return_book_batch_id IN (SELECT id FROM issue_and_return_book_batch WHERE user_profile_id=(SELECT id FROM user_profile WHERE generatedID='" + userID + "')))";
+
+                    MySqlCommand cmd_Profile = new MySqlCommand(searchBook, connection);
+                    MySqlDataReader DataReader2 = cmd_Profile.ExecuteReader();
+
+                    while (DataReader2.Read())
+                    {
+                        String id = DataReader2.GetString("generatedID");
+                        String name = DataReader2.GetString("name");
+                        String isbn = DataReader2.GetString("ISBN");
+                        String printYear = DataReader2.GetString("printedYear");
+                        String category = DataReader2.GetString("categoryName");
+                        String author = DataReader2.GetString("authorName");
+                        String type = DataReader2.GetString("bookTypeName");
+                        String bookCount = DataReader2.GetString("bookCount");
+                        String isActive = DataReader2.GetString("status");
+                        String bookPublisher = DataReader2.GetString("bookPublisher");
+                        String bookDescription = DataReader2.GetString("bookDescription");
+                        String status = "";
+                        if (isActive.Equals("True"))
+                        {
+                            status = "Active";
+                        }
+                        else
+                        {
+                            status = "Deactive";
+                        }
+
+                        dataGridView1.Rows.Add(id, name, isbn, printYear, category, author, type, bookCount, status, bookPublisher, bookDescription);
+
+                    }
+                    DataReader2.Close();
+
+                    connection.Close();
                 }
-                DataReader.Close();
-
-                String loadtable_SQL = "SELECT generatedID, book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
-                    "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
-                    "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id";
-
-                string searchBook = loadtable_SQL + " WHERE book_profile.id in ( SELECT book_profile_id FROM issue_and_return_book WHERE isReturn= false AND issue_and_return_book_batch_id IN (SELECT id FROM issue_and_return_book_batch WHERE user_profile_id=(SELECT id FROM user_profile WHERE generatedID='" + userID + "')))";
-
-                MySqlCommand cmd_Profile = new MySqlCommand(searchBook, connection);
-                MySqlDataReader DataReader2 = cmd_Profile.ExecuteReader();
-
-                while (DataReader2.Read())
+                else
                 {
-                    String id = DataReader2.GetString("generatedID");
-                    String name = DataReader2.GetString("name");
-                    String isbn = DataReader2.GetString("ISBN");
-                    String printYear = DataReader2.GetString("printedYear");
-                    String category = DataReader2.GetString("categoryName");
-                    String author = DataReader2.GetString("authorName");
-                    String type = DataReader2.GetString("bookTypeName");
-                    String bookCount = DataReader2.GetString("bookCount");
-                    String isActive = DataReader2.GetString("status");
-                    String bookPublisher = DataReader2.GetString("bookPublisher");
-                    String bookDescription = DataReader2.GetString("bookDescription");
-                    String status = "";
-                    if (isActive.Equals("True"))
-                    {
-                        status = "Active";
-                    }
-                    else
-                    {
-                        status = "Deactive";
-                    }
-
-                    dataGridView1.Rows.Add(id, name, isbn, printYear, category, author, type, bookCount, status, bookPublisher, bookDescription);
-
+                    MessageBox.Show("Please enter the user ID", "Return Books", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                DataReader2.Close();
-
-                connection.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please enter the user ID", "Return Books", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
 
         }
 
@@ -97,18 +105,26 @@ namespace Library_Management_System_v0._1
 
         private void button1_Click(object sender, EventArgs e)
         {
-           bool isSelectedRow = dataGridView1.CurrentRow.Selected;
-            if (isSelectedRow)
+            try
             {
-                markAsReturnOk(dataGridView1.CurrentRow.Cells[0].Value.ToString(), textBoxBookID.Text);
-                MessageBox.Show("Successfully marked as returned", "Return Books", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dataGridView1.RowCount = 0;
-                buttonUserSearch_Click(this, null);
+                bool isSelectedRow = dataGridView1.CurrentRow.Selected;
+                if (isSelectedRow)
+                {
+                    markAsReturnOk(dataGridView1.CurrentRow.Cells[0].Value.ToString(), textBoxBookID.Text);
+                    MessageBox.Show("Successfully marked as returned", "Return Books", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridView1.RowCount = 0;
+                    buttonUserSearch_Click(this, null);
+                }
+                else
+                {
+                    MessageBox.Show("Please select a book", "Selection Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please select a book", "Selection Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
 
         }
 

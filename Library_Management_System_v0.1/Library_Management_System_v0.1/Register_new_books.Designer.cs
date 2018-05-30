@@ -374,7 +374,7 @@
             this.buttonUpdateBook.BackColor = System.Drawing.Color.DarkSlateGray;
             this.buttonUpdateBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonUpdateBook.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonUpdateBook.Location = new System.Drawing.Point(1067, 609);
+            this.buttonUpdateBook.Location = new System.Drawing.Point(912, 609);
             this.buttonUpdateBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonUpdateBook.Name = "buttonUpdateBook";
             this.buttonUpdateBook.Size = new System.Drawing.Size(149, 47);
@@ -415,6 +415,7 @@
             this.buttonEditAuthor.Size = new System.Drawing.Size(35, 35);
             this.buttonEditAuthor.TabIndex = 33;
             this.buttonEditAuthor.UseVisualStyleBackColor = false;
+            this.buttonEditAuthor.Click += new System.EventHandler(this.buttonEditAuthor_Click_1);
             // 
             // buttonAddAuthor
             // 
@@ -432,6 +433,7 @@
             this.buttonAddAuthor.Size = new System.Drawing.Size(35, 35);
             this.buttonAddAuthor.TabIndex = 32;
             this.buttonAddAuthor.UseVisualStyleBackColor = false;
+            this.buttonAddAuthor.Click += new System.EventHandler(this.buttonAddAuthor_Click_1);
             // 
             // comboBoxBookAuthor
             // 

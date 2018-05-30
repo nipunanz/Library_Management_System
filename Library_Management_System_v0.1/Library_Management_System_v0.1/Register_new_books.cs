@@ -251,6 +251,19 @@ namespace Library_Management_System_v0._1
         private void buttonAddType_Click(object sender, EventArgs e)
         {
             Register_new_books rnb = this;
+
+            String bookID = labelBookID.Text;
+            String bookN = textBoxBookName.Text;
+            String isbn = textBoxISBN.Text;
+            String pYear = textBoxPrintedYear.Text;
+            String descrip = textBoxBookDescription.Text;
+
+            comboControl.bookID = bookID;
+            comboControl.bookName = bookN;
+            comboControl.ISBN = isbn;
+            comboControl.printYear = pYear;
+            comboControl.descrip = descrip;
+
             new Add_New_Book_Type(rnb).Show();
         }
 
@@ -285,7 +298,7 @@ namespace Library_Management_System_v0._1
             String bookDescrip = textBoxBookDescription.Text;
 
 
-            if (bookName.Equals("") || bookISBN.Equals("") || bookPYear.Equals("") || bookDescrip.Equals(""))
+            if (bookName.Equals("") || bookISBN.Equals("") || bookPYear.Equals(""))
             {
 
                 MessageBox.Show(" Invalid Entry ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -293,7 +306,7 @@ namespace Library_Management_System_v0._1
             }
             else
             {
-
+                MySqlConnection mySqlConnection = null;
                 try
                 {
 
@@ -313,7 +326,7 @@ namespace Library_Management_System_v0._1
 
                     String newBook_SQL = "INSERT INTO book_batch_profile (name,ISBN,printedYear,description,bookCount,createDateTime,updateDateTime,isActive,book_author_id,book_category_id) VALUES (@name,@ISBN,@printedYear,@description,@bookCount,@createDateTime,@updateDateTime,@isActive,@book_author_id,@book_category_id)";
 
-                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection = DataConnection.getDBConnection();
                     mySqlConnection.Open();
                     MySqlCommand command_newBookCatergory = new MySqlCommand(newBook_SQL, mySqlConnection);
                     command_newBookCatergory.CommandText = newBook_SQL;
@@ -384,6 +397,14 @@ namespace Library_Management_System_v0._1
                 {
                     MessageBox.Show(" Please check Category, Author, Publisher, Type selections. ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    mySqlConnection.Close();
                 }
 
             }
@@ -770,6 +791,10 @@ namespace Library_Management_System_v0._1
                     MessageBox.Show(" Please check Category, Author selections. ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
             }
         }
@@ -777,6 +802,39 @@ namespace Library_Management_System_v0._1
         private void buttonHome_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void buttonAddAuthor_Click_1(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
+
+            String bookID = labelBookID.Text;
+            String bookN = textBoxBookName.Text;
+            String isbn = textBoxISBN.Text;
+            String pYear = textBoxPrintedYear.Text;
+            String descrip = textBoxBookDescription.Text;
+
+            comboControl.bookID = bookID;
+            comboControl.bookName = bookN;
+            comboControl.ISBN = isbn;
+            comboControl.printYear = pYear;
+            comboControl.descrip = descrip;
+
+            //MessageBox.Show(comboControl.bookName);
+            new Add_New_Author(rnb).Show();
+        }
+
+        private void buttonEditAuthor_Click_1(object sender, EventArgs e)
+        {
+            Register_new_books rnb = this;
+
+            comboControl.bookID = labelBookID.Text; 
+            comboControl.bookName = textBoxBookName.Text;
+            comboControl.ISBN = textBoxISBN.Text;
+            comboControl.printYear = textBoxPrintedYear.Text;
+            comboControl.descrip = textBoxBookDescription.Text;
+
+            new Edit_Author(rnb).Show();
         }
     }
 }

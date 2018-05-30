@@ -71,7 +71,7 @@
             // 
             // textBoxPublisherDescp
             // 
-            this.textBoxPublisherDescp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPublisherDescp.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPublisherDescp.Location = new System.Drawing.Point(301, 208);
             this.textBoxPublisherDescp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxPublisherDescp.Multiline = true;

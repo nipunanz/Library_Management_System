@@ -41,7 +41,7 @@
             this.buttonSaveCategory.BackColor = System.Drawing.Color.DarkSlateGray;
             this.buttonSaveCategory.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSaveCategory.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonSaveCategory.Location = new System.Drawing.Point(299, 351);
+            this.buttonSaveCategory.Location = new System.Drawing.Point(310, 351);
             this.buttonSaveCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSaveCategory.Name = "buttonSaveCategory";
             this.buttonSaveCategory.Size = new System.Drawing.Size(149, 60);

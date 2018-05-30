@@ -392,50 +392,17 @@
   <metadata name="Column10.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column6.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column7.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column11.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column8.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column9.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column10.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="buttonHome.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8
-        AAABhklEQVRYR+2Y3W3CQBCEKSHpgBIogRJSAg0g8ZZXSkgJKSElUAIlpIR04MxItnR3fGef/9BJ+OGT
-        YNjdG8HuYnvXNE3VoFgTKNYEijWBYk2gOJb3z/NB3EXT4td7ih0LimOQEZv7a42FWDtSzhhQLEUGTq2R
-        1FzIiXJLQbEEHXxJjPTxTTVKQHEIH5gYKOEm3qheHyjm8AHipz1wCh6eA9XOgSKhwjYXTupU3LMfdAaB
-        YooK5iZ1Dhc6KwXFEBU6iqXNdQwOD4odKuA1QoWXxG2THR4UjZK+giJr8ytweB4EBXoYpqyRubiNHpZ6
-        9EYBS03qHKIJTw3O2XFLcQ09pQa97SnpmUSTnRoMv8Fn/tTuP+Pej4YlMtihoL1wP1KxNbiRD4NiBxRa
-        i9c26MG69kA5KasajNZCCsQTm0HMNxBPbAYx30A8sRnEfAPxxGYQ8w3EE5MNllxZ995C6vOSq6Ls4xEU
-        Q5TsexP/nRGDz10U093sU77prYFiTaBYEyjWBIr10Oz+AfX5us6FKIOtAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EwAACxMBAJqcGAAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGGSURBVFhH7Zjd
+        bcJAEIQpIemAEiiBElICDSDxlldKSAkpISVQAiWkhHTgzEi2dHd8Z5//0En44ZNg2N0bwe5ie9c0TdWg
+        WBMo1gSKNYFiTaA4lvfP80HcRdPi13uKHQuKY5ARm/trjYVYO1LOGFAsRQZOrZHUXMiJcktBsQQdfEmM
+        9PFNNUpAcQgfmBgo4SbeqF4fKObwAeKnPXAKHp4D1c6BIqHCNhdO6lTcsx90BoFiigrmJnUOFzorBcUQ
+        FTqKpc11DA4Pih0q4DVChZfEbZMdHhSNkr6CImvzK3B4HgQFehimrJG5uI0elnr0RgFLTeocoglPDc7Z
+        cUtxDT2lBr3tKemZRJOdGgy/wWf+1O4/496PhiUy2KGgvXA/UrE1uJEPg2IHFFqL1zbowbr2QDkpqxqM
+        1kIKxBObQcw3EE9sBjHfQDyxGcR8A/HEZhDzDcQTkw2WXFn33kLq85KrouzjERRDlOx7E/+dEYPPXRTT
+        3exTvumtgWJNoFgTKNYEivXQ7P4B9fm6zoUog60AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

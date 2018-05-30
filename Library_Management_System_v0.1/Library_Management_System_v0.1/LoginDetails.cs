@@ -10,7 +10,7 @@ namespace Library_Management_System_v0._1
     public class LoginDetails
     {
         public static String userProfileID = "2";
-        public static String userLoginHistoryID = "5";
+        public static String userLoginHistoryID = "1";
         public static String userRole = "Administrative Librarian";
         public static String passwordKey = "123";
         public static String userLoginId = "";

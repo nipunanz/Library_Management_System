@@ -30,102 +30,114 @@ namespace Library_Management_System_v0._1
             String email = textBoxEmail.Text;
             String password = textBoxPassword.Text;
 
-            //+++++++++ null & empty check for input values +++++++++//
-            if ((email == null || email.Equals("")) && (password == null || password.Equals(""))) {
-                MessageBox.Show("Email or Password Can't be Empty", "Authentication Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
+            try
             {
-                String loginQuery = "SELECT * FROM user_login WHERE emailAddress = @email";
-                String getUserRole = "SELECT * FROM user_role WHERE id = @userRoleId";
-                String insertLoginHistory = "INSERT INTO user_login_history (loginDateTime, logoutDateTime, user_login_id) VALUES (@loginDateTime, null, @user_login_id)";
-                String getLoginHistoryID = "SELECT * FROM user_login_history WHERE loginDateTime = @currentDate";
-
-                DateTime dateTime = DateTime.Now;
-                dateTime.ToString("yyyyMMddHHmmss");
-
-                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-                mySqlConnection.Open();
-                MySqlCommand command = new MySqlCommand(loginQuery, mySqlConnection);
-                command.CommandText = loginQuery;
-                command.Parameters.AddWithValue("@email", email);
-                MySqlDataReader mySqlDataReader = command.ExecuteReader();
-
-                if (mySqlDataReader.HasRows)
+                //+++++++++ null & empty check for input values +++++++++//
+                if ((email == null || email.Equals("")) && (password == null || password.Equals("")))
                 {
-                    while (mySqlDataReader.Read()) {
+                    MessageBox.Show("Email or Password Can't be Empty", "Authentication Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    String loginQuery = "SELECT * FROM user_login WHERE emailAddress = @email";
+                    String getUserRole = "SELECT * FROM user_role WHERE id = @userRoleId";
+                    String insertLoginHistory = "INSERT INTO user_login_history (loginDateTime, logoutDateTime, user_login_id) VALUES (@loginDateTime, null, @user_login_id)";
+                    String getLoginHistoryID = "SELECT * FROM user_login_history WHERE loginDateTime = @currentDate";
 
-                        String encPassword = mySqlDataReader.GetString("password");
-                        String decPassword = StringCipher.Decrypt(encPassword, LoginDetails.passwordKey);
+                    DateTime dateTime = DateTime.Now;
+                    dateTime.ToString("yyyyMMddHHmmss");
 
-                        if (password.Equals(decPassword))
+                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection.Open();
+                    MySqlCommand command = new MySqlCommand(loginQuery, mySqlConnection);
+                    command.CommandText = loginQuery;
+                    command.Parameters.AddWithValue("@email", email);
+                    MySqlDataReader mySqlDataReader = command.ExecuteReader();
+
+                    if (mySqlDataReader.HasRows)
+                    {
+                        while (mySqlDataReader.Read())
                         {
-                            String userRoleId = mySqlDataReader.GetString("user_role_id");
-                            String userLoginId = mySqlDataReader.GetString("id");
-                            LoginDetails.userLoginId = userLoginId;
 
-                            MySqlCommand commandGetUserRole = new MySqlCommand(getUserRole, mySqlConnection);
-                            commandGetUserRole.CommandText = getUserRole;
-                            commandGetUserRole.Parameters.AddWithValue("@userRoleId", userRoleId);
+                            String encPassword = mySqlDataReader.GetString("password");
+                            String decPassword = StringCipher.Decrypt(encPassword, LoginDetails.passwordKey);
 
-                            MySqlCommand commandInsertLoginHistory = new MySqlCommand(insertLoginHistory, mySqlConnection);
-                            commandInsertLoginHistory.CommandText = insertLoginHistory;
-                            commandInsertLoginHistory.Parameters.AddWithValue("@loginDateTime", dateTime);
-                            commandInsertLoginHistory.Parameters.AddWithValue("@user_login_id", userLoginId);
-
-                            mySqlDataReader.Close();
-
-                            commandInsertLoginHistory.ExecuteNonQuery();
-                                                        
-                            MySqlDataReader mySqlDataReader2 = commandGetUserRole.ExecuteReader();
-                            if (mySqlDataReader2.HasRows)
+                            if (password.Equals(decPassword))
                             {
-                                mySqlDataReader2.Read();
-                                LoginDetails.userRole = mySqlDataReader2.GetString("name");
-                                if (LoginDetails.userRole.Equals("Administrative Librarian"))
+                                String userRoleId = mySqlDataReader.GetString("user_role_id");
+                                String userLoginId = mySqlDataReader.GetString("id");
+                                LoginDetails.userLoginId = userLoginId;
+
+                                MySqlCommand commandGetUserRole = new MySqlCommand(getUserRole, mySqlConnection);
+                                commandGetUserRole.CommandText = getUserRole;
+                                commandGetUserRole.Parameters.AddWithValue("@userRoleId", userRoleId);
+
+                                MySqlCommand commandInsertLoginHistory = new MySqlCommand(insertLoginHistory, mySqlConnection);
+                                commandInsertLoginHistory.CommandText = insertLoginHistory;
+                                commandInsertLoginHistory.Parameters.AddWithValue("@loginDateTime", dateTime);
+                                commandInsertLoginHistory.Parameters.AddWithValue("@user_login_id", userLoginId);
+
+                                mySqlDataReader.Close();
+
+                                commandInsertLoginHistory.ExecuteNonQuery();
+
+                                MySqlDataReader mySqlDataReader2 = commandGetUserRole.ExecuteReader();
+                                if (mySqlDataReader2.HasRows)
                                 {
-                                    Home home = new Home();
-                                    home.Show();
+                                    mySqlDataReader2.Read();
+                                    LoginDetails.userRole = mySqlDataReader2.GetString("name");
+                                    if (LoginDetails.userRole.Equals("Administrative Librarian"))
+                                    {
+                                        Home home = new Home();
+                                        home.Show();
+                                    }
+                                    else
+                                    {
+                                        Home home = new Home("librarian");
+                                        home.Show();
+                                    }
+                                    mySqlDataReader2.Close();
+                                    MySqlCommand commandGetLoginHistoryId = new MySqlCommand(getLoginHistoryID, mySqlConnection);
+                                    commandGetLoginHistoryId.CommandText = getLoginHistoryID;
+                                    commandGetLoginHistoryId.Parameters.AddWithValue("@currentDate", dateTime);
+
+                                    MySqlDataReader loginHistoryReader = commandGetLoginHistoryId.ExecuteReader();
+                                    loginHistoryReader.Read();
+                                    LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
+                                    //MessageBox.Show("Login History ID : "+LoginDetails.userLoginHistoryID);
+                                    loginHistoryReader.Close();
+
+
+                                    this.Hide();
+                                    break;
                                 }
                                 else
                                 {
-                                    Home home = new Home("librarian");
-                                    home.Show();
+                                    MessageBox.Show("User type does not exists", "Authentication Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    break;
                                 }
-                                mySqlDataReader2.Close();
-                                MySqlCommand commandGetLoginHistoryId = new MySqlCommand(getLoginHistoryID, mySqlConnection);
-                                commandGetLoginHistoryId.CommandText = getLoginHistoryID;
-                                commandGetLoginHistoryId.Parameters.AddWithValue("@currentDate", dateTime);
-
-                                MySqlDataReader loginHistoryReader = commandGetLoginHistoryId.ExecuteReader();
-                                loginHistoryReader.Read();
-                                LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
-                                //MessageBox.Show("Login History ID : "+LoginDetails.userLoginHistoryID);
-                                loginHistoryReader.Close();
-
-
-                                this.Hide();
-                                break;
                             }
                             else
                             {
-                                MessageBox.Show("User type does not exists", "Authentication Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                break;
+                                MessageBox.Show("Incorrect Password", "Authentication Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxPassword.Text = "";
                             }
                         }
-                        else {
-                            MessageBox.Show("Incorrect Password", "Authentication Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            textBoxPassword.Text = "";
-                        }
                     }
-                }
-                else {
-                    MessageBox.Show("Account does not exists", "Authentication Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    textBoxEmail.Text = "";
-                }
+                    else
+                    {
+                        MessageBox.Show("Account does not exists", "Authentication Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        textBoxEmail.Text = "";
+                    }
 
-                mySqlConnection.Close();
+                    mySqlConnection.Close();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
             
         }
 

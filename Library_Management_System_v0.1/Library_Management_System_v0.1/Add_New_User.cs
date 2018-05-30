@@ -236,187 +236,195 @@ namespace Library_Management_System_v0._1
                 isProfileTypeSelected = false;
             }
 
-            if (fName.Equals("") || lName.Equals("") || mobile.Equals("") || pAddress.Equals("") || rAddress.Equals("") || birthday.Equals(""))
+            try
             {
-                MessageBox.Show("Some fields can't be Empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else if (!isProfileTypeSelected)
-            {
-                MessageBox.Show("Please select the user profile type", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                if (profileType.Equals("Librarian"))
+                if (fName.Equals("") || lName.Equals("") || mobile.Equals("") || pAddress.Equals("") || rAddress.Equals("") || birthday.Equals(""))
                 {
-                    if (email.Equals("") || password.Equals("") || rePassword.Equals(""))
+                    MessageBox.Show("Some fields can't be Empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (!isProfileTypeSelected)
+                {
+                    MessageBox.Show("Please select the user profile type", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    if (profileType.Equals("Librarian"))
                     {
-                        MessageBox.Show("Authentication details can't be empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        bool adminCheck = checkBoxAdmin.Checked;
-
-                        if (IsValidEmail(email))
+                        if (email.Equals("") || password.Equals("") || rePassword.Equals(""))
                         {
-                            if (isValidAccount(email))
+                            MessageBox.Show("Authentication details can't be empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            bool adminCheck = checkBoxAdmin.Checked;
+
+                            if (IsValidEmail(email))
                             {
-                                if (password.Equals(rePassword))
+                                if (isValidAccount(email))
                                 {
-                                    savePermission = true;
-                                    if (adminCheck)
+                                    if (password.Equals(rePassword))
                                     {
-                                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to make this user as an Administrator. Changes can't be roll back", "Register new user", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                                        if (dialogResult == DialogResult.OK)
+                                        savePermission = true;
+                                        if (adminCheck)
                                         {
-                                            userRole = "Administrative Librarian";
-                                            savePermission = true;
+                                            DialogResult dialogResult = MessageBox.Show("Are you sure you want to make this user as an Administrator. Changes can't be roll back", "Register new user", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                                            if (dialogResult == DialogResult.OK)
+                                            {
+                                                userRole = "Administrative Librarian";
+                                                savePermission = true;
+                                            }
+                                            else
+                                            {
+                                                savePermission = false;
+                                            }
                                         }
                                         else
                                         {
-                                            savePermission = false;
+                                            userRole = "Librarian";
+                                        }
+
+                                        if (savePermission)
+                                        {
+
+                                            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                                            mySqlConnection.Open();
+                                            MySqlCommand commandSaveLibrarian = new MySqlCommand(saveUserProfileSql, mySqlConnection);
+                                            commandSaveLibrarian.CommandText = saveUserProfileSql;
+                                            commandSaveLibrarian.Parameters.AddWithValue("@generatedID", userId);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@firstName", fName);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@lastName", lName);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@mobileNumber", mobile);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@landLineNumber", landNumber);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@permenentAddress", pAddress);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@residentAddress", rAddress);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@birthday", birthday);
+                                            if (imageLoacation != null)
+                                            {
+                                                commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                                            }
+                                            else
+                                            {
+                                                commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", null);
+                                            }
+                                            commandSaveLibrarian.Parameters.AddWithValue("@createDateTime", dateTime);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@updateDateTime", null);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@isActive", 1);
+                                            commandSaveLibrarian.Parameters.AddWithValue("@user_login_history_id", LoginDetails.userLoginHistoryID);
+
+                                            MySqlCommand getProfileTypeId = new MySqlCommand(getProfileTypeIdSql, mySqlConnection);
+                                            getProfileTypeId.CommandText = getProfileTypeIdSql;
+                                            getProfileTypeId.Parameters.AddWithValue("profileType", profileType);
+                                            MySqlDataReader readTypeId = getProfileTypeId.ExecuteReader();
+                                            readTypeId.Read();
+
+                                            commandSaveLibrarian.Parameters.AddWithValue("@user_profile_type_id", readTypeId.GetString("id"));
+                                            readTypeId.Close();
+
+                                            commandSaveLibrarian.ExecuteNonQuery();
+
+                                            MySqlCommand getUserProfileId = new MySqlCommand(getUserProfileIdSql, mySqlConnection);
+                                            getUserProfileId.CommandText = getUserProfileIdSql;
+                                            getUserProfileId.Parameters.AddWithValue("@userId", userId);
+                                            MySqlDataReader readProfileID = getUserProfileId.ExecuteReader();
+                                            readProfileID.Read();
+                                            String userProfileId = readProfileID.GetString("id");
+                                            readProfileID.Close();
+
+                                            MySqlCommand getUseRoleId = new MySqlCommand(getUserRoleIdSql, mySqlConnection);
+                                            getUseRoleId.CommandText = getUserRoleIdSql;
+                                            getUseRoleId.Parameters.AddWithValue("@roleName", userRole);
+                                            MySqlDataReader readRoleId = getUseRoleId.ExecuteReader();
+                                            readRoleId.Read();
+                                            String userRoleId = readRoleId.GetString("id");
+                                            readRoleId.Close();
+
+                                            MySqlCommand saveUserLoginDetails = new MySqlCommand(saveUserLoginSql, mySqlConnection);
+                                            saveUserLoginDetails.CommandText = saveUserLoginSql;
+                                            saveUserLoginDetails.Parameters.AddWithValue("@emailAddress", email);
+                                            saveUserLoginDetails.Parameters.AddWithValue("@password", StringCipher.Encrypt(password, LoginDetails.passwordKey));
+                                            saveUserLoginDetails.Parameters.AddWithValue("@createDateTime", dateTime);
+                                            saveUserLoginDetails.Parameters.AddWithValue("@updateDateTime", null);
+                                            saveUserLoginDetails.Parameters.AddWithValue("@isActive", 1);
+                                            saveUserLoginDetails.Parameters.AddWithValue("@isOnline", 0);
+                                            saveUserLoginDetails.Parameters.AddWithValue("@user_role_id", userRoleId);
+                                            saveUserLoginDetails.Parameters.AddWithValue("@user_profile_id", userProfileId);
+                                            saveUserLoginDetails.ExecuteNonQuery();
+                                            mySqlConnection.Close();
+                                            MessageBox.Show("Librarian Successfully Saved!", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            resetForm();
                                         }
                                     }
                                     else
                                     {
-                                        userRole = "Librarian";
+                                        MessageBox.Show("Passwords do not match", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
 
-                                    if (savePermission)
-                                    {
-
-                                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-                                        mySqlConnection.Open();
-                                        MySqlCommand commandSaveLibrarian = new MySqlCommand(saveUserProfileSql, mySqlConnection);
-                                        commandSaveLibrarian.CommandText = saveUserProfileSql;
-                                        commandSaveLibrarian.Parameters.AddWithValue("@generatedID", userId);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@firstName", fName);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@lastName", lName);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@mobileNumber", mobile);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@landLineNumber", landNumber);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@permenentAddress", pAddress);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@residentAddress", rAddress);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@birthday", birthday);
-                                        if (imageLoacation != null)
-                                        {
-                                            commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", images.ToString());
-                                        }
-                                        else
-                                        {
-                                            commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", null);
-                                        }
-                                        commandSaveLibrarian.Parameters.AddWithValue("@createDateTime", dateTime);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@updateDateTime", null);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@isActive", 1);
-                                        commandSaveLibrarian.Parameters.AddWithValue("@user_login_history_id", LoginDetails.userLoginHistoryID);
-
-                                        MySqlCommand getProfileTypeId = new MySqlCommand(getProfileTypeIdSql, mySqlConnection);
-                                        getProfileTypeId.CommandText = getProfileTypeIdSql;
-                                        getProfileTypeId.Parameters.AddWithValue("profileType", profileType);
-                                        MySqlDataReader readTypeId = getProfileTypeId.ExecuteReader();
-                                        readTypeId.Read();
-
-                                        commandSaveLibrarian.Parameters.AddWithValue("@user_profile_type_id", readTypeId.GetString("id"));
-                                        readTypeId.Close();
-
-                                        commandSaveLibrarian.ExecuteNonQuery();
-
-                                        MySqlCommand getUserProfileId = new MySqlCommand(getUserProfileIdSql, mySqlConnection);
-                                        getUserProfileId.CommandText = getUserProfileIdSql;
-                                        getUserProfileId.Parameters.AddWithValue("@userId", userId);
-                                        MySqlDataReader readProfileID = getUserProfileId.ExecuteReader();
-                                        readProfileID.Read();
-                                        String userProfileId = readProfileID.GetString("id");
-                                        readProfileID.Close();
-
-                                        MySqlCommand getUseRoleId = new MySqlCommand(getUserRoleIdSql, mySqlConnection);
-                                        getUseRoleId.CommandText = getUserRoleIdSql;
-                                        getUseRoleId.Parameters.AddWithValue("@roleName", userRole);
-                                        MySqlDataReader readRoleId = getUseRoleId.ExecuteReader();
-                                        readRoleId.Read();
-                                        String userRoleId = readRoleId.GetString("id");
-                                        readRoleId.Close();
-
-                                        MySqlCommand saveUserLoginDetails = new MySqlCommand(saveUserLoginSql, mySqlConnection);
-                                        saveUserLoginDetails.CommandText = saveUserLoginSql;
-                                        saveUserLoginDetails.Parameters.AddWithValue("@emailAddress", email);
-                                        saveUserLoginDetails.Parameters.AddWithValue("@password", StringCipher.Encrypt(password, LoginDetails.passwordKey));
-                                        saveUserLoginDetails.Parameters.AddWithValue("@createDateTime", dateTime);
-                                        saveUserLoginDetails.Parameters.AddWithValue("@updateDateTime", null);
-                                        saveUserLoginDetails.Parameters.AddWithValue("@isActive", 1);
-                                        saveUserLoginDetails.Parameters.AddWithValue("@isOnline", 0);
-                                        saveUserLoginDetails.Parameters.AddWithValue("@user_role_id", userRoleId);
-                                        saveUserLoginDetails.Parameters.AddWithValue("@user_profile_id", userProfileId);
-                                        saveUserLoginDetails.ExecuteNonQuery();
-                                        mySqlConnection.Close();
-                                        MessageBox.Show("Librarian Successfully Saved!", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        resetForm();
-                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Passwords do not match", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Account already exists please try with different email id", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
-                                
                             }
                             else
                             {
-                                MessageBox.Show("Account already exists please try with different email id", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("Please enter a valid email address", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please enter a valid email address", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
 
 
-                    }
-                }
-                else
-                {
-                    //Reader Selected
-                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-                    mySqlConnection.Open();
-                    MySqlCommand commandSaveReader = new MySqlCommand(saveUserProfileSql, mySqlConnection);
-                    commandSaveReader.CommandText = saveUserProfileSql;
-                    commandSaveReader.Parameters.AddWithValue("@generatedID", userId);
-                    commandSaveReader.Parameters.AddWithValue("@firstName", fName);
-                    commandSaveReader.Parameters.AddWithValue("@lastName", lName);
-                    commandSaveReader.Parameters.AddWithValue("@mobileNumber", mobile);
-                    commandSaveReader.Parameters.AddWithValue("@landLineNumber", landNumber);
-                    commandSaveReader.Parameters.AddWithValue("@permenentAddress", pAddress);
-                    commandSaveReader.Parameters.AddWithValue("@residentAddress", rAddress);
-                    commandSaveReader.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
-                    commandSaveReader.Parameters.AddWithValue("@birthday", birthday);
-                    if (imageLoacation != null)
-                    {
-                        commandSaveReader.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                        }
                     }
                     else
                     {
-                        commandSaveReader.Parameters.AddWithValue("@profileImageUrl", null);
+                        //Reader Selected
+                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection.Open();
+                        MySqlCommand commandSaveReader = new MySqlCommand(saveUserProfileSql, mySqlConnection);
+                        commandSaveReader.CommandText = saveUserProfileSql;
+                        commandSaveReader.Parameters.AddWithValue("@generatedID", userId);
+                        commandSaveReader.Parameters.AddWithValue("@firstName", fName);
+                        commandSaveReader.Parameters.AddWithValue("@lastName", lName);
+                        commandSaveReader.Parameters.AddWithValue("@mobileNumber", mobile);
+                        commandSaveReader.Parameters.AddWithValue("@landLineNumber", landNumber);
+                        commandSaveReader.Parameters.AddWithValue("@permenentAddress", pAddress);
+                        commandSaveReader.Parameters.AddWithValue("@residentAddress", rAddress);
+                        commandSaveReader.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
+                        commandSaveReader.Parameters.AddWithValue("@birthday", birthday);
+                        if (imageLoacation != null)
+                        {
+                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                        }
+                        else
+                        {
+                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", null);
+                        }
+                        commandSaveReader.Parameters.AddWithValue("@createDateTime", dateTime);
+                        commandSaveReader.Parameters.AddWithValue("@updateDateTime", null);
+                        commandSaveReader.Parameters.AddWithValue("@isActive", 1);
+                        commandSaveReader.Parameters.AddWithValue("@user_login_history_id", LoginDetails.userLoginHistoryID);
+
+                        MySqlCommand getProfileTypeId = new MySqlCommand(getProfileTypeIdSql, mySqlConnection);
+                        getProfileTypeId.CommandText = getProfileTypeIdSql;
+                        Console.WriteLine("User Profile Type :" + profileType);
+                        Console.WriteLine("Date Time :" + dateTime);
+                        getProfileTypeId.Parameters.AddWithValue("profileType", profileType);
+                        MySqlDataReader readTypeId = getProfileTypeId.ExecuteReader();
+                        readTypeId.Read();
+
+                        commandSaveReader.Parameters.AddWithValue("@user_profile_type_id", readTypeId.GetString("id"));
+                        readTypeId.Close();
+
+                        commandSaveReader.ExecuteNonQuery();
+                        mySqlConnection.Close();
+
+                        MessageBox.Show("Reader Successfully Saved!", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        resetForm();
                     }
-                    commandSaveReader.Parameters.AddWithValue("@createDateTime", dateTime);
-                    commandSaveReader.Parameters.AddWithValue("@updateDateTime", null);
-                    commandSaveReader.Parameters.AddWithValue("@isActive", 1);
-                    commandSaveReader.Parameters.AddWithValue("@user_login_history_id", LoginDetails.userLoginHistoryID);
-
-                    MySqlCommand getProfileTypeId = new MySqlCommand(getProfileTypeIdSql, mySqlConnection);
-                    getProfileTypeId.CommandText = getProfileTypeIdSql;
-                    Console.WriteLine("User Profile Type :"+profileType);
-                    Console.WriteLine("Date Time :"+dateTime);
-                    getProfileTypeId.Parameters.AddWithValue("profileType", profileType);
-                    MySqlDataReader readTypeId = getProfileTypeId.ExecuteReader();
-                    readTypeId.Read();
-                    
-                    commandSaveReader.Parameters.AddWithValue("@user_profile_type_id", readTypeId.GetString("id"));
-                    readTypeId.Close();
-
-                    commandSaveReader.ExecuteNonQuery();
-                    mySqlConnection.Close();
-
-                    MessageBox.Show("Reader Successfully Saved!", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    resetForm();
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
                         
         }
@@ -588,28 +596,30 @@ namespace Library_Management_System_v0._1
                 isProfileTypeSelected = false;
             }
 
-            if (fName.Equals("") || lName.Equals("") || mobile.Equals("") || pAddress.Equals("") || rAddress.Equals("") || birthday.Equals(""))
+            try
             {
-                MessageBox.Show("Some fields can't be Empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else if (!isProfileTypeSelected)
-            {
-                MessageBox.Show("Please select the user profile type", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                if (profileType.Equals("Librarian"))
+                if (fName.Equals("") || lName.Equals("") || mobile.Equals("") || pAddress.Equals("") || rAddress.Equals("") || birthday.Equals(""))
                 {
-                    if (email.Equals("") || password.Equals("") || rePassword.Equals(""))
+                    MessageBox.Show("Some fields can't be Empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (!isProfileTypeSelected)
+                {
+                    MessageBox.Show("Please select the user profile type", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    if (profileType.Equals("Librarian"))
                     {
-                        MessageBox.Show("Authentication details can't be empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        bool adminCheck = checkBoxAdmin.Checked;
-
-                        if (IsValidEmail(email))
+                        if (email.Equals("") || password.Equals("") || rePassword.Equals(""))
                         {
+                            MessageBox.Show("Authentication details can't be empty", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            bool adminCheck = checkBoxAdmin.Checked;
+
+                            if (IsValidEmail(email))
+                            {
                                 if (password.Equals(rePassword))
                                 {
                                     savePermission = true;
@@ -656,7 +666,7 @@ namespace Library_Management_System_v0._1
                                             commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", null);
                                         }
                                         commandSaveLibrarian.Parameters.AddWithValue("@updateDateTime", dateTime);
-                                       
+
                                         commandSaveLibrarian.ExecuteNonQuery();
 
                                         MySqlCommand getUserProfileId = new MySqlCommand(getUserProfileIdSql, mySqlConnection);
@@ -667,67 +677,72 @@ namespace Library_Management_System_v0._1
                                         String userProfileId = readProfileID.GetString("id");
                                         readProfileID.Close();
 
-                                       
+
                                         MySqlCommand saveUserLoginDetails = new MySqlCommand(saveUserLoginSql, mySqlConnection);
                                         saveUserLoginDetails.CommandText = saveUserLoginSql;
                                         saveUserLoginDetails.Parameters.AddWithValue("@emailAddress", email);
                                         saveUserLoginDetails.Parameters.AddWithValue("@password", StringCipher.Encrypt(password, LoginDetails.passwordKey));
-                                        saveUserLoginDetails.Parameters.AddWithValue("@updateDateTime", null);                                        
+                                        saveUserLoginDetails.Parameters.AddWithValue("@updateDateTime", null);
                                         saveUserLoginDetails.Parameters.AddWithValue("@user_profile_id", userProfileId);
                                         saveUserLoginDetails.ExecuteNonQuery();
                                         mySqlConnection.Close();
                                         MessageBox.Show("Librarian Successfully Updated!", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    new Manage_Users().Show();
-                                    this.Hide();
+                                        new Manage_Users().Show();
+                                        this.Hide();
                                     }
                                 }
                                 else
                                 {
                                     MessageBox.Show("Passwords do not match", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
-                        
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please enter a valid email address", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please enter a valid email address", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
 
 
-                    }
-                }
-                else
-                {
-                    //Reader Selected
-                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-                    mySqlConnection.Open();
-                    MySqlCommand commandSaveReader = new MySqlCommand(saveUserProfileSql, mySqlConnection);
-                    commandSaveReader.CommandText = saveUserProfileSql;
-                    commandSaveReader.Parameters.AddWithValue("@generatedID", editID);
-                    commandSaveReader.Parameters.AddWithValue("@firstName", fName);
-                    commandSaveReader.Parameters.AddWithValue("@lastName", lName);
-                    commandSaveReader.Parameters.AddWithValue("@mobileNumber", mobile);
-                    commandSaveReader.Parameters.AddWithValue("@landLineNumber", landNumber);
-                    commandSaveReader.Parameters.AddWithValue("@permenentAddress", pAddress);
-                    commandSaveReader.Parameters.AddWithValue("@residentAddress", rAddress);
-                    commandSaveReader.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
-                    commandSaveReader.Parameters.AddWithValue("@birthday", birthday);
-                    if (imageLoacation != null)
-                    {
-                        commandSaveReader.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                        }
                     }
                     else
                     {
-                        commandSaveReader.Parameters.AddWithValue("@profileImageUrl", null);
-                    }                  
-                    commandSaveReader.Parameters.AddWithValue("@updateDateTime", dateTime);                    
-                   
-                    commandSaveReader.ExecuteNonQuery();
-                    mySqlConnection.Close();
+                        //Reader Selected
+                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection.Open();
+                        MySqlCommand commandSaveReader = new MySqlCommand(saveUserProfileSql, mySqlConnection);
+                        commandSaveReader.CommandText = saveUserProfileSql;
+                        commandSaveReader.Parameters.AddWithValue("@generatedID", editID);
+                        commandSaveReader.Parameters.AddWithValue("@firstName", fName);
+                        commandSaveReader.Parameters.AddWithValue("@lastName", lName);
+                        commandSaveReader.Parameters.AddWithValue("@mobileNumber", mobile);
+                        commandSaveReader.Parameters.AddWithValue("@landLineNumber", landNumber);
+                        commandSaveReader.Parameters.AddWithValue("@permenentAddress", pAddress);
+                        commandSaveReader.Parameters.AddWithValue("@residentAddress", rAddress);
+                        commandSaveReader.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
+                        commandSaveReader.Parameters.AddWithValue("@birthday", birthday);
+                        if (imageLoacation != null)
+                        {
+                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                        }
+                        else
+                        {
+                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", null);
+                        }
+                        commandSaveReader.Parameters.AddWithValue("@updateDateTime", dateTime);
 
-                    MessageBox.Show("Reader Successfully Updated!", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    new Manage_Users().Show();
-                    this.Hide();
+                        commandSaveReader.ExecuteNonQuery();
+                        mySqlConnection.Close();
+
+                        MessageBox.Show("Reader Successfully Updated!", "Edit user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        new Manage_Users().Show();
+                        this.Hide();
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
