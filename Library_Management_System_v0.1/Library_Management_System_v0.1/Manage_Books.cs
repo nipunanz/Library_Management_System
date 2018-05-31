@@ -182,7 +182,7 @@ namespace Library_Management_System_v0._1
             {
                 String currectBookName = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 String currectBookISBN = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                String currentStatus = dataGridView1.CurrentRow.Cells[7].Value.ToString();
+                String currentStatus = dataGridView1.CurrentRow.Cells[8].Value.ToString();
                 //Console.WriteLine("Selected Row :"+currectId+" Status :"+currentStatus);
                 if (currentStatus.Equals("Active"))
                 {
@@ -200,6 +200,8 @@ namespace Library_Management_System_v0._1
                         sqlConnection.Close();
 
                         MessageBox.Show("Successfully Deactivated!", "Manage books", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridView1.RowCount = 0;
+                        loadTableData();
                     }
 
                 }
@@ -219,6 +221,8 @@ namespace Library_Management_System_v0._1
                         sqlConnection.Close();
 
                         MessageBox.Show("Successfully Activated!", "Manage books", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridView1.RowCount = 0;
+                        loadTableData();
                     }
 
                 }

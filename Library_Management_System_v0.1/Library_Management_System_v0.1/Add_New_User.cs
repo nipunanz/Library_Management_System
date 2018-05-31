@@ -443,6 +443,7 @@ namespace Library_Management_System_v0._1
             textBoxRePassword.Text = "";
             dateTimePickerBirthday.ResetText();
             checkBoxAdmin.Hide();
+            checkBoxConfirmAddress.Checked = false;
             panel1.Hide();
             buttonUpdateUser.Hide();
             generateID();
@@ -537,10 +538,18 @@ namespace Library_Management_System_v0._1
 
         private void textBoxMobile_KeyPress(object sender, KeyPressEventArgs e)
         {
+            String mobileStr = textBoxMobile.Text;
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
             }
+
+            
+           /* Console.WriteLine(mobileStr + " " + mobileStr.Length);
+            if (!char.IsControl(e.KeyChar) && mobileStr.Length >= 10)
+            {
+                e.Handled = true;
+            }*/
 
         }
 
@@ -550,6 +559,8 @@ namespace Library_Management_System_v0._1
             {
                 e.Handled = true;
             }
+
+            
         }
 
         private void buttonUpdateUser_Click(object sender, EventArgs e)
@@ -749,6 +760,21 @@ namespace Library_Management_System_v0._1
         private void buttonHome_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void textBoxMobile_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void textBoxMobile_KeyDown(object sender, KeyEventArgs e)
+        {
+            String mobileStr = textBoxMobile.Text;
+
+            if (mobileStr.Length >= 10)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

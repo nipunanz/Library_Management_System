@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Library_Management_System_v0._1
 {
@@ -16,10 +17,25 @@ namespace Library_Management_System_v0._1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Add_New_User());
-            //Application.Run(new Manage_Books());
-           Application.Run(new Login());
-            // Application.Run(new Issue_Books());
+            MySqlConnection mySqlConnection = null ;
+            try
+            {
+                mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+                mySqlConnection.Close();
+                Application.Run(new Login());
+                
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error - Please check the connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+            
+            
         }
     }
 }

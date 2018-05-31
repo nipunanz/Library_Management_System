@@ -143,6 +143,8 @@ namespace Library_Management_System_v0._1
                         sqlConnection.Close();
 
                         MessageBox.Show("Successfully Deactivated!", "Manage user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridView1.RowCount = 0;
+                        loadTable();
                     }
 
                 }
@@ -161,6 +163,8 @@ namespace Library_Management_System_v0._1
                         sqlConnection.Close();
 
                         MessageBox.Show("Successfully Activated!", "Manage user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridView1.RowCount = 0;
+                        loadTable();
                     }
 
                 }
@@ -293,8 +297,9 @@ namespace Library_Management_System_v0._1
             {
                 String searchVal = textBoxBookName.Text;
                 dataGridView1.RowCount = 0;
-                String getReadersSql = "SELECT generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status FROM user_profile inner join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id WHERE user_profile_type.name = 'Reader' AND firstName like @searchVal OR lastName like @searchVal";
-                String getLibrariansSql = "SELECT generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status from user_profile left join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id left join user_login on user_profile.id = user_login.user_profile_id left join user_role on user_login.user_role_id = user_role.id WHERE user_role.name = 'Librarian' AND firstName like @searchVal OR lastName like @searchVal";
+               // loadTable();
+                String getReadersSql = "SELECT generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status FROM user_profile inner join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id WHERE user_profile_type.name = 'Reader' AND (firstName like @searchVal OR lastName like @searchVal)";
+                String getLibrariansSql = "SELECT generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status from user_profile left join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id left join user_login on user_profile.id = user_login.user_profile_id left join user_role on user_login.user_role_id = user_role.id WHERE user_role.name = 'Librarian' AND (firstName like @searchVal OR lastName like @searchVal)";
                 String userRole = LoginDetails.userRole;
 
                 MySqlConnection mySqlConnection = DataConnection.getDBConnection();

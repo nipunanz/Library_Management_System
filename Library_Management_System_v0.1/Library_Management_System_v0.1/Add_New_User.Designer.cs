@@ -119,7 +119,9 @@
             this.textBoxMobile.Name = "textBoxMobile";
             this.textBoxMobile.Size = new System.Drawing.Size(363, 28);
             this.textBoxMobile.TabIndex = 29;
+            this.textBoxMobile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxMobile_KeyDown);
             this.textBoxMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMobile_KeyPress);
+            this.textBoxMobile.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxMobile_KeyUp);
             // 
             // textBoxLastName
             // 
@@ -254,11 +256,11 @@
             // checkBoxConfirmAddress
             // 
             this.checkBoxConfirmAddress.AutoSize = true;
-            this.checkBoxConfirmAddress.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxConfirmAddress.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxConfirmAddress.Location = new System.Drawing.Point(220, 642);
+            this.checkBoxConfirmAddress.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkBoxConfirmAddress.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxConfirmAddress.Location = new System.Drawing.Point(219, 642);
             this.checkBoxConfirmAddress.Name = "checkBoxConfirmAddress";
-            this.checkBoxConfirmAddress.Size = new System.Drawing.Size(184, 23);
+            this.checkBoxConfirmAddress.Size = new System.Drawing.Size(219, 27);
             this.checkBoxConfirmAddress.TabIndex = 36;
             this.checkBoxConfirmAddress.Text = "Same as permanent address";
             this.checkBoxConfirmAddress.UseVisualStyleBackColor = false;
