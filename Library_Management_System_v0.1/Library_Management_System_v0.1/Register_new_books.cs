@@ -29,6 +29,14 @@ namespace Library_Management_System_v0._1
             textBoxISBN.Text = comboControl.ISBN;
             textBoxPrintedYear.Text = comboControl.printYear;
             textBoxBookDescription.Text = comboControl.descrip;
+
+            comboBoxCategory.SelectedItem = comboControl.category;
+            comboBoxBookAuthor.SelectedItem = comboControl.author;
+            comboBoxBookType.SelectedItem = comboControl.type;
+            comboBoxBookPublisher.SelectedItem = comboControl.publisher;
+
+
+
             generateID();
         }
 
@@ -204,6 +212,10 @@ namespace Library_Management_System_v0._1
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
 
+            comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
+            comboControl.type = comboBoxBookType.SelectedItem.ToString();
+            comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
+
             //MessageBox.Show(comboControl.bookName);
             new Add_New_Category(rnb).Show();
         }
@@ -223,6 +235,10 @@ namespace Library_Management_System_v0._1
             comboControl.ISBN = isbn;
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
+
+            comboControl.category  = comboBoxCategory.SelectedItem.ToString();
+            comboControl.type = comboBoxBookType.SelectedItem.ToString();
+            comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
 
             //MessageBox.Show(comboControl.bookName);
             new Add_New_Author(rnb).Show();
@@ -244,6 +260,11 @@ namespace Library_Management_System_v0._1
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
 
+            comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
+            comboControl.type = comboBoxBookType.SelectedItem.ToString();
+            comboControl.category = comboBoxCategory.SelectedItem.ToString();
+
+
             //MessageBox.Show(comboControl.bookName);
             new Add_New_Publisher(rnb).Show();
         }
@@ -263,6 +284,11 @@ namespace Library_Management_System_v0._1
             comboControl.ISBN = isbn;
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
+
+            comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
+            comboControl.category = comboBoxCategory.SelectedItem.ToString();
+            comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
+
 
             new Add_New_Book_Type(rnb).Show();
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_New_Author));
             this.buttonSaveAuthor = new System.Windows.Forms.Button();
             this.textBoxAddAuthor = new System.Windows.Forms.TextBox();
             this.authorName = new System.Windows.Forms.Label();
@@ -113,6 +114,7 @@
             this.Controls.Add(this.authorName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Add_New_Author";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

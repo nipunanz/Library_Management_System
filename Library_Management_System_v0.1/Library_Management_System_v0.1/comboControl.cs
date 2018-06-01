@@ -14,6 +14,11 @@ namespace Library_Management_System_v0._1
         public static String ISBN = "";
         public static String printYear = "";
         public static String descrip = "";
+        public static String category = "";
+        public static String author = "";
+        public static String type = "";
+        public static String publisher = "";
+
 
 
     }

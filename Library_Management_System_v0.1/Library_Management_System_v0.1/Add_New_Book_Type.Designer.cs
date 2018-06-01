@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_New_Book_Type));
             this.buttonSaveBookType = new System.Windows.Forms.Button();
             this.textBoxAddBookType = new System.Windows.Forms.TextBox();
             this.bookTypeName = new System.Windows.Forms.Label();
@@ -87,6 +88,7 @@
             this.Controls.Add(this.bookTypeName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Add_New_Book_Type";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Book Type";

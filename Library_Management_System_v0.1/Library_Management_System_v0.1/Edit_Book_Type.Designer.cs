@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Edit_Book_Type));
             this.comboBoxCategory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonSaveCategory = new System.Windows.Forms.Button();
@@ -114,6 +115,7 @@
             this.Controls.Add(this.textBoxAddCategory);
             this.Controls.Add(this.categoryName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Edit_Book_Type";
             this.Text = "Edit Book Type";

@@ -377,11 +377,11 @@
             // 
             this.checkBoxAdmin.AutoSize = true;
             this.checkBoxAdmin.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxAdmin.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxAdmin.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxAdmin.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.checkBoxAdmin.Location = new System.Drawing.Point(778, 232);
+            this.checkBoxAdmin.Location = new System.Drawing.Point(776, 231);
             this.checkBoxAdmin.Name = "checkBoxAdmin";
-            this.checkBoxAdmin.Size = new System.Drawing.Size(226, 23);
+            this.checkBoxAdmin.Size = new System.Drawing.Size(268, 27);
             this.checkBoxAdmin.TabIndex = 48;
             this.checkBoxAdmin.Text = "Make as an Administrative Librarian";
             this.checkBoxAdmin.UseVisualStyleBackColor = false;
@@ -493,6 +493,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonUpdateUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Add_New_User";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add_New_User";

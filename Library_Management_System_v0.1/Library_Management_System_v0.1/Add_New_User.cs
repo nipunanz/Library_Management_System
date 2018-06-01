@@ -63,8 +63,8 @@ namespace Library_Management_System_v0._1
                         checkBoxConfirmAddress.Checked = false;
                     }
                     textBoxEmail.Text = DataReader.GetString("emailAddress");
-                    textBoxPassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
-                    textBoxRePassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
+                   // textBoxPassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
+                   // textBoxRePassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
                     dateTimePickerBirthday.Text = DataReader.GetString("birthday");
                                         
                    /* if (DataReader.GetString("profileImageUrl").Equals("null"))
