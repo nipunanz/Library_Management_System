@@ -540,11 +540,11 @@ namespace Library_Management_System_v0._1
             }
 
             
-           /* Console.WriteLine(mobileStr + " " + mobileStr.Length);
+            Console.WriteLine(mobileStr + " " + mobileStr.Length);
             if (!char.IsControl(e.KeyChar) && mobileStr.Length >= 10)
             {
                 e.Handled = true;
-            }*/
+            }
 
         }
 

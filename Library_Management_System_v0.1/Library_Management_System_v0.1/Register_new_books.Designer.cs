@@ -57,13 +57,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.buttonEditAuthor = new System.Windows.Forms.Button();
+            this.comboBoxCategory = new System.Windows.Forms.ComboBox();
             this.buttonAddAuthor = new System.Windows.Forms.Button();
+            this.bookCategory = new System.Windows.Forms.Label();
             this.comboBoxBookAuthor = new System.Windows.Forms.ComboBox();
+            this.buttonAddCategory = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonEditCategory = new System.Windows.Forms.Button();
-            this.buttonAddCategory = new System.Windows.Forms.Button();
-            this.comboBoxCategory = new System.Windows.Forms.ComboBox();
-            this.bookCategory = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -387,6 +387,7 @@
             this.comboBoxSelectBook.Name = "comboBoxSelectBook";
             this.comboBoxSelectBook.Size = new System.Drawing.Size(364, 30);
             this.comboBoxSelectBook.TabIndex = 59;
+            this.comboBoxSelectBook.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelectBook_SelectedIndexChanged);
             // 
             // checkBoxIsNewBook
             // 
@@ -433,6 +434,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(649, 123);
             this.panel3.TabIndex = 62;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // buttonEditAuthor
             // 
@@ -450,6 +452,18 @@
             this.buttonEditAuthor.Size = new System.Drawing.Size(35, 35);
             this.buttonEditAuthor.TabIndex = 70;
             this.buttonEditAuthor.UseVisualStyleBackColor = false;
+            this.buttonEditAuthor.Click += new System.EventHandler(this.buttonEditAuthor_Click_2);
+            // 
+            // comboBoxCategory
+            // 
+            this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxCategory.FormattingEnabled = true;
+            this.comboBoxCategory.Location = new System.Drawing.Point(161, 15);
+            this.comboBoxCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxCategory.Name = "comboBoxCategory";
+            this.comboBoxCategory.Size = new System.Drawing.Size(357, 30);
+            this.comboBoxCategory.TabIndex = 64;
             // 
             // buttonAddAuthor
             // 
@@ -467,6 +481,19 @@
             this.buttonAddAuthor.Size = new System.Drawing.Size(35, 35);
             this.buttonAddAuthor.TabIndex = 69;
             this.buttonAddAuthor.UseVisualStyleBackColor = false;
+            this.buttonAddAuthor.Click += new System.EventHandler(this.buttonAddAuthor_Click_2);
+            // 
+            // bookCategory
+            // 
+            this.bookCategory.AutoSize = true;
+            this.bookCategory.BackColor = System.Drawing.Color.Transparent;
+            this.bookCategory.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bookCategory.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bookCategory.Location = new System.Drawing.Point(12, 15);
+            this.bookCategory.Name = "bookCategory";
+            this.bookCategory.Size = new System.Drawing.Size(82, 26);
+            this.bookCategory.TabIndex = 63;
+            this.bookCategory.Text = "Category";
             // 
             // comboBoxBookAuthor
             // 
@@ -479,6 +506,24 @@
             this.comboBoxBookAuthor.Size = new System.Drawing.Size(357, 30);
             this.comboBoxBookAuthor.Sorted = true;
             this.comboBoxBookAuthor.TabIndex = 68;
+            // 
+            // buttonAddCategory
+            // 
+            this.buttonAddCategory.BackColor = System.Drawing.Color.Transparent;
+            this.buttonAddCategory.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAddCategory.BackgroundImage")));
+            this.buttonAddCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonAddCategory.FlatAppearance.BorderSize = 0;
+            this.buttonAddCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonAddCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonAddCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddCategory.Location = new System.Drawing.Point(530, 13);
+            this.buttonAddCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAddCategory.Name = "buttonAddCategory";
+            this.buttonAddCategory.Size = new System.Drawing.Size(35, 35);
+            this.buttonAddCategory.TabIndex = 65;
+            this.buttonAddCategory.UseVisualStyleBackColor = false;
+            this.buttonAddCategory.Click += new System.EventHandler(this.buttonAddCategory_Click_1);
             // 
             // label3
             // 
@@ -508,46 +553,7 @@
             this.buttonEditCategory.Size = new System.Drawing.Size(35, 35);
             this.buttonEditCategory.TabIndex = 66;
             this.buttonEditCategory.UseVisualStyleBackColor = false;
-            // 
-            // buttonAddCategory
-            // 
-            this.buttonAddCategory.BackColor = System.Drawing.Color.Transparent;
-            this.buttonAddCategory.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAddCategory.BackgroundImage")));
-            this.buttonAddCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonAddCategory.FlatAppearance.BorderSize = 0;
-            this.buttonAddCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.buttonAddCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.buttonAddCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAddCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddCategory.Location = new System.Drawing.Point(530, 13);
-            this.buttonAddCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonAddCategory.Name = "buttonAddCategory";
-            this.buttonAddCategory.Size = new System.Drawing.Size(35, 35);
-            this.buttonAddCategory.TabIndex = 65;
-            this.buttonAddCategory.UseVisualStyleBackColor = false;
-            // 
-            // comboBoxCategory
-            // 
-            this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(161, 15);
-            this.comboBoxCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBoxCategory.Name = "comboBoxCategory";
-            this.comboBoxCategory.Size = new System.Drawing.Size(357, 30);
-            this.comboBoxCategory.TabIndex = 64;
-            // 
-            // bookCategory
-            // 
-            this.bookCategory.AutoSize = true;
-            this.bookCategory.BackColor = System.Drawing.Color.Transparent;
-            this.bookCategory.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bookCategory.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bookCategory.Location = new System.Drawing.Point(12, 15);
-            this.bookCategory.Name = "bookCategory";
-            this.bookCategory.Size = new System.Drawing.Size(82, 26);
-            this.bookCategory.TabIndex = 63;
-            this.bookCategory.Text = "Category";
+            this.buttonEditCategory.Click += new System.EventHandler(this.buttonEditCategory_Click_1);
             // 
             // Register_new_books
             // 
