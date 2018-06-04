@@ -51,7 +51,7 @@ namespace Library_Management_System_v0._1
                     label4.Text = DataReader.GetString("lastName");
                     label6.Text = DataReader.GetString("permenentAddress");
                     label9.Text = DataReader.GetString("mobileNumber");
-                    label11.Text = DataReader.GetString("birthday");
+                    label11.Text = (DataReader.GetDateTime("birthday")).ToString("dd-MM-yyyy");
 
                 }
 

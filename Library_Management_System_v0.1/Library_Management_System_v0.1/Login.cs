@@ -103,7 +103,7 @@ namespace Library_Management_System_v0._1
 
                                     MySqlDataReader loginHistoryReader = commandGetLoginHistoryId.ExecuteReader();
                                     loginHistoryReader.Read();
-                                    LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
+                                   // LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
                                     //MessageBox.Show("Login History ID : "+LoginDetails.userLoginHistoryID);
                                     loginHistoryReader.Close();
 
