@@ -18,8 +18,7 @@ namespace Library_Management_System_v0._1
         public static String author = "";
         public static String type = "";
         public static String publisher = "";
-
-
-
+        public static String selectedBook = "";
+        
     }
 }
