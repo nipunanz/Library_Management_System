@@ -413,7 +413,7 @@ namespace Library_Management_System_v0._1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error \n"+ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

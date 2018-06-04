@@ -18,11 +18,16 @@ namespace Library_Management_System_v0._1
         public Register_new_books()
         {
             InitializeComponent();
+            fillBookNames();
             fillComboType();
             fillComboCategory();
             fillComboAuthor();
             fillComboPublisher();
             buttonUpdateBook.Hide();
+
+            panel2.Enabled = false;
+            panel3.Enabled = false;
+            panel1.Enabled = false;
 
             labelBookID.Text = comboControl.bookID;
             textBoxBookName.Text = comboControl.bookName;
@@ -59,6 +64,34 @@ namespace Library_Management_System_v0._1
             textBoxISBN.Text = comboControl.ISBN;
             textBoxPrintedYear.Text = comboControl.printYear;
             textBoxBookDescription.Text = comboControl.descrip;
+        }
+
+        void fillBookNames()
+        {
+            MySqlConnection  mySqlConnection = null;
+            try
+            {
+                String getBookList = "SELECT name FROM book_batch_profile";
+                mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+                MySqlCommand sqlCommand = new MySqlCommand(getBookList, mySqlConnection);
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    comboBoxSelectBook.Items.Add(reader.GetString("name"));
+                }
+
+                mySqlConnection.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Please check the connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
         }
 
         void fillComboType()
@@ -255,10 +288,13 @@ namespace Library_Management_System_v0._1
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
 
-            comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
-            comboControl.type = comboBoxBookType.SelectedItem.ToString();
-            comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
-
+            if (comboBoxBookAuthor.SelectedItem != null && comboBoxBookType.SelectedItem != null && comboBoxBookPublisher.SelectedItem != null)
+            {
+                comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
+                comboControl.type = comboBoxBookType.SelectedItem.ToString();
+                comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
+            }
+            
             //MessageBox.Show(comboControl.bookName);
             new Add_New_Category(rnb).Show();
         }
@@ -279,10 +315,13 @@ namespace Library_Management_System_v0._1
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
 
-            comboControl.category = comboBoxCategory.SelectedItem.ToString();
-            comboControl.type = comboBoxBookType.SelectedItem.ToString();
-            comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
-
+            if (comboBoxCategory.SelectedItem != null && comboBoxBookType.SelectedItem != null && comboBoxBookPublisher.SelectedItem != null)
+            {
+                comboControl.category = comboBoxCategory.SelectedItem.ToString();
+                comboControl.type = comboBoxBookType.SelectedItem.ToString();
+                comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
+            }
+            
             //MessageBox.Show(comboControl.bookName);
             new Add_New_Author(rnb).Show();
         }
@@ -303,9 +342,13 @@ namespace Library_Management_System_v0._1
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
 
-            comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
-            comboControl.type = comboBoxBookType.SelectedItem.ToString();
-            comboControl.category = comboBoxCategory.SelectedItem.ToString();
+            if (comboBoxBookAuthor.SelectedItem != null && comboBoxBookType.SelectedItem != null && comboBoxCategory.SelectedItem != null)
+            {
+                comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
+                comboControl.type = comboBoxBookType.SelectedItem.ToString();
+                comboControl.category = comboBoxCategory.SelectedItem.ToString();
+
+            }
 
 
             //MessageBox.Show(comboControl.bookName);
@@ -328,11 +371,13 @@ namespace Library_Management_System_v0._1
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
 
-            comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
-            comboControl.category = comboBoxCategory.SelectedItem.ToString();
-            comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
-
-
+            if (comboBoxBookAuthor.SelectedItem != null && comboBoxCategory.SelectedItem != null && comboBoxBookPublisher.SelectedItem != null)
+            {
+                comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
+                comboControl.category = comboBoxCategory.SelectedItem.ToString();
+                comboControl.publisher = comboBoxBookPublisher.SelectedItem.ToString();
+            }
+            
             new Add_New_Book_Type(rnb).Show();
         }
 
@@ -1005,6 +1050,26 @@ namespace Library_Management_System_v0._1
             comboControl.descrip = textBoxBookDescription.Text;
 
             new Edit_Author(rnb).Show();
+        }
+
+        private void checkBoxIsNewBook_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxIsNewBook.Checked)
+            {
+                label2.Enabled = false;
+                comboBoxSelectBook.Enabled = false;
+                panel1.Enabled = true;
+                panel2.Enabled = true;
+                panel3.Enabled = true;
+            }
+            else
+            {
+                label2.Enabled = true;
+                comboBoxSelectBook.Enabled = true;
+                panel1.Enabled = false;
+                panel2.Enabled = false;
+                panel3.Enabled = false;
+            }
         }
     }
 }

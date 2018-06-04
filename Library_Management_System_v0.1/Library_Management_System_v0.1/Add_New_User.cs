@@ -41,20 +41,23 @@ namespace Library_Management_System_v0._1
             MySqlCommand cmd_Profile = new MySqlCommand(getUserDetailsSql, mySqlConnection);
             cmd_Profile.CommandText = getUserDetailsSql;
             cmd_Profile.Parameters.AddWithValue("currentId", editId);
-            MySqlDataReader DataReader = cmd_Profile.ExecuteReader();
+            DataTable dt = new DataTable();
+            //MySqlDataReader DataReader = cmd_Profile.ExecuteReader();
+            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(cmd_Profile);
+            mySqlDataAdapter.Fill(dt);
 
             if (userType.Equals("Librarian"))
             {
                 comboBoxProfileType.SelectedItem = "Librarian";
-                while (DataReader.Read())
-                {
-                    textBoxFirstName.Text = DataReader.GetString("firstName");
-                    textBoxLastName.Text = DataReader.GetString("lastName");
-                    textBoxMobile.Text = DataReader.GetString("mobileNumber");
-                    textBoxLand.Text = DataReader.GetString("landLineNumber");
-                    textBoxPAddress.Text = DataReader.GetString("permenentAddress");
-                    textBoxRAddress.Text = DataReader.GetString("residentAddress");
-                    if (DataReader.GetString("isResidentSame").Equals("True"))
+
+                textBoxFirstName.Text = dt.Rows[0][0].ToString();
+                textBoxLastName.Text = dt.Rows[0][1].ToString();
+                textBoxMobile.Text = dt.Rows[0][2].ToString();
+                textBoxLand.Text = dt.Rows[0][3].ToString();
+                textBoxPAddress.Text = dt.Rows[0][4].ToString();
+                textBoxRAddress.Text = dt.Rows[0][5].ToString();
+                
+                    if (dt.Rows[0][6].ToString().Equals("True"))
                     {
                         checkBoxConfirmAddress.Checked = true;
                     }
@@ -62,22 +65,18 @@ namespace Library_Management_System_v0._1
                     {
                         checkBoxConfirmAddress.Checked = false;
                     }
-                    textBoxEmail.Text = DataReader.GetString("emailAddress");
-                   // textBoxPassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
-                   // textBoxRePassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
-                    dateTimePickerBirthday.Text = DataReader.GetString("birthday");
-                                        
-                   /* if (DataReader.GetString("profileImageUrl").Equals("null"))
-                    {
-                        pictureBoxUser.Image = null;
-                    }
-                    else
-                    {
-                        byte[] imageVal = (byte[])DataReader[8];
-                        MemoryStream ms = new MemoryStream(imageVal);
-                        pictureBoxUser.Image = Image.FromStream(ms);
-                    }*/
-                }
+                    textBoxEmail.Text = dt.Rows[0][9].ToString();
+                // textBoxPassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
+                // textBoxRePassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
+                dateTimePickerBirthday.Text = dt.Rows[0][7].ToString();
+
+                byte[] image = (byte[])dt.Rows[0][8];
+                MemoryStream ms2 = new MemoryStream();
+                pictureBoxUser.Image = Image.FromStream(ms2);
+
+                mySqlDataAdapter.Dispose();
+
+
             }
             else
             {
@@ -85,15 +84,14 @@ namespace Library_Management_System_v0._1
                 panel1.Hide();
                 comboBoxProfileType.SelectedItem = "Reader";
 
-                while (DataReader.Read())
-                {
-                    textBoxFirstName.Text = DataReader.GetString("firstName");
-                    textBoxLastName.Text = DataReader.GetString("lastName");
-                    textBoxMobile.Text = DataReader.GetString("mobileNumber");
-                    textBoxLand.Text = DataReader.GetString("landLineNumber");
-                    textBoxPAddress.Text = DataReader.GetString("permenentAddress");
-                    textBoxRAddress.Text = DataReader.GetString("residentAddress");
-                    if (DataReader.GetString("isResidentSame").Equals("True"))
+
+                textBoxFirstName.Text = dt.Rows[0][0].ToString();
+                textBoxLastName.Text = dt.Rows[0][1].ToString();
+                textBoxMobile.Text = dt.Rows[0][2].ToString();
+                textBoxLand.Text = dt.Rows[0][3].ToString();
+                textBoxPAddress.Text = dt.Rows[0][4].ToString();
+                textBoxRAddress.Text = dt.Rows[0][5].ToString();
+                if (dt.Rows[0][6].ToString().Equals("True"))
                     {
                         checkBoxConfirmAddress.Checked = true;
                     }
@@ -104,24 +102,15 @@ namespace Library_Management_System_v0._1
                     //textBoxEmail.Text = DataReader.GetString("emailAddress");
                    // textBoxPassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
                     //textBoxRePassword.Text = StringCipher.Decrypt(DataReader.GetString("password"), LoginDetails.passwordKey);
-                    dateTimePickerBirthday.Text = DataReader.GetString("birthday");
-                    /*String imageVal =  DataReader.GetString("profileImageUrl");
-                    Console.WriteLine(DataReader[8]);
-                     if (imageVal == null)
-                     {
-                         pictureBoxUser.Image = null;
-                     }
-                     else
-                     {
-                         byte[] imageValBytes = Encoding.ASCII.GetBytes(imageVal);
-                        
-                        Console.WriteLine("Image :"+imageValBytes);
-                         MemoryStream ms = new MemoryStream(imageValBytes);
-                        Console.WriteLine("MS :" + ms.ToString());
-                        // Bitmap bitmap = (Bitmap)Bitmap.FromStream(ms);
-                        // pictureBoxUser.Image = bitmap;
-                    }*/
-                }
+                    dateTimePickerBirthday.Text = dt.Rows[0][7].ToString();
+                Console.WriteLine(dt.Rows[0][7].ToString());
+                Console.WriteLine(dt.Rows[0][8].ToString());
+                byte[] image = (byte[])dt.Rows[0][8];
+                MemoryStream ms2 = new MemoryStream(image);
+                pictureBoxUser.Image = Image.FromStream(ms2);
+
+                mySqlDataAdapter.Dispose();
+
             }
             mySqlConnection.Close();
         }
@@ -185,22 +174,26 @@ namespace Library_Management_System_v0._1
         private void buttonAddCategory_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
+            openFile.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif";
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                imageLoacation = openFile.FileName.ToString();
-                pictureBoxUser.ImageLocation = imageLoacation;
+                //imageLoacation = openFile.FileName.ToString();
+                //pictureBoxUser.ImageLocation = imageLoacation;
+               pictureBoxUser.Image = Image.FromFile(openFile.FileName);
             }
         }
 
         private void buttonSaveUser_Click(object sender, EventArgs e)
         {
-            byte[] images = null;           
-            if (imageLoacation != null && !imageLoacation.Equals("")) {
+           MemoryStream ms = new MemoryStream();
+           pictureBoxUser.Image.Save(ms, pictureBoxUser.Image.RawFormat);
+           byte[] img = ms.ToArray();
+            Console.WriteLine(img.ToString());
+           /* if (imageLoacation != null && !imageLoacation.Equals("")) {
                 FileStream fileStream = new FileStream(imageLoacation, FileMode.Open, FileAccess.Read);
                 BinaryReader reader = new BinaryReader(fileStream);
                 images = reader.ReadBytes((int)fileStream.Length);
-            }
+            }*/
 
             String userId = labelUserId.Text;
             String fName = textBoxFirstName.Text;
@@ -299,14 +292,15 @@ namespace Library_Management_System_v0._1
                                             commandSaveLibrarian.Parameters.AddWithValue("@residentAddress", rAddress);
                                             commandSaveLibrarian.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
                                             commandSaveLibrarian.Parameters.AddWithValue("@birthday", birthday);
-                                            if (imageLoacation != null)
+                                            /*if (imageLoacation != null)
                                             {
                                                 commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", images.ToString());
                                             }
                                             else
                                             {
                                                 commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", null);
-                                            }
+                                            }*/
+                                            commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", img);
                                             commandSaveLibrarian.Parameters.AddWithValue("@createDateTime", dateTime);
                                             commandSaveLibrarian.Parameters.AddWithValue("@updateDateTime", null);
                                             commandSaveLibrarian.Parameters.AddWithValue("@isActive", 1);
@@ -390,14 +384,15 @@ namespace Library_Management_System_v0._1
                         commandSaveReader.Parameters.AddWithValue("@residentAddress", rAddress);
                         commandSaveReader.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
                         commandSaveReader.Parameters.AddWithValue("@birthday", birthday);
-                        if (imageLoacation != null)
-                        {
-                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", images.ToString());
-                        }
-                        else
-                        {
-                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", null);
-                        }
+                        /* if (imageLoacation != null)
+                         {
+                             commandSaveReader.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                         }
+                         else
+                         {
+                             commandSaveReader.Parameters.AddWithValue("@profileImageUrl", null);
+                         }*/
+                        commandSaveReader.Parameters.AddWithValue("@profileImageUrl", img);
                         commandSaveReader.Parameters.AddWithValue("@createDateTime", dateTime);
                         commandSaveReader.Parameters.AddWithValue("@updateDateTime", null);
                         commandSaveReader.Parameters.AddWithValue("@isActive", 1);
@@ -424,7 +419,7 @@ namespace Library_Management_System_v0._1
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error" +ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
                         
         }
