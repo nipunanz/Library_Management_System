@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace Library_Management_System_v0._1
 
         private void textBoxBookID_Enter(object sender, EventArgs e)
         {
-            
+
         }
 
         private void buttonUserSearch_Click(object sender, EventArgs e)
@@ -42,26 +43,46 @@ namespace Library_Management_System_v0._1
                 command.CommandText = loadUserSql;
                 command.Parameters.AddWithValue("@generatedID", userID);
 
-                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
-                MySqlDataReader DataReader = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command);
+                dataAdapter.Fill(dt);
 
-                while (DataReader.Read())
-                {
-                    label3.Text = DataReader.GetString("firstName");
-                    label4.Text = DataReader.GetString("lastName");
-                    label6.Text = DataReader.GetString("permenentAddress");
-                    label9.Text = DataReader.GetString("mobileNumber");
-                    label11.Text = (DataReader.GetDateTime("birthday")).ToString("dd-MM-yyyy");
+                if (dt.Rows.Count ==0) {
+                    MessageBox.Show("No records found ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+                else
+                {
 
-                connection.Close();
+                    label3.Text = dt.Rows[0][2].ToString();
+                    label4.Text = dt.Rows[0][3].ToString();
+                    label6.Text = dt.Rows[0][6].ToString();
+                    label9.Text = dt.Rows[0][4].ToString();
+                    //label11.Text = dt.Rows[0][9].ToString();
+                    DateTime retrievedDate = (DateTime)dt.Rows[0][9];
+                    label11.Text = retrievedDate.ToString("dd-MM-yyyy");
+
+                    byte[] image = (byte[])dt.Rows[0][10];
+                    MemoryStream ms2 = new MemoryStream(image);
+                    pictureBox1.Image = Image.FromStream(ms2);
+
+                    dataAdapter.Dispose();
+
+
+
+
+                    //(DataReader.GetDateTime("birthday")).ToString("dd-MM-yyyy");
+
+                    // }
+
+                    connection.Close();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error" +ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         void loadTableData()
@@ -162,7 +183,7 @@ namespace Library_Management_System_v0._1
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void textBoxBookName_KeyUp(object sender, KeyEventArgs e)
@@ -219,7 +240,7 @@ namespace Library_Management_System_v0._1
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -248,8 +269,8 @@ namespace Library_Management_System_v0._1
             {
                 MessageBox.Show("Please select a row");
             }
-            
-            
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -276,11 +297,12 @@ namespace Library_Management_System_v0._1
                     dataGridView2.CurrentRow.Visible = false;
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show("Please select a row");
             }
-            
-            
+
+
         }
 
         private void buttonSaveBook_Click(object sender, EventArgs e)
@@ -365,8 +387,8 @@ namespace Library_Management_System_v0._1
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            
-            
+
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -377,6 +399,20 @@ namespace Library_Management_System_v0._1
         private void buttonHome_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void textBoxUserId_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (textBoxUserId.Text == String.Empty) {
+
+                label3.Text ="";
+                label4.Text ="";
+                label6.Text ="";
+                label9.Text ="";
+                label11.Text = "";
+                pictureBox1.Image = Image.FromFile("../LoadImage/blank.jpg");
+
+            }
         }
     }
 }
