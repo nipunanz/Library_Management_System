@@ -23,7 +23,7 @@ namespace Library_Management_System_v0._1
 
         private void buttonSaveCategory_Click(object sender, EventArgs e)
         {
-
+            MySqlConnection mySqlConnection = null;
             try
             {
                 if (textBoxAddCategory.Text == "")
@@ -48,7 +48,7 @@ namespace Library_Management_System_v0._1
 
                         String newBookCategory_SQL = "INSERT INTO book_category (name,bookCount,createDateTime,updateDateTime,isActive,user_login_history_id) VALUES (@name,@bookCount,@createDateTime,@updateDateTime,@isActive,@user_login_history_id)";
 
-                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection = DataConnection.getDBConnection();
                         mySqlConnection.Open();
                         MySqlCommand command_newBookCatergory = new MySqlCommand(newBookCategory_SQL, mySqlConnection);
                         command_newBookCatergory.CommandText = newBookCategory_SQL;
@@ -83,6 +83,9 @@ namespace Library_Management_System_v0._1
             catch (Exception ex)
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                mySqlConnection.Close();
             }
             
         }

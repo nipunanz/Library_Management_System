@@ -22,6 +22,7 @@ namespace Library_Management_System_v0._1
 
         private void buttonSavePublisher_Click(object sender, EventArgs e)
         {
+            MySqlConnection mySqlConnection = null;
             try
             {
                 if (textBoxAddPublisher.Text == "")
@@ -45,7 +46,7 @@ namespace Library_Management_System_v0._1
                         int user_login_id = 4;
                         //MySqlConnection connection = DataConnection.getDBConnection();
                         String newAuthor_SQL = "INSERT INTO book_printers (name,description,bookCount,createDateTime,updateDateTime,isActive,user_login_history_id) VALUES (@name,@description,@bookCount,@createDateTime,@updateDateTime,@isActive,@user_login_history_id)";
-                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection = DataConnection.getDBConnection();
                         mySqlConnection.Open();
 
                         MySqlCommand command_newBookCatergory = new MySqlCommand(newAuthor_SQL, mySqlConnection);
@@ -76,11 +77,15 @@ namespace Library_Management_System_v0._1
                         MessageBox.Show(" Book Publisher Exist! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                mySqlConnection.Close();
+
             }
 
         }

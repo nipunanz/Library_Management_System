@@ -22,7 +22,7 @@ namespace Library_Management_System_v0._1
             panel1.Hide();
             buttonUpdateUser.Hide();
             generateID();
-
+            //pictureBoxUser.Image = Image.FromFile(@"C:\Users\Lakshan\Source\Repos\Library_Management_System\Library_Management_System_v0.1\Library_Management_System_v0.1\Resources\blank.jpg");
         }
         String editID = null;
         public Add_New_User(String editId, String userType)
@@ -185,10 +185,13 @@ namespace Library_Management_System_v0._1
 
         private void buttonSaveUser_Click(object sender, EventArgs e)
         {
+            
            MemoryStream ms = new MemoryStream();
-           pictureBoxUser.Image.Save(ms, pictureBoxUser.Image.RawFormat);
-           byte[] img = ms.ToArray();
-            Console.WriteLine(img.ToString());
+            // Console.WriteLine("Hey " +pictureBoxUser.Image);
+                pictureBoxUser.Image.Save(ms, pictureBoxUser.Image.RawFormat);
+                byte[] img = ms.ToArray();
+                Console.WriteLine(img.ToString());
+            
            /* if (imageLoacation != null && !imageLoacation.Equals("")) {
                 FileStream fileStream = new FileStream(imageLoacation, FileMode.Open, FileAccess.Read);
                 BinaryReader reader = new BinaryReader(fileStream);
@@ -229,6 +232,7 @@ namespace Library_Management_System_v0._1
                 isProfileTypeSelected = false;
             }
 
+            MySqlConnection mySqlConnection = null;
             try
             {
                 if (fName.Equals("") || lName.Equals("") || mobile.Equals("") || pAddress.Equals("") || rAddress.Equals("") || birthday.Equals(""))
@@ -279,7 +283,7 @@ namespace Library_Management_System_v0._1
                                         if (savePermission)
                                         {
 
-                                            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                                            mySqlConnection = DataConnection.getDBConnection();
                                             mySqlConnection.Open();
                                             MySqlCommand commandSaveLibrarian = new MySqlCommand(saveUserProfileSql, mySqlConnection);
                                             commandSaveLibrarian.CommandText = saveUserProfileSql;
@@ -346,6 +350,7 @@ namespace Library_Management_System_v0._1
                                             saveUserLoginDetails.ExecuteNonQuery();
                                             mySqlConnection.Close();
                                             MessageBox.Show("Librarian Successfully Saved!", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                                             resetForm();
                                         }
                                     }
@@ -371,7 +376,7 @@ namespace Library_Management_System_v0._1
                     else
                     {
                         //Reader Selected
-                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection = DataConnection.getDBConnection();
                         mySqlConnection.Open();
                         MySqlCommand commandSaveReader = new MySqlCommand(saveUserProfileSql, mySqlConnection);
                         commandSaveReader.CommandText = saveUserProfileSql;
@@ -417,11 +422,15 @@ namespace Library_Management_System_v0._1
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error" +ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-                        
+            finally {
+                mySqlConnection.Close();
+
+            }
+
         }
 
         private void resetForm()
@@ -436,6 +445,7 @@ namespace Library_Management_System_v0._1
             textBoxEmail.Text = "";
             textBoxPassword.Text = "";
             textBoxRePassword.Text = "";
+            pictureBoxUser.Image = Image.FromFile("../LoadImage/blank.jpg");
             dateTimePickerBirthday.ResetText();
             checkBoxAdmin.Hide();
             checkBoxConfirmAddress.Checked = false;
@@ -539,8 +549,7 @@ namespace Library_Management_System_v0._1
                 e.Handled = true;
             }
 
-            
-            Console.WriteLine(mobileStr + " " + mobileStr.Length);
+
             if (!char.IsControl(e.KeyChar) && mobileStr.Length >= 10)
             {
                 e.Handled = true;
@@ -555,18 +564,28 @@ namespace Library_Management_System_v0._1
                 e.Handled = true;
             }
 
-            
+            String mobileStr = textBoxLand.Text;
+            if (!char.IsControl(e.KeyChar) && mobileStr.Length >= 10)
+            {
+                e.Handled = true;
+            }
+
+
         }
 
         private void buttonUpdateUser_Click(object sender, EventArgs e)
         {
-            byte[] images = null;
+            /*byte[] images = null;
             if (imageLoacation != null && !imageLoacation.Equals(""))
             {
                 FileStream fileStream = new FileStream(imageLoacation, FileMode.Open, FileAccess.Read);
                 BinaryReader reader = new BinaryReader(fileStream);
                 images = reader.ReadBytes((int)fileStream.Length);
-            }
+            }*/
+
+            MemoryStream ms = new MemoryStream();
+            pictureBoxUser.Image.Save(ms, pictureBoxUser.Image.RawFormat);
+            byte[] img = ms.ToArray();
 
             String userId = labelUserId.Text;
             String fName = textBoxFirstName.Text;
@@ -663,14 +682,14 @@ namespace Library_Management_System_v0._1
                                         commandSaveLibrarian.Parameters.AddWithValue("@residentAddress", rAddress);
                                         commandSaveLibrarian.Parameters.AddWithValue("@isResidentSame", isResidenceSame);
                                         commandSaveLibrarian.Parameters.AddWithValue("@birthday", birthday);
-                                        if (imageLoacation != null)
-                                        {
-                                            commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", images.ToString());
-                                        }
-                                        else
-                                        {
-                                            commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", null);
-                                        }
+                                        //if (imageLoacation != null)
+                                        //{
+                                            commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", img);
+                                        //}
+                                        //else
+                                        //{
+                                        //    commandSaveLibrarian.Parameters.AddWithValue("@profileImageUrl", img);
+                                        //}
                                         commandSaveLibrarian.Parameters.AddWithValue("@updateDateTime", dateTime);
 
                                         commandSaveLibrarian.ExecuteNonQuery();
@@ -729,11 +748,11 @@ namespace Library_Management_System_v0._1
                         commandSaveReader.Parameters.AddWithValue("@birthday", birthday);
                         if (imageLoacation != null)
                         {
-                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", images.ToString());
+                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", img);
                         }
                         else
                         {
-                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", null);
+                            commandSaveReader.Parameters.AddWithValue("@profileImageUrl", img);
                         }
                         commandSaveReader.Parameters.AddWithValue("@updateDateTime", dateTime);
 

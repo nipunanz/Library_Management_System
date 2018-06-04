@@ -76,14 +76,14 @@ namespace Library_Management_System_v0._1
         {
             DateTime dateTime = DateTime.Now;
             dateTime.ToString("yyyyMMddHHmmss");
-
+            MySqlConnection mySqlConnection = null;
             DialogResult dialogResult = MessageBox.Show("Are you sure you want Logout from the system?", "Signing Off", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.OK)
             {
                 try
                 {
-                    String logoutUser = "UPDATE user_login_history SET logoutDateTime = @dateTime WHERE id = '" + LoginDetails.userLoginHistoryID+"'";
-                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    String logoutUser = "UPDATE user_login_history SET logoutDateTime = @dateTime WHERE id = '" + LoginDetails.userLoginHistoryID + "'";
+                    mySqlConnection = DataConnection.getDBConnection();
                     mySqlConnection.Open();
                     MySqlCommand command = new MySqlCommand(logoutUser, mySqlConnection);
                     command.CommandText = logoutUser;
@@ -96,7 +96,10 @@ namespace Library_Management_System_v0._1
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Something Went Wrong! \n"+ex, "Signing Off", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    MessageBox.Show("Something Went Wrong! \n" + ex, "Signing Off", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                }
+                finally {
+                    mySqlConnection.Close();
                 }
             }
             

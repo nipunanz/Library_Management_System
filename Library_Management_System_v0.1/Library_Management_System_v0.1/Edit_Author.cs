@@ -23,11 +23,12 @@ namespace Library_Management_System_v0._1
 
         void fillCategory()
         {
+            MySqlConnection mySqlConnection = null;
             try
             {
                 // textBoxAddCategory.Text = null;
                 String selectBookCategory_SQL = "SELECT * FROM book_author";
-                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection = DataConnection.getDBConnection();
 
                 mySqlConnection.Open();
                 MySqlCommand cmd_bookCategory = new MySqlCommand(selectBookCategory_SQL, mySqlConnection);
@@ -49,6 +50,9 @@ namespace Library_Management_System_v0._1
             {
                 Console.WriteLine(e);
                 MessageBox.Show("Please check the connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                mySqlConnection.Close();
             }
         }
         void editCategory(String name, String updateName)

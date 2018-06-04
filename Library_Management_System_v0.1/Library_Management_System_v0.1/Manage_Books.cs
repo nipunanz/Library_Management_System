@@ -25,44 +25,55 @@ namespace Library_Management_System_v0._1
         }
         
         void loadTableData() {
+            MySqlConnection mySqlConnection = null;
+            try
+            {
+                String loadtable_SQL = "SELECT book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
+                    "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
+                    "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id";
+                mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+                MySqlCommand cmd_Profile = new MySqlCommand(loadtable_SQL, mySqlConnection);
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+                MySqlDataReader DataReader;
+                DataReader = cmd_Profile.ExecuteReader();
 
-            String loadtable_SQL = "SELECT book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
-                "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
-                "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id";
-            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            mySqlConnection.Open();
-            MySqlCommand cmd_Profile = new MySqlCommand(loadtable_SQL, mySqlConnection);
-            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
-            MySqlDataReader DataReader;
-            DataReader = cmd_Profile.ExecuteReader();
-
-            while (DataReader.Read()) {
-                String id = DataReader.GetString("batchId");
-                String name = DataReader.GetString("name");
-                String isbn = DataReader.GetString("ISBN");
-                String printYear = DataReader.GetString("printedYear");
-                String category = DataReader.GetString("categoryName");
-                String author = DataReader.GetString("authorName");
-                String type = DataReader.GetString("bookTypeName");
-                String bookCount = DataReader.GetString("bookCount");
-                String isActive = DataReader.GetString("status");
-                String bookPublisher = DataReader.GetString("bookPublisher");
-                String bookDescription = DataReader.GetString("bookDescription");
-                String status = "";
-                if (isActive.Equals("True"))
+                while (DataReader.Read())
                 {
-                    status = "Active";
-                }
-                else {
-                    status = "Deactive";
+                    String id = DataReader.GetString("batchId");
+                    String name = DataReader.GetString("name");
+                    String isbn = DataReader.GetString("ISBN");
+                    String printYear = DataReader.GetString("printedYear");
+                    String category = DataReader.GetString("categoryName");
+                    String author = DataReader.GetString("authorName");
+                    String type = DataReader.GetString("bookTypeName");
+                    String bookCount = DataReader.GetString("bookCount");
+                    String isActive = DataReader.GetString("status");
+                    String bookPublisher = DataReader.GetString("bookPublisher");
+                    String bookDescription = DataReader.GetString("bookDescription");
+                    String status = "";
+                    if (isActive.Equals("True"))
+                    {
+                        status = "Active";
+                    }
+                    else
+                    {
+                        status = "Deactive";
+                    }
+
+                    dataGridView1.Rows.Add(id, name, isbn, printYear, category, author, type, bookCount, status, bookPublisher, bookDescription);
+
                 }
 
-                dataGridView1.Rows.Add(id,name,isbn,printYear,category,author,type, bookCount,status, bookPublisher, bookDescription);
-
+                mySqlConnection.Close();
             }
-
-            mySqlConnection.Close();
-
+            catch (MySqlException) {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
         }
 
         private void Manage_Books_Load(object sender, EventArgs e)
@@ -72,55 +83,67 @@ namespace Library_Management_System_v0._1
 
         private void textBoxBookID_KeyUp(object sender, KeyEventArgs e)
         {
-            String searchVal = "";
-            dataGridView1.RowCount = 0;
-            String loadtable_SQL = "SELECT book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
-                 "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
-                 "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE generatedID like @generatedID";
-            String userRole = LoginDetails.userRole;
-
-            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            mySqlConnection.Open();
-
-            MySqlCommand cmd_Profile = new MySqlCommand(loadtable_SQL, mySqlConnection);
-            cmd_Profile.CommandText = loadtable_SQL;
-            cmd_Profile.Parameters.AddWithValue("@generatedID", "%"+searchVal+"%");
-            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
-            MySqlDataReader DataReader;
-            DataReader = cmd_Profile.ExecuteReader();
-
-            while (DataReader.Read())
+            MySqlConnection mySqlConnection = null;
+            try
             {
-                String id = DataReader.GetString("batchId");
-                String name = DataReader.GetString("name");
-                String isbn = DataReader.GetString("ISBN");
-                String printYear = DataReader.GetString("printedYear");
-                String category = DataReader.GetString("categoryName");
-                String author = DataReader.GetString("authorName");
-                String type = DataReader.GetString("bookTypeName");
-                String bookCount = DataReader.GetString("bookCount");
-                String isActive = DataReader.GetString("status");
-                String bookPublisher = DataReader.GetString("bookPublisher");
-                String bookDescription = DataReader.GetString("bookDescription");
-                String status = "";
-                if (isActive.Equals("True"))
+                String searchVal = "";
+                dataGridView1.RowCount = 0;
+                String loadtable_SQL = "SELECT book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
+                     "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
+                     "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE generatedID like @generatedID";
+                String userRole = LoginDetails.userRole;
+
+                mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+
+                MySqlCommand cmd_Profile = new MySqlCommand(loadtable_SQL, mySqlConnection);
+                cmd_Profile.CommandText = loadtable_SQL;
+                cmd_Profile.Parameters.AddWithValue("@generatedID", "%" + searchVal + "%");
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+                MySqlDataReader DataReader;
+                DataReader = cmd_Profile.ExecuteReader();
+
+                while (DataReader.Read())
                 {
-                    status = "Active";
-                }
-                else
-                {
-                    status = "Deactive";
+                    String id = DataReader.GetString("batchId");
+                    String name = DataReader.GetString("name");
+                    String isbn = DataReader.GetString("ISBN");
+                    String printYear = DataReader.GetString("printedYear");
+                    String category = DataReader.GetString("categoryName");
+                    String author = DataReader.GetString("authorName");
+                    String type = DataReader.GetString("bookTypeName");
+                    String bookCount = DataReader.GetString("bookCount");
+                    String isActive = DataReader.GetString("status");
+                    String bookPublisher = DataReader.GetString("bookPublisher");
+                    String bookDescription = DataReader.GetString("bookDescription");
+                    String status = "";
+                    if (isActive.Equals("True"))
+                    {
+                        status = "Active";
+                    }
+                    else
+                    {
+                        status = "Deactive";
+                    }
+
+                    dataGridView1.Rows.Add(id, name, isbn, printYear, category, author, type, bookCount, status, bookPublisher, bookDescription);
+
                 }
 
-                dataGridView1.Rows.Add(id, name, isbn, printYear, category, author, type, bookCount, status, bookPublisher, bookDescription);
-
+                mySqlConnection.Close();
             }
-
-            mySqlConnection.Close();
+            catch (MySqlException)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                mySqlConnection.Close();
+            }
         }
 
         private void textBoxBookName_KeyUp(object sender, KeyEventArgs e)
         {
+            MySqlConnection mySqlConnection = null;
             try
             {
                 String searchVal = textBoxBookName.Text;
@@ -130,7 +153,7 @@ namespace Library_Management_System_v0._1
                      "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE book_batch_profile.name like @bookName";
                 String userRole = LoginDetails.userRole;
 
-                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection = DataConnection.getDBConnection();
                 mySqlConnection.Open();
 
                 MySqlCommand cmd_Profile = new MySqlCommand(loadtable_SQL, mySqlConnection);
@@ -173,11 +196,15 @@ namespace Library_Management_System_v0._1
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally {
+                mySqlConnection.Close();
+            }
             
         }
 
         private void buttonActivateDeactivate_Click(object sender, EventArgs e)
         {
+            MySqlConnection sqlConnection = null;
             try
             {
                 String currectBookName = dataGridView1.CurrentRow.Cells[1].Value.ToString();
@@ -190,7 +217,7 @@ namespace Library_Management_System_v0._1
                     if (dialogResult == DialogResult.OK)
                     {
                         String deactivateUser = "UPDATE book_batch_profile SET isActive = 0 WHERE name = @currectBookName AND ISBN = @currectBookISBN";
-                        MySqlConnection sqlConnection = DataConnection.getDBConnection();
+                        sqlConnection = DataConnection.getDBConnection();
                         sqlConnection.Open();
                         MySqlCommand mySqlCommand = new MySqlCommand(deactivateUser, sqlConnection);
                         mySqlCommand.CommandText = deactivateUser;
@@ -211,7 +238,7 @@ namespace Library_Management_System_v0._1
                     if (dialogResult == DialogResult.OK)
                     {
                         String deactivateUser = "UPDATE book_batch_profile SET isActive = 1 WHERE name = @currectBookName AND ISBN = @currectBookISBN";
-                        MySqlConnection sqlConnection = DataConnection.getDBConnection();
+                        sqlConnection = DataConnection.getDBConnection();
                         sqlConnection.Open();
                         MySqlCommand mySqlCommand = new MySqlCommand(deactivateUser, sqlConnection);
                         mySqlCommand.CommandText = deactivateUser;
@@ -230,6 +257,9 @@ namespace Library_Management_System_v0._1
             catch (Exception ex)
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                sqlConnection.Close();
             }
             
         }

@@ -30,6 +30,7 @@ namespace Library_Management_System_v0._1
             String email = textBoxEmail.Text;
             String password = textBoxPassword.Text;
 
+            MySqlConnection mySqlConnection = null;
             try
             {
                 //+++++++++ null & empty check for input values +++++++++//
@@ -47,7 +48,7 @@ namespace Library_Management_System_v0._1
                     DateTime dateTime = DateTime.Now;
                     dateTime.ToString("yyyyMMddHHmmss");
 
-                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection = DataConnection.getDBConnection();
                     mySqlConnection.Open();
                     MySqlCommand command = new MySqlCommand(loginQuery, mySqlConnection);
                     command.CommandText = loginQuery;
@@ -103,7 +104,7 @@ namespace Library_Management_System_v0._1
 
                                     MySqlDataReader loginHistoryReader = commandGetLoginHistoryId.ExecuteReader();
                                     loginHistoryReader.Read();
-                                    LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
+                                    // LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
                                     //MessageBox.Show("Login History ID : "+LoginDetails.userLoginHistoryID);
                                     loginHistoryReader.Close();
 
@@ -135,7 +136,10 @@ namespace Library_Management_System_v0._1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error \n" +ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error \n" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                mySqlConnection.Close();
             }
             
             
