@@ -445,7 +445,8 @@ namespace Library_Management_System_v0._1
             textBoxEmail.Text = "";
             textBoxPassword.Text = "";
             textBoxRePassword.Text = "";
-            pictureBoxUser.Image = Image.FromFile("../LoadImage/blank.jpg");
+            pictureBoxUser.Image = Properties.Resources.blank;
+               // Image.FromFile("../LoadImage/blank.jpg");
             dateTimePickerBirthday.ResetText();
             checkBoxAdmin.Hide();
             checkBoxConfirmAddress.Checked = false;
