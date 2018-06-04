@@ -232,6 +232,7 @@ namespace Library_Management_System_v0._1
                 isProfileTypeSelected = false;
             }
 
+            MySqlConnection mySqlConnection = null;
             try
             {
                 if (fName.Equals("") || lName.Equals("") || mobile.Equals("") || pAddress.Equals("") || rAddress.Equals("") || birthday.Equals(""))
@@ -282,7 +283,7 @@ namespace Library_Management_System_v0._1
                                         if (savePermission)
                                         {
 
-                                            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                                            mySqlConnection = DataConnection.getDBConnection();
                                             mySqlConnection.Open();
                                             MySqlCommand commandSaveLibrarian = new MySqlCommand(saveUserProfileSql, mySqlConnection);
                                             commandSaveLibrarian.CommandText = saveUserProfileSql;
@@ -349,7 +350,7 @@ namespace Library_Management_System_v0._1
                                             saveUserLoginDetails.ExecuteNonQuery();
                                             mySqlConnection.Close();
                                             MessageBox.Show("Librarian Successfully Saved!", "Register new user", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            
+
                                             resetForm();
                                         }
                                     }
@@ -375,7 +376,7 @@ namespace Library_Management_System_v0._1
                     else
                     {
                         //Reader Selected
-                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection = DataConnection.getDBConnection();
                         mySqlConnection.Open();
                         MySqlCommand commandSaveReader = new MySqlCommand(saveUserProfileSql, mySqlConnection);
                         commandSaveReader.CommandText = saveUserProfileSql;
@@ -421,11 +422,15 @@ namespace Library_Management_System_v0._1
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error" +ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-                        
+            finally {
+                mySqlConnection.Close();
+
+            }
+
         }
 
         private void resetForm()

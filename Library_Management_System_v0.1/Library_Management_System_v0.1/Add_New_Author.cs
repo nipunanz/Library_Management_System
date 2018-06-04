@@ -20,7 +20,7 @@ namespace Library_Management_System_v0._1
         }
         private void buttonSaveAuthor_Click(object sender, EventArgs e)
         {
-
+            MySqlConnection mySqlConnection = null;
             try
             {
                 if (textBoxAddAuthor.Text == "" || textBoxAuthorDescription.Text == "")
@@ -47,7 +47,7 @@ namespace Library_Management_System_v0._1
 
                         // try
                         //{
-                        MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection= DataConnection.getDBConnection();
                         mySqlConnection.Open();
 
                         MySqlCommand command_newBookCatergory = new MySqlCommand(newAuthor_SQL, mySqlConnection);
@@ -92,7 +92,9 @@ namespace Library_Management_System_v0._1
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+            finally {
+                mySqlConnection.Close();
+            }
         }
 
         bool isValidAuthor(String authorName)

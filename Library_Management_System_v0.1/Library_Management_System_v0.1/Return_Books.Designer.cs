@@ -77,27 +77,30 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(63, 168);
+            this.panel1.Location = new System.Drawing.Point(47, 136);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(444, 512);
+            this.panel1.Size = new System.Drawing.Size(333, 416);
             this.panel1.TabIndex = 16;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(22, 396);
+            this.label11.Location = new System.Drawing.Point(16, 322);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(0, 32);
+            this.label11.Size = new System.Drawing.Size(0, 25);
             this.label11.TabIndex = 20;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(23, 370);
+            this.label10.Location = new System.Drawing.Point(17, 301);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(78, 26);
+            this.label10.Size = new System.Drawing.Size(63, 21);
             this.label10.TabIndex = 19;
             this.label10.Text = "Birthday";
             // 
@@ -105,18 +108,20 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(19, 316);
+            this.label9.Location = new System.Drawing.Point(14, 257);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 32);
+            this.label9.Size = new System.Drawing.Size(0, 25);
             this.label9.TabIndex = 18;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(20, 290);
+            this.label8.Location = new System.Drawing.Point(15, 236);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(131, 26);
+            this.label8.Size = new System.Drawing.Size(106, 21);
             this.label8.TabIndex = 17;
             this.label8.Text = "Mobile Number";
             // 
@@ -124,18 +129,20 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(19, 230);
+            this.label6.Location = new System.Drawing.Point(14, 187);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 26);
+            this.label6.Size = new System.Drawing.Size(0, 21);
             this.label6.TabIndex = 15;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 198);
+            this.label5.Location = new System.Drawing.Point(15, 161);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 26);
+            this.label5.Size = new System.Drawing.Size(132, 21);
             this.label5.TabIndex = 14;
             this.label5.Text = "Permanent Address";
             // 
@@ -143,37 +150,44 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(196, 58);
+            this.label4.Location = new System.Drawing.Point(147, 47);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 26);
+            this.label4.Size = new System.Drawing.Size(0, 21);
             this.label4.TabIndex = 13;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(195, 26);
+            this.label3.Location = new System.Drawing.Point(146, 21);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 32);
+            this.label3.Size = new System.Drawing.Size(0, 25);
             this.label3.TabIndex = 13;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 26);
+            this.pictureBox1.Image = global::Library_Management_System_v0._1.Properties.Resources.blank;
+            this.pictureBox1.Location = new System.Drawing.Point(19, 21);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(153, 154);
+            this.pictureBox1.Size = new System.Drawing.Size(115, 125);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // textBoxBookID
             // 
             this.textBoxBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBookID.Location = new System.Drawing.Point(131, 119);
+            this.textBoxBookID.Location = new System.Drawing.Point(98, 97);
+            this.textBoxBookID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxBookID.Name = "textBoxBookID";
-            this.textBoxBookID.Size = new System.Drawing.Size(265, 28);
+            this.textBoxBookID.Size = new System.Drawing.Size(200, 24);
             this.textBoxBookID.TabIndex = 15;
+            this.textBoxBookID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxBookID_KeyUp);
             // 
             // label2
             // 
@@ -181,9 +195,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(58, 119);
+            this.label2.Location = new System.Drawing.Point(44, 97);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 26);
+            this.label2.Size = new System.Drawing.Size(55, 21);
             this.label2.TabIndex = 14;
             this.label2.Text = "User ID";
             // 
@@ -192,9 +207,10 @@
             this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label1.Font = new System.Drawing.Font("Roboto Condensed", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(-2, 23);
+            this.label1.Location = new System.Drawing.Point(-2, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1287, 73);
+            this.label1.Size = new System.Drawing.Size(965, 59);
             this.label1.TabIndex = 13;
             this.label1.Text = "Return Books";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -205,9 +221,10 @@
             this.bookId.BackColor = System.Drawing.Color.Transparent;
             this.bookId.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bookId.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bookId.Location = new System.Drawing.Point(538, 156);
+            this.bookId.Location = new System.Drawing.Point(404, 127);
+            this.bookId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.bookId.Name = "bookId";
-            this.bookId.Size = new System.Drawing.Size(52, 26);
+            this.bookId.Size = new System.Drawing.Size(42, 21);
             this.bookId.TabIndex = 17;
             this.bookId.Text = "Date:";
             // 
@@ -217,9 +234,10 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label12.Location = new System.Drawing.Point(591, 152);
+            this.label12.Location = new System.Drawing.Point(443, 124);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(129, 32);
+            this.label12.Size = new System.Drawing.Size(98, 25);
             this.label12.TabIndex = 18;
             this.label12.Text = "24-05-2018";
             // 
@@ -228,9 +246,10 @@
             this.buttonSaveBook.BackColor = System.Drawing.Color.DarkSlateGray;
             this.buttonSaveBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSaveBook.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonSaveBook.Location = new System.Drawing.Point(1102, 633);
+            this.buttonSaveBook.Location = new System.Drawing.Point(826, 514);
+            this.buttonSaveBook.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSaveBook.Name = "buttonSaveBook";
-            this.buttonSaveBook.Size = new System.Drawing.Size(149, 47);
+            this.buttonSaveBook.Size = new System.Drawing.Size(112, 38);
             this.buttonSaveBook.TabIndex = 25;
             this.buttonSaveBook.Text = "Done";
             this.buttonSaveBook.UseVisualStyleBackColor = false;
@@ -241,9 +260,10 @@
             this.buttonUserSearch.BackColor = System.Drawing.Color.DarkSlateGray;
             this.buttonUserSearch.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonUserSearch.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonUserSearch.Location = new System.Drawing.Point(407, 118);
+            this.buttonUserSearch.Location = new System.Drawing.Point(305, 96);
+            this.buttonUserSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonUserSearch.Name = "buttonUserSearch";
-            this.buttonUserSearch.Size = new System.Drawing.Size(100, 33);
+            this.buttonUserSearch.Size = new System.Drawing.Size(75, 27);
             this.buttonUserSearch.TabIndex = 27;
             this.buttonUserSearch.Text = "Search";
             this.buttonUserSearch.UseVisualStyleBackColor = false;
@@ -266,11 +286,10 @@
             this.Column8,
             this.Column9,
             this.Column10});
-            this.dataGridView1.Location = new System.Drawing.Point(537, 214);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(403, 174);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(714, 401);
+            this.dataGridView1.Size = new System.Drawing.Size(536, 326);
             this.dataGridView1.TabIndex = 28;
             // 
             // Column1
@@ -354,9 +373,10 @@
             this.button1.BackColor = System.Drawing.Color.DarkSlateGray;
             this.button1.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(1078, 152);
+            this.button1.Location = new System.Drawing.Point(808, 124);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 49);
+            this.button1.Size = new System.Drawing.Size(130, 40);
             this.button1.TabIndex = 29;
             this.button1.Text = "Mark as Returned";
             this.button1.UseVisualStyleBackColor = false;
@@ -374,20 +394,21 @@
             this.buttonHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHome.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonHome.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonHome.Location = new System.Drawing.Point(1187, 31);
+            this.buttonHome.Location = new System.Drawing.Point(890, 25);
+            this.buttonHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonHome.Name = "buttonHome";
-            this.buttonHome.Size = new System.Drawing.Size(64, 58);
+            this.buttonHome.Size = new System.Drawing.Size(48, 47);
             this.buttonHome.TabIndex = 55;
             this.buttonHome.UseVisualStyleBackColor = false;
             this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
             // 
             // Return_Books
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1283, 703);
+            this.ClientSize = new System.Drawing.Size(962, 571);
             this.Controls.Add(this.buttonHome);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -401,6 +422,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Return_Books";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Return_Books";

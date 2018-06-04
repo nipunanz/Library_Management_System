@@ -22,11 +22,12 @@ namespace Library_Management_System_v0._1
         }
         void fillCategory()
         {
+            MySqlConnection mySqlConnection = null;
             try
             {
                 // textBoxAddCategory.Text = null;
                 String selectBookCategory_SQL = "SELECT * FROM book_printers";
-                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection = DataConnection.getDBConnection();
 
                 mySqlConnection.Open();
                 MySqlCommand cmd_bookCategory = new MySqlCommand(selectBookCategory_SQL, mySqlConnection);
@@ -41,8 +42,6 @@ namespace Library_Management_System_v0._1
 
                 }
 
-
-
                 mySqlConnection.Close();
             }
             catch (MySqlException e)
@@ -50,21 +49,35 @@ namespace Library_Management_System_v0._1
                 Console.WriteLine(e);
                 MessageBox.Show("Please check the connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                mySqlConnection.Close();
+            }
         }
         void editCategory(String name, String updateName)
         {
+            MySqlConnection mySqlConnection = null;
+            try
+            {
+                String updateCategory_SQL = "UPDATE book_printers SET name=@ubookname WHERE name=@bookname";
+                mySqlConnection= DataConnection.getDBConnection();
+                mySqlConnection.Open();
+                MySqlCommand command_updateCurrentBookCountCategory = new MySqlCommand(updateCategory_SQL, mySqlConnection);
+                command_updateCurrentBookCountCategory.CommandText = updateCategory_SQL;
+                command_updateCurrentBookCountCategory.Parameters.AddWithValue("@bookname", name);
+                command_updateCurrentBookCountCategory.Parameters.AddWithValue("@ubookname", updateName);
+                int row = command_updateCurrentBookCountCategory.ExecuteNonQuery();
 
-            String updateCategory_SQL = "UPDATE book_printers SET name=@ubookname WHERE name=@bookname";
-            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            mySqlConnection.Open();
-            MySqlCommand command_updateCurrentBookCountCategory = new MySqlCommand(updateCategory_SQL, mySqlConnection);
-            command_updateCurrentBookCountCategory.CommandText = updateCategory_SQL;
-            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@bookname", name);
-            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@ubookname", updateName);
-            int row = command_updateCurrentBookCountCategory.ExecuteNonQuery();
+                mySqlConnection.Close();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Please check the connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            mySqlConnection.Close();
-
+            }
+            finally {
+                mySqlConnection.Close();
+            }
         }
         private void buttonSaveCategory_Click(object sender, EventArgs e)
         {

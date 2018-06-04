@@ -26,18 +26,14 @@ namespace Library_Management_System_v0._1
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
         }
 
-        private void textBoxBookID_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonUserSearch_Click(object sender, EventArgs e)
         {
+            MySqlConnection connection = null;
             try
             {
                 String userID = textBoxUserId.Text;
                 String loadUserSql = "SELECT * FROM user_profile WHERE generatedID = @generatedID";
-                MySqlConnection connection = DataConnection.getDBConnection();
+                connection = DataConnection.getDBConnection();
                 connection.Open();
                 MySqlCommand command = new MySqlCommand(loadUserSql, connection);
                 command.CommandText = loadUserSql;
@@ -47,7 +43,8 @@ namespace Library_Management_System_v0._1
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command);
                 dataAdapter.Fill(dt);
 
-                if (dt.Rows.Count ==0) {
+                if (dt.Rows.Count == 0)
+                {
                     MessageBox.Show("No records found ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
@@ -80,7 +77,10 @@ namespace Library_Management_System_v0._1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error" +ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                connection.Close();
             }
 
         }
@@ -413,6 +413,11 @@ namespace Library_Management_System_v0._1
                 pictureBox1.Image = Image.FromFile("../LoadImage/blank.jpg");
 
             }
+        }
+
+        private void textBoxBookID_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -52,18 +52,28 @@ namespace Library_Management_System_v0._1
 
         void editCategory(String name, String updateName)
         {
+            MySqlConnection mySqlConnection = null;
+            try
+            {
+                String updateCategory_SQL = "UPDATE book_type SET name=@ubookname WHERE name=@bookname";
+                mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+                MySqlCommand command_updateCurrentBookCountCategory = new MySqlCommand(updateCategory_SQL, mySqlConnection);
+                command_updateCurrentBookCountCategory.CommandText = updateCategory_SQL;
+                command_updateCurrentBookCountCategory.Parameters.AddWithValue("@bookname", name);
+                command_updateCurrentBookCountCategory.Parameters.AddWithValue("@ubookname", updateName);
+                int row = command_updateCurrentBookCountCategory.ExecuteNonQuery();
 
-            String updateCategory_SQL = "UPDATE book_type SET name=@ubookname WHERE name=@bookname";
-            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            mySqlConnection.Open();
-            MySqlCommand command_updateCurrentBookCountCategory = new MySqlCommand(updateCategory_SQL, mySqlConnection);
-            command_updateCurrentBookCountCategory.CommandText = updateCategory_SQL;
-            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@bookname", name);
-            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@ubookname", updateName);
-            int row = command_updateCurrentBookCountCategory.ExecuteNonQuery();
+                mySqlConnection.Close();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show(" Please check connection ", "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
 
-            mySqlConnection.Close();
-
+            }
+            finally {
+                mySqlConnection.Close();
+            }
         }
         private void Edit_Book_Type_Load(object sender, EventArgs e)
         {

@@ -21,98 +21,108 @@ namespace Library_Management_System_v0._1
 
         void loadTable()
         {
-            String getReadersSql = "SELECT generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status FROM user_profile inner join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id WHERE user_profile_type.name = 'Reader'";
-            String getLibrariansSql = "select generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status from user_profile left join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id left join user_login on user_profile.id = user_login.user_profile_id left join user_role on user_login.user_role_id = user_role.id WHERE user_role.name = 'Librarian'";
-            String userRole = LoginDetails.userRole;
+            MySqlConnection mySqlConnection = null;
+            try
+            {
+                String getReadersSql = "SELECT generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status FROM user_profile inner join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id WHERE user_profile_type.name = 'Reader'";
+                String getLibrariansSql = "select generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status from user_profile left join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id left join user_login on user_profile.id = user_login.user_profile_id left join user_role on user_login.user_role_id = user_role.id WHERE user_role.name = 'Librarian'";
+                String userRole = LoginDetails.userRole;
 
-            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            mySqlConnection.Open();
+                mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
 
-            if (userRole.Equals("Librarian")) {
-                MySqlCommand cmd_Profile = new MySqlCommand(getReadersSql, mySqlConnection);
-                MySqlDataReader DataReader = cmd_Profile.ExecuteReader();
-
-                while (DataReader.Read())
+                if (userRole.Equals("Librarian"))
                 {
-                    String id = DataReader.GetString("generatedID");
-                    String firstName = DataReader.GetString("firstName");
-                    String lastName = DataReader.GetString("lastName");
-                    String userProfileType = DataReader.GetString("userProfileType");
-                    String mobileNumber = DataReader.GetString("mobileNumber");
-                    String permenentAddress = DataReader.GetString("permenentAddress");
-                    String createDateTime = DataReader.GetString("userRegDate");
-                    String isActive = DataReader.GetString("status");
-                    String status = "";
-                    if (isActive.Equals("True"))
+                    MySqlCommand cmd_Profile = new MySqlCommand(getReadersSql, mySqlConnection);
+                    MySqlDataReader DataReader = cmd_Profile.ExecuteReader();
+
+                    while (DataReader.Read())
                     {
-                        status = "Active";
+                        String id = DataReader.GetString("generatedID");
+                        String firstName = DataReader.GetString("firstName");
+                        String lastName = DataReader.GetString("lastName");
+                        String userProfileType = DataReader.GetString("userProfileType");
+                        String mobileNumber = DataReader.GetString("mobileNumber");
+                        String permenentAddress = DataReader.GetString("permenentAddress");
+                        String createDateTime = DataReader.GetString("userRegDate");
+                        String isActive = DataReader.GetString("status");
+                        String status = "";
+                        if (isActive.Equals("True"))
+                        {
+                            status = "Active";
+                        }
+                        else
+                        {
+                            status = "Deactive";
+                        }
+                        dataGridView1.Rows.Add(id, firstName, lastName, userProfileType, mobileNumber, permenentAddress, createDateTime, status);
+
                     }
-                    else
-                    {
-                        status = "Deactive";
-                    }
-                    dataGridView1.Rows.Add(id, firstName, lastName, userProfileType, mobileNumber, permenentAddress, createDateTime, status);
 
                 }
-
-            } if (userRole.Equals("Administrative Librarian")) {
-                MySqlCommand cmd_Profile = new MySqlCommand(getLibrariansSql, mySqlConnection);
-                MySqlDataReader DataReader = cmd_Profile.ExecuteReader();
-                while (DataReader.Read())
+                if (userRole.Equals("Administrative Librarian"))
                 {
-                    String id = DataReader.GetString("generatedID");
-                    String firstName = DataReader.GetString("firstName");
-                    String lastName = DataReader.GetString("lastName");
-                    String userProfileType = DataReader.GetString("userProfileType");
-                    String mobileNumber = DataReader.GetString("mobileNumber");
-                    String permenentAddress = DataReader.GetString("permenentAddress");
-                    String createDateTime = DataReader.GetString("userRegDate");
-                    String isActive = DataReader.GetString("status");
-                    String status = "";
-                    if (isActive.Equals("True"))
+                    MySqlCommand cmd_Profile = new MySqlCommand(getLibrariansSql, mySqlConnection);
+                    MySqlDataReader DataReader = cmd_Profile.ExecuteReader();
+                    while (DataReader.Read())
                     {
-                        status = "Active";
+                        String id = DataReader.GetString("generatedID");
+                        String firstName = DataReader.GetString("firstName");
+                        String lastName = DataReader.GetString("lastName");
+                        String userProfileType = DataReader.GetString("userProfileType");
+                        String mobileNumber = DataReader.GetString("mobileNumber");
+                        String permenentAddress = DataReader.GetString("permenentAddress");
+                        String createDateTime = DataReader.GetString("userRegDate");
+                        String isActive = DataReader.GetString("status");
+                        String status = "";
+                        if (isActive.Equals("True"))
+                        {
+                            status = "Active";
+                        }
+                        else
+                        {
+                            status = "Deactive";
+                        }
+                        dataGridView1.Rows.Add(id, firstName, lastName, userProfileType, mobileNumber, permenentAddress, createDateTime, status);
                     }
-                    else
+                    DataReader.Close();
+
+                    MySqlCommand cmd_Profile2 = new MySqlCommand(getReadersSql, mySqlConnection);
+                    MySqlDataReader DataReader2 = cmd_Profile2.ExecuteReader();
+
+                    while (DataReader2.Read())
                     {
-                        status = "Deactive";
+                        String id = DataReader2.GetString("generatedID");
+                        String firstName = DataReader2.GetString("firstName");
+                        String lastName = DataReader2.GetString("lastName");
+                        String userProfileType = DataReader2.GetString("userProfileType");
+                        String mobileNumber = DataReader2.GetString("mobileNumber");
+                        String permenentAddress = DataReader2.GetString("permenentAddress");
+                        String createDateTime = DataReader2.GetString("userRegDate");
+                        String isActive = DataReader2.GetString("status");
+                        String status = "";
+                        if (isActive.Equals("True"))
+                        {
+                            status = "Active";
+                        }
+                        else
+                        {
+                            status = "Deactive";
+                        }
+                        dataGridView1.Rows.Add(id, firstName, lastName, userProfileType, mobileNumber, permenentAddress, createDateTime, status);
+
                     }
-                    dataGridView1.Rows.Add(id, firstName, lastName, userProfileType, mobileNumber, permenentAddress, createDateTime, status);
                 }
-                DataReader.Close();
 
-                MySqlCommand cmd_Profile2 = new MySqlCommand(getReadersSql, mySqlConnection);
-                MySqlDataReader DataReader2 = cmd_Profile2.ExecuteReader();
-
-                while (DataReader2.Read())
-                {
-                    String id = DataReader2.GetString("generatedID");
-                    String firstName = DataReader2.GetString("firstName");
-                    String lastName = DataReader2.GetString("lastName");
-                    String userProfileType = DataReader2.GetString("userProfileType");
-                    String mobileNumber = DataReader2.GetString("mobileNumber");
-                    String permenentAddress = DataReader2.GetString("permenentAddress");
-                    String createDateTime = DataReader2.GetString("userRegDate");
-                    String isActive = DataReader2.GetString("status");
-                    String status = "";
-                    if (isActive.Equals("True"))
-                    {
-                        status = "Active";
-                    }
-                    else
-                    {
-                        status = "Deactive";
-                    }
-                    dataGridView1.Rows.Add(id, firstName, lastName, userProfileType, mobileNumber, permenentAddress, createDateTime, status);
-
-                }
+                mySqlConnection.Close();
             }
-
-
-
-
-            mySqlConnection.Close();
-              
+            catch (MySqlException)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                mySqlConnection.Close();
+            }
         }
 
         private void Manage_Users_Load(object sender, EventArgs e)
@@ -122,7 +132,7 @@ namespace Library_Management_System_v0._1
 
         private void buttonActivateDeactivate_Click(object sender, EventArgs e)
         {
-
+            MySqlConnection sqlConnection = null;
             try
             {
                 String currectId = dataGridView1.CurrentRow.Cells[0].Value.ToString();
@@ -134,7 +144,7 @@ namespace Library_Management_System_v0._1
                     if (dialogResult == DialogResult.OK)
                     {
                         String deactivateUser = "UPDATE user_profile SET isActive = 0 WHERE generatedID = @currentId";
-                        MySqlConnection sqlConnection = DataConnection.getDBConnection();
+                        sqlConnection = DataConnection.getDBConnection();
                         sqlConnection.Open();
                         MySqlCommand mySqlCommand = new MySqlCommand(deactivateUser, sqlConnection);
                         mySqlCommand.CommandText = deactivateUser;
@@ -172,8 +182,10 @@ namespace Library_Management_System_v0._1
             catch (Exception ex)
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }           
-            
+            }
+            finally {
+                sqlConnection.Close();
+            }
 
         }
 
@@ -184,6 +196,7 @@ namespace Library_Management_System_v0._1
 
         private void textBoxBookID_KeyUp(object sender, KeyEventArgs e)
         {
+            MySqlConnection mySqlConnection = null;
             try
             {
                 String searchVal = textBoxBookID.Text;
@@ -192,7 +205,7 @@ namespace Library_Management_System_v0._1
                 String getLibrariansSql = "select generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status from user_profile left join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id left join user_login on user_profile.id = user_login.user_profile_id left join user_role on user_login.user_role_id = user_role.id WHERE user_role.name = 'Librarian' AND generatedID like @searchVal";
                 String userRole = LoginDetails.userRole;
 
-                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection = DataConnection.getDBConnection();
                 mySqlConnection.Open();
 
                 if (userRole.Equals("Librarian"))
@@ -287,22 +300,26 @@ namespace Library_Management_System_v0._1
             catch (Exception ex)
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                mySqlConnection.Close();
             }
             
         }
 
         private void textBoxBookName_KeyUp(object sender, KeyEventArgs e)
         {
+            MySqlConnection mySqlConnection = null;
             try
             {
                 String searchVal = textBoxBookName.Text;
                 dataGridView1.RowCount = 0;
-               // loadTable();
+                // loadTable();
                 String getReadersSql = "SELECT generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status FROM user_profile inner join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id WHERE user_profile_type.name = 'Reader' AND (firstName like @searchVal OR lastName like @searchVal)";
                 String getLibrariansSql = "SELECT generatedID, firstName, lastName, user_profile_type.name as userProfileType, mobileNumber, permenentAddress, user_profile.createDateTime as userRegDate, user_profile.isActive as status from user_profile left join user_profile_type on user_profile.user_profile_type_id = user_profile_type.id left join user_login on user_profile.id = user_login.user_profile_id left join user_role on user_login.user_role_id = user_role.id WHERE user_role.name = 'Librarian' AND (firstName like @searchVal OR lastName like @searchVal)";
                 String userRole = LoginDetails.userRole;
 
-                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection = DataConnection.getDBConnection();
                 mySqlConnection.Open();
 
                 if (userRole.Equals("Librarian"))
@@ -397,6 +414,9 @@ namespace Library_Management_System_v0._1
             catch (Exception ex)
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally {
+                mySqlConnection.Close();
             }
            
         }

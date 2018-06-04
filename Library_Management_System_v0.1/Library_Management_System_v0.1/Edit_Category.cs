@@ -24,11 +24,12 @@ namespace Library_Management_System_v0._1
 
         void fillCategory()
         {
+            MySqlConnection mySqlConnection = null;
             try
             {
-               // textBoxAddCategory.Text = null;
+                // textBoxAddCategory.Text = null;
                 String selectBookCategory_SQL = "SELECT * FROM book_category";
-                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection = DataConnection.getDBConnection();
 
                 mySqlConnection.Open();
                 MySqlCommand cmd_bookCategory = new MySqlCommand(selectBookCategory_SQL, mySqlConnection);
@@ -40,28 +41,46 @@ namespace Library_Management_System_v0._1
                     String bookCategory = DataReaderBookCategory.GetString("name");
                     comboBoxCategory.Items.Add(bookCategory);
                 }
-                
-               mySqlConnection.Close();
+
+                mySqlConnection.Close();
             }
             catch (MySqlException e)
             {
                 Console.WriteLine(e);
                 MessageBox.Show("Please check the connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+
+                mySqlConnection.Close();
+
+            }
         }
 
-        void editCategory(String name, String updateName) {
+        void editCategory(String name, String updateName)
+        {
+            MySqlConnection mySqlConnection = null;
+            try
+            {
+                String updateCategory_SQL = "UPDATE book_category SET name=@ubookname WHERE name=@bookname";
+                mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+                MySqlCommand command_updateCurrentBookCountCategory = new MySqlCommand(updateCategory_SQL, mySqlConnection);
+                command_updateCurrentBookCountCategory.CommandText = updateCategory_SQL;
+                command_updateCurrentBookCountCategory.Parameters.AddWithValue("@bookname", name);
+                command_updateCurrentBookCountCategory.Parameters.AddWithValue("@ubookname", updateName);
+                int row = command_updateCurrentBookCountCategory.ExecuteNonQuery();
 
-            String updateCategory_SQL = "UPDATE book_category SET name=@ubookname WHERE name=@bookname";
-            MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-            mySqlConnection.Open();
-            MySqlCommand command_updateCurrentBookCountCategory = new MySqlCommand(updateCategory_SQL, mySqlConnection);
-            command_updateCurrentBookCountCategory.CommandText = updateCategory_SQL;
-            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@bookname", name);
-            command_updateCurrentBookCountCategory.Parameters.AddWithValue("@ubookname", updateName);
-            int row = command_updateCurrentBookCountCategory.ExecuteNonQuery();
-
-            mySqlConnection.Close();
+                mySqlConnection.Close();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show(" Please check connection ", "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
 
         }
 
@@ -69,12 +88,12 @@ namespace Library_Management_System_v0._1
 
         private void comboBoxCategory_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void comboBoxCategory_DropDown(object sender, EventArgs e)
         {
-            
+
         }
 
         private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,11 +125,11 @@ namespace Library_Management_System_v0._1
                 MessageBox.Show(" Invalid Selection ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-            catch (MySqlException) {
+            catch (MySqlException)
+            {
                 MessageBox.Show(" Please check connection ", "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
 
             }
-
         }
     }
 }
