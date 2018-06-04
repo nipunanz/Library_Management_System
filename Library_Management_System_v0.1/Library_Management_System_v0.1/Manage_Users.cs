@@ -164,7 +164,7 @@ namespace Library_Management_System_v0._1
                     if (dialogResult == DialogResult.OK)
                     {
                         String deactivateUser = "UPDATE user_profile SET isActive = 1 WHERE generatedID = @currentId";
-                        MySqlConnection sqlConnection = DataConnection.getDBConnection();
+                        sqlConnection = DataConnection.getDBConnection();
                         sqlConnection.Open();
                         MySqlCommand mySqlCommand = new MySqlCommand(deactivateUser, sqlConnection);
                         mySqlCommand.CommandText = deactivateUser;
