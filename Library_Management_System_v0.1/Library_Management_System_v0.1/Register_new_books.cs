@@ -51,7 +51,14 @@ namespace Library_Management_System_v0._1
             comboBoxBookType.SelectedItem = comboControl.type;
             comboBoxBookPublisher.SelectedItem = comboControl.publisher;
             comboBoxSelectBook.SelectedItem = comboControl.selectedBook;
-
+            if (comboControl.isNewBookChecked)
+            {
+                checkBoxIsNewBook.Checked = true;
+            }
+            else
+            {
+                checkBoxIsNewBook.Checked = false;
+            }
 
             generateID();
         }
@@ -69,6 +76,8 @@ namespace Library_Management_System_v0._1
             panel1.Hide();
             comboBoxBookAuthor.SelectedItem = author;
             comboBoxCategory.SelectedItem = category;
+            comboBoxSelectBook.Enabled = false;
+            checkBoxIsNewBook.Hide();
 
             labelBookID.Text = comboControl.bookID;
             textBoxBookName.Text = comboControl.bookName;
@@ -273,6 +282,47 @@ namespace Library_Management_System_v0._1
 
         }
 
+        String getGenerateID()
+        {
+            MySqlConnection mySqlConnection = null;
+            try
+            {
+
+                DateTime dateObj = DateTime.Now; //Gets the current DATE/TIME
+
+                String date = dateObj.Day.ToString("dd");//Gets the current DAY
+                String month = dateObj.Month.ToString("MM");//Gets the current MONTH
+                String year = dateObj.Year.ToString("yyyy");//Gets the current YEAR
+                String searchDateFormat = year + "-" + month + "-" + date;//Format the date as per SQL Format
+
+                mySqlConnection = DataConnection.getDBConnection();
+                mySqlConnection.Open();
+
+                String searchDailyCount = "SELECT COUNT(id) FROM book_batch_profile WHERE createDateTime LIKE @date";
+                MySqlCommand command_newBookCatergory = new MySqlCommand(searchDailyCount, mySqlConnection);
+                command_newBookCatergory.CommandText = searchDailyCount;
+                command_newBookCatergory.Parameters.AddWithValue("@date", "%" + dateObj.ToString(searchDateFormat) + "%");
+                Object sqlResult = command_newBookCatergory.ExecuteScalar();
+                int todayCount = int.Parse(sqlResult.ToString());
+
+                mySqlConnection.Close();
+
+                return "BPR" + dateObj.ToString(date) + dateObj.ToString(year) + dateObj.ToString(month) + (todayCount + 1);
+                
+            }
+            catch (MySqlException ex)
+            {
+
+                throw ex;
+
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+
+        }
+
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -352,8 +402,20 @@ namespace Library_Management_System_v0._1
             comboControl.ISBN = isbn;
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
-            comboControl.selectedBook = comboBoxSelectBook.SelectedItem.ToString();
+            if (checkBoxIsNewBook.Checked)
+            {
+                comboControl.isNewBookChecked = true;
+            }
+            else
+            {
+                comboControl.isNewBookChecked = false;
+            }
 
+            if (comboBoxSelectBook.SelectedItem != null)
+            {
+                comboControl.selectedBook = comboBoxSelectBook.SelectedItem.ToString();
+            }
+            
             if (comboBoxBookAuthor.SelectedItem != null && comboBoxBookType.SelectedItem != null && comboBoxCategory.SelectedItem != null)
             {
                 comboControl.author = comboBoxBookAuthor.SelectedItem.ToString();
@@ -382,7 +444,19 @@ namespace Library_Management_System_v0._1
             comboControl.ISBN = isbn;
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
-            comboControl.selectedBook = comboBoxSelectBook.SelectedItem.ToString();
+            if (checkBoxIsNewBook.Checked)
+            {
+                comboControl.isNewBookChecked = true;
+            }
+            else
+            {
+                comboControl.isNewBookChecked = false;
+            }
+
+            if (comboBoxSelectBook.SelectedItem != null)
+            {
+                comboControl.selectedBook = comboBoxSelectBook.SelectedItem.ToString();
+            }
 
             if (comboBoxBookAuthor.SelectedItem != null && comboBoxCategory.SelectedItem != null && comboBoxBookPublisher.SelectedItem != null)
             {
@@ -435,11 +509,11 @@ namespace Library_Management_System_v0._1
                 MySqlConnection mySqlConnection = null;
                 try
                 {
-
-                    Object bookC = selectBCategory(comboBoxCategory.SelectedItem.ToString());
-                    Object bookA = selectBAuthor(comboBoxBookAuthor.SelectedItem.ToString());
-                    Object bookP = selectBPublisher(comboBoxBookPublisher.SelectedItem.ToString());
-                    Object bookT = selectBtype(comboBoxBookType.SelectedItem.ToString());
+                   
+                    Object bookC = selectBCategory(comboBoxCategory.Items[comboBoxCategory.SelectedIndex].ToString());
+                    Object bookA = selectBAuthor(comboBoxBookAuthor.Items[comboBoxBookAuthor.SelectedIndex].ToString());
+                    Object bookP = selectBPublisher(comboBoxBookPublisher.Items[comboBoxBookPublisher.SelectedIndex].ToString());
+                    Object bookT = selectBtype(comboBoxBookType.Items[comboBoxBookType.SelectedIndex].ToString());
 
                     //MessageBox.Show(bookC.ToString() + bookA.ToString() + bookP.ToString() + bookT.ToString());
 
@@ -452,8 +526,7 @@ namespace Library_Management_System_v0._1
 
                     String newBook_SQL = "INSERT INTO book_batch_profile (name,ISBN,printedYear,description,bookCount,createDateTime,updateDateTime,isActive,book_author_id,book_category_id) VALUES (@name,@ISBN,@printedYear,@description,@bookCount,@createDateTime,@updateDateTime,@isActive,@book_author_id,@book_category_id)";
 
-                    mySqlConnection = DataConnection.getDBConnection();
-                    mySqlConnection.Open();
+                    
 
                     if (!checkBoxIsNewBook.Checked)
                     {
@@ -463,9 +536,34 @@ namespace Library_Management_System_v0._1
                         int currentBookCount = int.Parse(selectBatchBookCount(booknameAndIsbn[0], booknameAndIsbn[1]).ToString());
                         int newBookCount = currentBookCount + 1;
                         updateBookCount(booknameAndIsbn[0], booknameAndIsbn[1], newBookCount);
+
+                        String generatedID = getGenerateID();
+
+                        mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection.Open();
+
+                        String searchBookBatchID = "SELECT id FROM book_batch_profile WHERE name=@name AND ISBN=@isbn";
+                        MySqlCommand command_searchID = new MySqlCommand(searchBookBatchID, mySqlConnection);
+                        command_searchID.CommandText = searchBookBatchID;
+                        command_searchID.Parameters.AddWithValue("@name", booknameAndIsbn[0]);
+                        command_searchID.Parameters.AddWithValue("@isbn", booknameAndIsbn[1]);
+                        Object book_batch_profile_id = command_searchID.ExecuteScalar();
+
+                        String insertBookProfile_SQL = "INSERT INTO book_profile (generatedID,book_batch_profile_id,book_printers_id,book_type_id) VALUES (@generatedID, @book_batch_profile_id,@book_printers_id,@book_type_id)";
+                        MySqlCommand command_InsertBookProfile = new MySqlCommand(insertBookProfile_SQL, mySqlConnection);
+                        command_InsertBookProfile.Parameters.AddWithValue("@generatedID", generatedID);
+                        command_InsertBookProfile.Parameters.AddWithValue("@book_batch_profile_id", book_batch_profile_id.ToString());
+                        command_InsertBookProfile.Parameters.AddWithValue("@book_printers_id", bookP);
+                        command_InsertBookProfile.Parameters.AddWithValue("@book_type_id", bookT);
+                        command_InsertBookProfile.ExecuteNonQuery();
+
+                        MessageBox.Show("Book Added Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mySqlConnection.Close();
                     }
                     else
                     {
+                        mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection.Open();
                         MySqlCommand command_newBookCatergory = new MySqlCommand(newBook_SQL, mySqlConnection);
                         command_newBookCatergory.CommandText = newBook_SQL;
                         command_newBookCatergory.Parameters.AddWithValue("@name", bookName);
@@ -490,9 +588,9 @@ namespace Library_Management_System_v0._1
 
                         String searchDailyCount_SQL = "SELECT id FROM book_batch_profile WHERE createDateTime = @date";
                         MySqlCommand command_searchID = new MySqlCommand(searchDailyCount_SQL, mySqlConnection);
-                        command_newBookCatergory.CommandText = searchDailyCount_SQL;
-                        command_newBookCatergory.Parameters.AddWithValue("@date", dateTime.ToString("yyyyMMddHHmmss"));
-                        Object book_batch_profile_id = command_newBookCatergory.ExecuteScalar();
+                        command_searchID.CommandText = searchDailyCount_SQL;
+                        command_searchID.Parameters.AddWithValue("@date", dateTime.ToString("yyyyMMddHHmmss"));
+                        Object book_batch_profile_id = command_searchID.ExecuteScalar();
 
                         String insertBookProfile_SQL = "INSERT INTO book_profile (generatedID,book_batch_profile_id,book_printers_id,book_type_id) VALUES (@generatedID, @book_batch_profile_id,@book_printers_id,@book_type_id)";
                         MySqlCommand command_InsertBookProfile = new MySqlCommand(insertBookProfile_SQL, mySqlConnection);
@@ -505,10 +603,11 @@ namespace Library_Management_System_v0._1
 
                         DialogResult dialogResult = MessageBox.Show(" Book Successfully Registered ! ", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        mySqlConnection.Close();
                     }
 
 
-                    mySqlConnection.Close();
+                    
 
 
                     /**Update Author Book Count**/
@@ -531,12 +630,12 @@ namespace Library_Management_System_v0._1
 
 
                     resetCurrent();
-                    
+                    comboBoxSelectBook.SelectedItem = null; 
 
                 }
-                catch (System.NullReferenceException)
+                catch (System.NullReferenceException ex)
                 {
-                    MessageBox.Show(" Please check Category, Author, Publisher, Type selections. ", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(" Please check Category, Author, Publisher, Type selections. \n"+ex, "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
                 catch (MySqlException ex)
@@ -545,7 +644,10 @@ namespace Library_Management_System_v0._1
                 }
                 finally
                 {
-                    mySqlConnection.Close();
+                    if (mySqlConnection != null) {
+                        mySqlConnection.Close();
+                    }
+                    
                 }
 
             }
@@ -1184,53 +1286,60 @@ namespace Library_Management_System_v0._1
 
         private void comboBoxSelectBook_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String selectedBook = comboBoxSelectBook.SelectedItem.ToString();
-
-            if (selectedBook != null)
+            if (comboBoxSelectBook.SelectedIndex != -1)
             {
-                String[] booknameAndIsbn = selectedBook.Split('-');
-                String loadtable_SQL = "SELECT book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
-                    "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
-                    "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE book_batch_profile.ISBN  = '" + booknameAndIsbn[1] + "' AND book_batch_profile.name = '" + booknameAndIsbn[0] + "'";
-                try
+                String selectedBook = comboBoxSelectBook.SelectedItem.ToString();
+                MySqlConnection mySqlConnection = null;
+                if (selectedBook != null)
                 {
-                    MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-                    mySqlConnection.Open();
-                    MySqlCommand cmd_Profile = new MySqlCommand(loadtable_SQL, mySqlConnection);
-                    MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
-                    MySqlDataReader DataReader;
-                    DataReader = cmd_Profile.ExecuteReader();
-
-                    if (DataReader.Read())
+                    String[] booknameAndIsbn = selectedBook.Split('-');
+                    String loadtable_SQL = "SELECT book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
+                        "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
+                        "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE book_batch_profile.ISBN  = '" + booknameAndIsbn[1] + "' AND book_batch_profile.name = '" + booknameAndIsbn[0] + "'";
+                    try
                     {
-                        String id = DataReader.GetString("batchId");
-                        String name = DataReader.GetString("name");
-                        String isbn = DataReader.GetString("ISBN");
-                        String printYear = DataReader.GetString("printedYear");
-                        String category = DataReader.GetString("categoryName");
-                        String author = DataReader.GetString("authorName");
-                        String type = DataReader.GetString("bookTypeName");
-                        String bookPublisher = DataReader.GetString("bookPublisher");
-                        String bookDescription = DataReader.GetString("bookDescription");
+                        mySqlConnection = DataConnection.getDBConnection();
+                        mySqlConnection.Open();
+                        MySqlCommand cmd_Profile = new MySqlCommand(loadtable_SQL, mySqlConnection);
+                        MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+                        MySqlDataReader DataReader;
+                        DataReader = cmd_Profile.ExecuteReader();
 
-                        textBoxBookName.Text = name;
-                        textBoxISBN.Text = isbn;
-                        textBoxPrintedYear.Text = printYear;
-                        textBoxBookDescription.Text = bookDescription;
-                        comboBoxBookAuthor.SelectedItem = author;
-                        comboBoxBookPublisher.SelectedItem = bookPublisher;
-                        comboBoxBookType.SelectedItem = type;
-                        comboBoxCategory.SelectedItem = category;
+                        if (DataReader.Read())
+                        {
+                            String id = DataReader.GetString("batchId");
+                            String name = DataReader.GetString("name");
+                            String isbn = DataReader.GetString("ISBN");
+                            String printYear = DataReader.GetString("printedYear");
+                            String category = DataReader.GetString("categoryName");
+                            String author = DataReader.GetString("authorName");
+                            String type = DataReader.GetString("bookTypeName");
+                            String bookPublisher = DataReader.GetString("bookPublisher");
+                            String bookDescription = DataReader.GetString("bookDescription");
+
+                            textBoxBookName.Text = name;
+                            textBoxISBN.Text = isbn;
+                            textBoxPrintedYear.Text = printYear;
+                            textBoxBookDescription.Text = bookDescription;
+                            comboBoxBookAuthor.SelectedIndex = comboBoxBookAuthor.FindStringExact(author);
+                            comboBoxBookPublisher.SelectedIndex = comboBoxBookPublisher.FindStringExact(bookPublisher);
+                            comboBoxBookType.SelectedIndex = comboBoxBookType.FindStringExact(type);
+                            comboBoxCategory.SelectedIndex = comboBoxCategory.FindStringExact(category);
+                        }
+                        panel1.Enabled = true;
+                        mySqlConnection.Close();
                     }
-                    panel1.Enabled = true;
-                    mySqlConnection.Close();
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        mySqlConnection.Close();
+                    }
                 }
             }
-            
+                      
             
         }
 
@@ -1293,6 +1402,14 @@ namespace Library_Management_System_v0._1
             comboControl.ISBN = isbn;
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
+            if (checkBoxIsNewBook.Checked)
+            {
+                comboControl.isNewBookChecked = true;
+            }
+            else
+            {
+                comboControl.isNewBookChecked = false;
+            }
             
             if (comboBoxBookAuthor.SelectedItem != null && comboBoxBookType.SelectedItem != null && comboBoxBookPublisher.SelectedItem != null)
             {
@@ -1322,7 +1439,19 @@ namespace Library_Management_System_v0._1
             comboControl.ISBN = isbn;
             comboControl.printYear = pYear;
             comboControl.descrip = descrip;
-            comboControl.selectedBook = comboBoxSelectBook.SelectedItem.ToString();
+            if (checkBoxIsNewBook.Checked)
+            {
+                comboControl.isNewBookChecked = true;
+            }
+            else
+            {
+                comboControl.isNewBookChecked = false;
+            }
+
+            if (comboBoxSelectBook.SelectedItem != null)
+            {
+                comboControl.selectedBook = comboBoxSelectBook.SelectedItem.ToString();
+            }           
 
             if (comboBoxBookPublisher.SelectedItem != null && comboBoxBookType.SelectedItem != null && comboBoxCategory.SelectedItem != null)
             {

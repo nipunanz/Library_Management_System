@@ -90,7 +90,7 @@ namespace Library_Management_System_v0._1
 
             String loadtable_SQL = "SELECT generatedID, book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
                 "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
-                "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id";
+                "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE book_profile.generatedID IN (SELECT generatedID FROM book_profile WHERE id NOT IN (SELECT book_profile_id FROM issue_and_return_book WHERE isReturn = 0))";
             MySqlConnection mySqlConnection = DataConnection.getDBConnection();
             mySqlConnection.Open();
             MySqlCommand cmd_Profile = new MySqlCommand(loadtable_SQL, mySqlConnection);
@@ -136,8 +136,8 @@ namespace Library_Management_System_v0._1
                 String searchVal = textBox1.Text;
                 dataGridView1.RowCount = 0;
                 String loadtable_SQL = "SELECT generatedID, book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
-                     "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
-                     "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE generatedID like @generatedID";
+                "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
+                "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE book_profile.generatedID IN (SELECT generatedID FROM book_profile WHERE id NOT IN (SELECT book_profile_id FROM issue_and_return_book WHERE isReturn = 0)) AND generatedID like @generatedID";
                 String userRole = LoginDetails.userRole;
 
                 MySqlConnection mySqlConnection = DataConnection.getDBConnection();
@@ -174,14 +174,26 @@ namespace Library_Management_System_v0._1
                     }
 
                     dataGridView1.Rows.Add(id, name, isbn, printYear, category, author, type, bookCount, status, bookPublisher, bookDescription);
-
+                    if (dataGridView2.RowCount > 0)
+                    {
+                        for (int i = 0; i < dataGridView1.RowCount; i++)
+                        {
+                            for (int j = 0; j < dataGridView2.RowCount; j++)
+                            {
+                                if ((dataGridView1.Rows[i].Cells[0].Value.ToString()).Equals(dataGridView2.Rows[j].Cells[0].Value.ToString()))
+                                {
+                                    dataGridView1.Rows[i].Visible = false;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 mySqlConnection.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error \n"+ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -192,9 +204,9 @@ namespace Library_Management_System_v0._1
             {
                 String searchVal = textBoxBookName.Text;
                 dataGridView1.RowCount = 0;
-                String loadtable_SQL = "SELECT book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
-                     "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
-                     "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE book_batch_profile.name like @bookName";
+                String loadtable_SQL = "SELECT generatedID, book_batch_profile.bookCount as bookCount, book_batch_profile.description as bookDescription, book_printers.name as bookPublisher, book_batch_profile.id as batchId, book_batch_profile.name, book_batch_profile.ISBN, book_batch_profile.printedYear, book_category.name as categoryName, book_author.name as authorName, book_type.name as bookTypeName, book_batch_profile.isActive as status FROM book_batch_profile " +
+                "INNER JOIN book_category on book_batch_profile.book_category_id = book_category.id INNER JOIN book_author on book_author.id = book_batch_profile.book_author_id INNER JOIN book_profile on book_profile.book_batch_profile_id = book_batch_profile.id " +
+                "INNER JOIN book_printers on book_printers.id = book_profile.book_printers_id INNER JOIN book_type on book_type.id = book_profile.book_type_id WHERE book_profile.generatedID IN (SELECT generatedID FROM book_profile WHERE id NOT IN (SELECT book_profile_id FROM issue_and_return_book WHERE isReturn = 0)) AND book_batch_profile.name like @bookName";
                 String userRole = LoginDetails.userRole;
 
                 MySqlConnection mySqlConnection = DataConnection.getDBConnection();
@@ -209,7 +221,7 @@ namespace Library_Management_System_v0._1
 
                 while (DataReader.Read())
                 {
-                    String id = DataReader.GetString("batchId");
+                    String id = DataReader.GetString("generatedID");
                     String name = DataReader.GetString("name");
                     String isbn = DataReader.GetString("ISBN");
                     String printYear = DataReader.GetString("printedYear");
@@ -231,14 +243,27 @@ namespace Library_Management_System_v0._1
                     }
 
                     dataGridView1.Rows.Add(id, name, isbn, printYear, category, author, type, bookCount, status, bookPublisher, bookDescription);
-
+                    if (dataGridView2.RowCount > 0)
+                    {
+                        for (int i = 0; i < dataGridView1.RowCount; i++)
+                        {
+                            for (int j = 0; j < dataGridView2.RowCount; j++)
+                            {
+                                if((dataGridView1.Rows[i].Cells[0].Value.ToString()).Equals(dataGridView2.Rows[j].Cells[0].Value.ToString()))
+                                {
+                                    dataGridView1.Rows[i].Visible = false;
+                                }
+                            }
+                        }
+                    }
+                    
                 }
 
                 mySqlConnection.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error \n"+ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -309,82 +334,106 @@ namespace Library_Management_System_v0._1
         {
             DateTime dateTime = DateTime.Now;
             dateTime.ToString("yyyyMMddHHmmss");
-
+            MySqlConnection mySqlConnection = null;
             try
             {
                 String userId = textBoxUserId.Text;
                 String returnDate = dateTimePicker1.Text;
-                List<String> list = new List<String>();
-                for (int i = 0; i < dataGridView2.RowCount; i++)
+
+                if (userId != null && !userId.Equals("") && returnDate != null && !returnDate.Equals(""))
                 {
-                    list.Add(dataGridView2.CurrentRow.Cells[0].Value.ToString());
+                    List<String> list = new List<String>();
+                    for (int i = 0; i < dataGridView2.RowCount; i++)
+                    {
+                        list.Add(dataGridView2.Rows[i].Cells[0].Value.ToString());
+                        Console.WriteLine("Data Grid BOOK ID :" + dataGridView2.Rows[i].Cells[0].Value.ToString());
+                    }
+
+                    String saveReturnBook = "INSERT INTO issue_and_return_book_batch  (issueDateTime, markedReturnDate, isReturn, remarks, user_profile_id, user_login_history_id) VALUES (@issueDateTime, @markedReturnDate, @isReturn, @remarks, @user_profile_id, @user_login_history_id)";
+                    String getUserProfileIdSql = "SELECT id FROM user_profile WHERE generatedID = @userId";
+                    String getUserProfileIdSql2 = "SELECT id FROM issue_and_return_book_batch WHERE issueDateTime = @currentDate";
+                    String getUserProfileIdSql3 = "SELECT id FROM book_profile WHERE generatedID = @generatedID";
+                    String saveReturnBook2 = "INSERT INTO issue_and_return_book (returnDateTime, isReturn, remarks, book_profile_id, issue_and_return_book_batch_id) VALUES (@returnDateTime, @isReturn, @remarks, @book_profile_id, @issue_and_return_book_batch_id)";
+
+                    mySqlConnection = DataConnection.getDBConnection();
+                    mySqlConnection.Open();
+                    MySqlCommand cmd_Profile = new MySqlCommand(saveReturnBook, mySqlConnection);
+                    cmd_Profile.CommandText = saveReturnBook;
+                    cmd_Profile.Parameters.AddWithValue("@issueDateTime", dateTime);
+                    cmd_Profile.Parameters.AddWithValue("@markedReturnDate", returnDate);
+                    cmd_Profile.Parameters.AddWithValue("@isReturn", false);
+                    cmd_Profile.Parameters.AddWithValue("@remarks", "");
+
+                    MySqlCommand getUserProfileId = new MySqlCommand(getUserProfileIdSql, mySqlConnection);
+                    getUserProfileId.CommandText = getUserProfileIdSql;
+                    getUserProfileId.Parameters.AddWithValue("@userId", userId);
+                    MySqlDataReader readProfileID = getUserProfileId.ExecuteReader();
+                    if (readProfileID.Read())
+                    {
+                        String userProfileId = readProfileID.GetString("id");
+
+                        readProfileID.Close();
+
+                        cmd_Profile.Parameters.AddWithValue("@user_profile_id", userProfileId);
+                        cmd_Profile.Parameters.AddWithValue("@user_login_history_id", LoginDetails.userLoginHistoryID);
+                    }
+                    cmd_Profile.ExecuteNonQuery();
+
+                    MySqlCommand getUserProfileId2 = new MySqlCommand(getUserProfileIdSql2, mySqlConnection);
+                    getUserProfileId2.CommandText = getUserProfileIdSql2;
+                    getUserProfileId2.Parameters.AddWithValue("@currentDate", dateTime);
+                    MySqlDataReader readProfileID2 = getUserProfileId2.ExecuteReader();
+                    String userProfileId2 = null;
+                    if (readProfileID2.Read())
+                    {
+                        userProfileId2 = readProfileID2.GetString("id");
+                    }
+                    readProfileID2.Close();
+                    Console.WriteLine("Issue book Batch ID :"+userProfileId2);
+
+                    foreach (String s in list)
+                    {
+                        MySqlCommand getUserProfileId3 = new MySqlCommand(getUserProfileIdSql3, mySqlConnection);
+                        getUserProfileId3.CommandText = getUserProfileIdSql3;
+                        getUserProfileId3.Parameters.AddWithValue("@generatedID", s);
+                        MySqlDataReader readProfileID3 = getUserProfileId3.ExecuteReader();
+                        readProfileID3.Read();
+                        String userProfileId3 = readProfileID3.GetString("id");
+                        readProfileID3.Close();
+                        Console.WriteLine("Issue book Profile ID :" + userProfileId3);
+
+                        MySqlCommand mySqlCommand = new MySqlCommand(saveReturnBook2, mySqlConnection);
+                        mySqlCommand.CommandText = saveReturnBook2;
+                        mySqlCommand.Parameters.AddWithValue("@returnDateTime", null);
+                        mySqlCommand.Parameters.AddWithValue("@isReturn", false);
+                        mySqlCommand.Parameters.AddWithValue("@remarks", "");
+                        mySqlCommand.Parameters.AddWithValue("@book_profile_id", userProfileId3);
+                        mySqlCommand.Parameters.AddWithValue("@issue_and_return_book_batch_id", userProfileId2);
+
+                        mySqlCommand.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Book Successfully Issued!", "Issue books", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridView2.RowCount = 0;
+                    mySqlConnection.Close();
                 }
-
-                String saveReturnBook = "INSERT INTO issue_and_return_book_batch  (issueDateTime, markedReturnDate, isReturn, remarks, user_profile_id, user_login_history_id) VALUES (@issueDateTime, @markedReturnDate, @isReturn, @remarks, @user_profile_id, @user_login_history_id)";
-                String getUserProfileIdSql = "SELECT id FROM user_profile WHERE generatedID = @userId";
-                String getUserProfileIdSql2 = "SELECT id FROM issue_and_return_book_batch WHERE issueDateTime = @currentDate";
-                String getUserProfileIdSql3 = "SELECT id FROM book_profile WHERE generatedID = @generatedID";
-                String saveReturnBook2 = "INSERT INTO issue_and_return_book (returnDateTime, isReturn, remarks, book_profile_id, issue_and_return_book_batch_id) VALUES (@returnDateTime, @isReturn, @remarks, @book_profile_id, @issue_and_return_book_batch_id)";
-
-                MySqlConnection mySqlConnection = DataConnection.getDBConnection();
-                mySqlConnection.Open();
-                MySqlCommand cmd_Profile = new MySqlCommand(saveReturnBook, mySqlConnection);
-                cmd_Profile.CommandText = saveReturnBook;
-                cmd_Profile.Parameters.AddWithValue("@issueDateTime", dateTime);
-                cmd_Profile.Parameters.AddWithValue("@markedReturnDate", returnDate);
-                cmd_Profile.Parameters.AddWithValue("@isReturn", false);
-                cmd_Profile.Parameters.AddWithValue("@remarks", "");
-
-                MySqlCommand getUserProfileId = new MySqlCommand(getUserProfileIdSql, mySqlConnection);
-                getUserProfileId.CommandText = getUserProfileIdSql;
-                getUserProfileId.Parameters.AddWithValue("@userId", userId);
-                MySqlDataReader readProfileID = getUserProfileId.ExecuteReader();
-                readProfileID.Read();
-                String userProfileId = readProfileID.GetString("id");
-                readProfileID.Close();
-
-                cmd_Profile.Parameters.AddWithValue("@user_profile_id", userProfileId);
-                cmd_Profile.Parameters.AddWithValue("@user_login_history_id", LoginDetails.userLoginHistoryID);
-
-                cmd_Profile.ExecuteNonQuery();
-
-                MySqlCommand getUserProfileId2 = new MySqlCommand(getUserProfileIdSql2, mySqlConnection);
-                getUserProfileId2.CommandText = getUserProfileIdSql2;
-                getUserProfileId2.Parameters.AddWithValue("@currentDate", dateTime);
-                MySqlDataReader readProfileID2 = getUserProfileId2.ExecuteReader();
-                readProfileID2.Read();
-                String userProfileId2 = readProfileID2.GetString("id");
-                readProfileID2.Close();
-
-
-                foreach (String s in list)
+                else
                 {
-                    MySqlCommand getUserProfileId3 = new MySqlCommand(getUserProfileIdSql3, mySqlConnection);
-                    getUserProfileId3.CommandText = getUserProfileIdSql3;
-                    getUserProfileId3.Parameters.AddWithValue("@generatedID", s);
-                    MySqlDataReader readProfileID3 = getUserProfileId.ExecuteReader();
-                    readProfileID3.Read();
-                    String userProfileId3 = readProfileID3.GetString("id");
-                    readProfileID3.Close();
-
-                    MySqlCommand mySqlCommand = new MySqlCommand(saveReturnBook2, mySqlConnection);
-                    mySqlCommand.CommandText = saveReturnBook2;
-                    mySqlCommand.Parameters.AddWithValue("@returnDateTime", null);
-                    mySqlCommand.Parameters.AddWithValue("@isReturn", false);
-                    mySqlCommand.Parameters.AddWithValue("@remarks", "");
-                    mySqlCommand.Parameters.AddWithValue("@book_profile_id", userProfileId3);
-                    mySqlCommand.Parameters.AddWithValue("@issue_and_return_book_batch_id", userProfileId2);
-
-                    mySqlCommand.ExecuteNonQuery();
+                    MessageBox.Show("Invalid Entry. Please check manddatory fields", "Issue books", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
-                MessageBox.Show("Book Successfully Issued!", "Issue books", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                mySqlConnection.Close();
+                
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Sorry! Something went wrong. server error \n"+ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if(mySqlConnection != null)
+                {
+                    mySqlConnection.Close();
+                }
             }
 
 
@@ -410,7 +459,7 @@ namespace Library_Management_System_v0._1
                 label6.Text ="";
                 label9.Text ="";
                 label11.Text = "";
-                pictureBox1.Image = Image.FromFile("../LoadImage/blank.jpg");
+                pictureBox1.Image = Properties.Resources.blank;
 
             }
         }

@@ -321,7 +321,7 @@
             this.buttonUpdateBook.BackColor = System.Drawing.Color.DarkSlateGray;
             this.buttonUpdateBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonUpdateBook.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonUpdateBook.Location = new System.Drawing.Point(912, 609);
+            this.buttonUpdateBook.Location = new System.Drawing.Point(954, 609);
             this.buttonUpdateBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonUpdateBook.Name = "buttonUpdateBook";
             this.buttonUpdateBook.Size = new System.Drawing.Size(149, 47);

@@ -215,7 +215,7 @@ namespace Library_Management_System_v0._1
                 label6.Text = "";
                 label9.Text = "";
                 label11.Text = "";
-                pictureBox1.Image = Image.FromFile("../LoadImage/blank.jpg");
+                pictureBox1.Image = Properties.Resources.blank;
 
             }
         }

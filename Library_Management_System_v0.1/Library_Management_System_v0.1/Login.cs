@@ -103,8 +103,11 @@ namespace Library_Management_System_v0._1
                                     commandGetLoginHistoryId.Parameters.AddWithValue("@currentDate", dateTime);
 
                                     MySqlDataReader loginHistoryReader = commandGetLoginHistoryId.ExecuteReader();
-                                    loginHistoryReader.Read();
-                                    // LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
+                                    if (loginHistoryReader.Read())
+                                    {
+                                        LoginDetails.userLoginHistoryID = loginHistoryReader.GetString("id");
+                                    }
+                                                                        
                                     //MessageBox.Show("Login History ID : "+LoginDetails.userLoginHistoryID);
                                     loginHistoryReader.Close();
 
