@@ -219,6 +219,44 @@ namespace Library_Management_System_v0._1
 
             }
         }
+
+        private void textBoxBookID_TextChanged(object sender, EventArgs e)
+        {
+            MySqlConnection connection = null;
+
+            try
+            {
+                String selectGeneratedID_SQL = "SELECT generatedID from user_profile WHERE generatedID LIKE @id ";
+                connection = DataConnection.getDBConnection();
+                connection.Open();
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+                MySqlDataReader mySqlDataReader;
+
+                MySqlCommand cmd_SELECTID = new MySqlCommand(selectGeneratedID_SQL, connection);
+
+                cmd_SELECTID.Parameters.Add(new MySqlParameter("@id", "%" + textBoxBookID.Text + "%"));
+
+                cmd_SELECTID.ExecuteNonQuery();
+                mySqlDataReader = cmd_SELECTID.ExecuteReader();
+
+                AutoCompleteStringCollection auto = new AutoCompleteStringCollection();
+
+                while (mySqlDataReader.Read())
+                {
+
+                    auto.Add(mySqlDataReader.GetString(0));
+
+                }
+
+                textBoxBookID.AutoCompleteCustomSource = auto;
+
+                connection.Close();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 
 }

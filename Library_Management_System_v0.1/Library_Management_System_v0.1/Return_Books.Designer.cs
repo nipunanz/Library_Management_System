@@ -78,7 +78,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(47, 136);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(333, 416);
             this.panel1.TabIndex = 16;
@@ -172,7 +172,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = global::Library_Management_System_v0._1.Properties.Resources.blank;
             this.pictureBox1.Location = new System.Drawing.Point(19, 21);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(115, 125);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -181,12 +181,15 @@
             // 
             // textBoxBookID
             // 
+            this.textBoxBookID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBoxBookID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBookID.Location = new System.Drawing.Point(98, 97);
-            this.textBoxBookID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxBookID.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxBookID.Name = "textBoxBookID";
             this.textBoxBookID.Size = new System.Drawing.Size(200, 24);
             this.textBoxBookID.TabIndex = 15;
+            this.textBoxBookID.TextChanged += new System.EventHandler(this.textBoxBookID_TextChanged);
             this.textBoxBookID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxBookID_KeyUp);
             // 
             // label2
@@ -247,7 +250,7 @@
             this.buttonSaveBook.Font = new System.Drawing.Font("Roboto Condensed", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSaveBook.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonSaveBook.Location = new System.Drawing.Point(826, 514);
-            this.buttonSaveBook.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSaveBook.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSaveBook.Name = "buttonSaveBook";
             this.buttonSaveBook.Size = new System.Drawing.Size(112, 38);
             this.buttonSaveBook.TabIndex = 25;
@@ -261,7 +264,7 @@
             this.buttonUserSearch.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonUserSearch.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonUserSearch.Location = new System.Drawing.Point(305, 96);
-            this.buttonUserSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonUserSearch.Margin = new System.Windows.Forms.Padding(2);
             this.buttonUserSearch.Name = "buttonUserSearch";
             this.buttonUserSearch.Size = new System.Drawing.Size(75, 27);
             this.buttonUserSearch.TabIndex = 27;
@@ -374,7 +377,7 @@
             this.button1.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.Location = new System.Drawing.Point(808, 124);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 40);
             this.button1.TabIndex = 29;
@@ -395,7 +398,7 @@
             this.buttonHome.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonHome.ForeColor = System.Drawing.Color.Transparent;
             this.buttonHome.Location = new System.Drawing.Point(890, 25);
-            this.buttonHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonHome.Margin = new System.Windows.Forms.Padding(2);
             this.buttonHome.Name = "buttonHome";
             this.buttonHome.Size = new System.Drawing.Size(48, 47);
             this.buttonHome.TabIndex = 55;
@@ -422,7 +425,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Return_Books";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Return_Books";

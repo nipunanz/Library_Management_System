@@ -79,7 +79,8 @@ namespace Library_Management_System_v0._1
             {
                 MessageBox.Show("Sorry! Something went wrong. server error" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally {
+            finally
+            {
                 connection.Close();
             }
 
@@ -193,7 +194,7 @@ namespace Library_Management_System_v0._1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error \n"+ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error \n" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -249,21 +250,21 @@ namespace Library_Management_System_v0._1
                         {
                             for (int j = 0; j < dataGridView2.RowCount; j++)
                             {
-                                if((dataGridView1.Rows[i].Cells[0].Value.ToString()).Equals(dataGridView2.Rows[j].Cells[0].Value.ToString()))
+                                if ((dataGridView1.Rows[i].Cells[0].Value.ToString()).Equals(dataGridView2.Rows[j].Cells[0].Value.ToString()))
                                 {
                                     dataGridView1.Rows[i].Visible = false;
                                 }
                             }
                         }
                     }
-                    
+
                 }
 
                 mySqlConnection.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error \n"+ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error \n" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -389,7 +390,7 @@ namespace Library_Management_System_v0._1
                         userProfileId2 = readProfileID2.GetString("id");
                     }
                     readProfileID2.Close();
-                    Console.WriteLine("Issue book Batch ID :"+userProfileId2);
+                    Console.WriteLine("Issue book Batch ID :" + userProfileId2);
 
                     foreach (String s in list)
                     {
@@ -421,16 +422,16 @@ namespace Library_Management_System_v0._1
                 {
                     MessageBox.Show("Invalid Entry. Please check manddatory fields", "Issue books", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                
+
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry! Something went wrong. server error \n"+ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                if(mySqlConnection != null)
+                if (mySqlConnection != null)
                 {
                     mySqlConnection.Close();
                 }
@@ -452,12 +453,13 @@ namespace Library_Management_System_v0._1
 
         private void textBoxUserId_KeyUp(object sender, KeyEventArgs e)
         {
-            if (textBoxUserId.Text == String.Empty) {
+            if (textBoxUserId.Text == String.Empty)
+            {
 
-                label3.Text ="";
-                label4.Text ="";
-                label6.Text ="";
-                label9.Text ="";
+                label3.Text = "";
+                label4.Text = "";
+                label6.Text = "";
+                label9.Text = "";
                 label11.Text = "";
                 pictureBox1.Image = Properties.Resources.blank;
 
@@ -466,6 +468,44 @@ namespace Library_Management_System_v0._1
 
         private void textBoxBookID_Enter(object sender, EventArgs e)
         {
+
+        }
+
+        private void textBoxUserId_TextChanged(object sender, EventArgs e)
+        {
+            MySqlConnection connection = null;
+
+            try {
+                String selectGeneratedID_SQL = "SELECT generatedID from user_profile WHERE generatedID LIKE @id ";
+                connection = DataConnection.getDBConnection();
+                connection.Open();
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+                MySqlDataReader mySqlDataReader;
+
+                MySqlCommand cmd_SELECTID = new MySqlCommand(selectGeneratedID_SQL, connection);
+
+                cmd_SELECTID.Parameters.Add(new MySqlParameter("@id", "%" + textBoxUserId.Text + "%"));
+
+                cmd_SELECTID.ExecuteNonQuery();
+                mySqlDataReader=cmd_SELECTID.ExecuteReader();
+
+                AutoCompleteStringCollection auto = new AutoCompleteStringCollection();
+
+                while (mySqlDataReader.Read()) {
+
+                    auto.Add(mySqlDataReader.GetString(0));
+
+                }
+
+                textBoxUserId.AutoCompleteCustomSource = auto;
+
+                connection.Close();
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
     }
