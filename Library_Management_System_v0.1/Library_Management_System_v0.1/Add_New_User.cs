@@ -427,8 +427,11 @@ namespace Library_Management_System_v0._1
                 MessageBox.Show("Sorry! Something went wrong. server error" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally {
-                mySqlConnection.Close();
-
+                if(mySqlConnection != null)
+                {
+                    mySqlConnection.Close();
+                }
+            
             }
 
         }
