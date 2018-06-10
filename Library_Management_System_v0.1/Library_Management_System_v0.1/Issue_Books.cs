@@ -484,7 +484,7 @@ namespace Library_Management_System_v0._1
 
                 MySqlCommand cmd_SELECTID = new MySqlCommand(selectGeneratedID_SQL, connection);
 
-                cmd_SELECTID.Parameters.Add(new MySqlParameter("@id", "%" + textBoxUserId.Text + "%"));
+                cmd_SELECTID.Parameters.AddWithValue("@id", "%" + textBoxUserId.Text + "%");
 
                 cmd_SELECTID.ExecuteNonQuery();
                 mySqlDataReader=cmd_SELECTID.ExecuteReader();
