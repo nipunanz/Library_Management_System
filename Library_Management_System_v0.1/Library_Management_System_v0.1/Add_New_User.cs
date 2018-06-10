@@ -184,8 +184,8 @@ namespace Library_Management_System_v0._1
         }
 
         private void buttonSaveUser_Click(object sender, EventArgs e)
-        {
-            
+        { 
+
            MemoryStream ms = new MemoryStream();
             // Console.WriteLine("Hey " +pictureBoxUser.Image);
                 pictureBoxUser.Image.Save(ms, pictureBoxUser.Image.RawFormat);
