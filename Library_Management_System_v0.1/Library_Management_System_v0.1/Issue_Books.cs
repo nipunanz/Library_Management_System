@@ -479,12 +479,12 @@ namespace Library_Management_System_v0._1
                 String selectGeneratedID_SQL = "SELECT generatedID from user_profile WHERE generatedID LIKE @id ";
                 connection = DataConnection.getDBConnection();
                 connection.Open();
-                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+                //MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
                 MySqlDataReader mySqlDataReader;
 
                 MySqlCommand cmd_SELECTID = new MySqlCommand(selectGeneratedID_SQL, connection);
 
-                cmd_SELECTID.Parameters.Add(new MySqlParameter("@id", "%" + textBoxUserId.Text + "%"));
+                cmd_SELECTID.Parameters.AddWithValue("@id", "%" + textBoxUserId.Text + "%");
 
                 cmd_SELECTID.ExecuteNonQuery();
                 mySqlDataReader=cmd_SELECTID.ExecuteReader();
@@ -505,7 +505,7 @@ namespace Library_Management_System_v0._1
             {
                 MessageBox.Show("Sorry! Something went wrong. server error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            
 
         }
     }
