@@ -38,6 +38,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -175,6 +176,17 @@
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             this.buttonLogout.MouseEnter += new System.EventHandler(this.buttonLogout_MouseEnter);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Roboto Light", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 675);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(323, 19);
+            this.label1.TabIndex = 57;
+            this.label1.Text = "All Rights Reserved © NANO FOXY (PVT) LTD";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -182,6 +194,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1283, 703);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
@@ -198,6 +211,7 @@
             this.Text = "Home";
             this.Load += new System.EventHandler(this.Home_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -211,5 +225,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button buttonLogout;
+        private System.Windows.Forms.Label label1;
     }
 }

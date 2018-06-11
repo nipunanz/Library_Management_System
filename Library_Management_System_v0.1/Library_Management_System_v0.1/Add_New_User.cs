@@ -314,10 +314,11 @@ namespace Library_Management_System_v0._1
                                             getProfileTypeId.CommandText = getProfileTypeIdSql;
                                             getProfileTypeId.Parameters.AddWithValue("profileType", profileType);
                                             MySqlDataReader readTypeId = getProfileTypeId.ExecuteReader();
-                                            readTypeId.Read();
-
-                                            commandSaveLibrarian.Parameters.AddWithValue("@user_profile_type_id", readTypeId.GetString("id"));
-                                            readTypeId.Close();
+                                            if (readTypeId.Read())
+                                            {
+                                                commandSaveLibrarian.Parameters.AddWithValue("@user_profile_type_id", readTypeId.GetString("id"));
+                                                readTypeId.Close();
+                                            }                                          
 
                                             commandSaveLibrarian.ExecuteNonQuery();
 
@@ -325,18 +326,27 @@ namespace Library_Management_System_v0._1
                                             getUserProfileId.CommandText = getUserProfileIdSql;
                                             getUserProfileId.Parameters.AddWithValue("@userId", userId);
                                             MySqlDataReader readProfileID = getUserProfileId.ExecuteReader();
-                                            readProfileID.Read();
-                                            String userProfileId = readProfileID.GetString("id");
-                                            readProfileID.Close();
 
+                                            String userProfileId = null;
+
+                                            if (readProfileID.Read())
+                                            {
+                                                userProfileId = readProfileID.GetString("id");
+                                                readProfileID.Close();
+                                            }
+                                            
                                             MySqlCommand getUseRoleId = new MySqlCommand(getUserRoleIdSql, mySqlConnection);
                                             getUseRoleId.CommandText = getUserRoleIdSql;
                                             getUseRoleId.Parameters.AddWithValue("@roleName", userRole);
                                             MySqlDataReader readRoleId = getUseRoleId.ExecuteReader();
-                                            readRoleId.Read();
-                                            String userRoleId = readRoleId.GetString("id");
-                                            readRoleId.Close();
 
+                                            String userRoleId = null;
+                                            if (readRoleId.Read())
+                                            {
+                                                userRoleId = readRoleId.GetString("id");
+                                                readRoleId.Close();
+                                            }
+                                            
                                             MySqlCommand saveUserLoginDetails = new MySqlCommand(saveUserLoginSql, mySqlConnection);
                                             saveUserLoginDetails.CommandText = saveUserLoginSql;
                                             saveUserLoginDetails.Parameters.AddWithValue("@emailAddress", email);
@@ -409,11 +419,12 @@ namespace Library_Management_System_v0._1
                         Console.WriteLine("Date Time :" + dateTime);
                         getProfileTypeId.Parameters.AddWithValue("profileType", profileType);
                         MySqlDataReader readTypeId = getProfileTypeId.ExecuteReader();
-                        readTypeId.Read();
-
-                        commandSaveReader.Parameters.AddWithValue("@user_profile_type_id", readTypeId.GetString("id"));
-                        readTypeId.Close();
-
+                        if (readTypeId.Read())
+                        {
+                            commandSaveReader.Parameters.AddWithValue("@user_profile_type_id", readTypeId.GetString("id"));
+                            readTypeId.Close();
+                        }
+                       
                         commandSaveReader.ExecuteNonQuery();
                         mySqlConnection.Close();
 
@@ -702,11 +713,13 @@ namespace Library_Management_System_v0._1
                                         getUserProfileId.CommandText = getUserProfileIdSql;
                                         getUserProfileId.Parameters.AddWithValue("@userId", editID);
                                         MySqlDataReader readProfileID = getUserProfileId.ExecuteReader();
-                                        readProfileID.Read();
-                                        String userProfileId = readProfileID.GetString("id");
-                                        readProfileID.Close();
-
-
+                                        String userProfileId = null;
+                                        if (readProfileID.Read())
+                                        {
+                                            userProfileId = readProfileID.GetString("id");
+                                            readProfileID.Close();
+                                        }
+                                        
                                         MySqlCommand saveUserLoginDetails = new MySqlCommand(saveUserLoginSql, mySqlConnection);
                                         saveUserLoginDetails.CommandText = saveUserLoginSql;
                                         saveUserLoginDetails.Parameters.AddWithValue("@emailAddress", email);

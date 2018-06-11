@@ -119,6 +119,7 @@
             this.Name = "Add_New_Author";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Author";
+            this.Load += new System.EventHandler(this.Add_New_Author_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

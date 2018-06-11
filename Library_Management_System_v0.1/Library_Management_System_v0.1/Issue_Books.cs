@@ -398,11 +398,14 @@ namespace Library_Management_System_v0._1
                         getUserProfileId3.CommandText = getUserProfileIdSql3;
                         getUserProfileId3.Parameters.AddWithValue("@generatedID", s);
                         MySqlDataReader readProfileID3 = getUserProfileId3.ExecuteReader();
-                        readProfileID3.Read();
-                        String userProfileId3 = readProfileID3.GetString("id");
-                        readProfileID3.Close();
-                        Console.WriteLine("Issue book Profile ID :" + userProfileId3);
-
+                        String userProfileId3 = null;
+                        if (readProfileID3.Read())
+                        {
+                            userProfileId3 = readProfileID3.GetString("id");
+                            readProfileID3.Close();
+                            Console.WriteLine("Issue book Profile ID :" + userProfileId3);
+                        }
+                                            
                         MySqlCommand mySqlCommand = new MySqlCommand(saveReturnBook2, mySqlConnection);
                         mySqlCommand.CommandText = saveReturnBook2;
                         mySqlCommand.Parameters.AddWithValue("@returnDateTime", null);

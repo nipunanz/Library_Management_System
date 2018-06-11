@@ -165,5 +165,10 @@ namespace Library_Management_System_v0._1
         {
             Application.Exit();
         }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
